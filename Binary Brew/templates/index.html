@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Binary Brew</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <!-- owl css -->
+    <link rel="stylesheet" href="static/owl.carousel.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="static/style.css">
+    <!-- responsive-->
+    <link rel="stylesheet" href="static/responsive.css">
+    <!-- awesome fontfamily -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<!-- body -->
+
+<body class="main-layout">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="static/images/loading.gif" alt="" /></div>
+    </div>
+
+    <div class="wrapper">
+    <!-- end loader -->
+
+     <div class="sidebar">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+
+                <div id="dismiss">
+                    <i class="fa fa-arrow-left"></i>
+                </div>
+
+
+
+            </nav>
+        </div>
+
+    <div id="content">
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="index.html"><img src="static/images/logo.jpeg" alt="#" /></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="full">
+                        <div class="right_header_info">
+                            <ul>
+                                <li class="dinone"><img style="margin-right: 15px;height: 21px;position: relative;top: -2px;" src="static/images/location_icon.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                                <li class="button_user"><a class="button active" href="{{ url_for('login') }}">Login</a><a class="button" href="{{ url_for('register') }}">Register</a></li>
+                                <li><img style="margin-right: 15px;" src="static/images/search_icon.png" alt="#"></li>
+                                <li>
+                                    <button type="button" id="sidebarCollapse">
+                                        <img src="static/images/menu_icon.png" alt="#">
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header -->
+    <!-- start slider section -->
+    <div class="slider_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <div id="main_slider" class="carousel vert slide" data-ride="carousel" data-interval="5000">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="slider_cont">
+                                                <h3>Discover The<br>Teas for You</h3>
+                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                <a class="main_bt_border" href="{{ url_for('allTeas') }}">Order Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="slider_image full text_align_center">
+                                                <img class="img-responsive" src="static/images/indexTea.jpeg" alt="#" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="slider_cont">
+                                                <h3>Discover Restaurants<br>That deliver near You</h3>
+                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                <a class="main_bt_border" href="{{ url_for('allTeas') }}">Order Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 full text_align_center">
+                                            <div class="slider_image">
+                                                <img class="img-responsive" src="static/images/indexTea2.png" alt="#" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+                                <i class="fa fa-angle-up"></i>
+                            </a>
+                            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end slider section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- section -->
+    <section class="resip_section">
+        <div class="container">
+            <div class="row">
+         <div class="col-md-12">
+       <div class="ourheading">
+    <h2>Our Tea Specials</h2>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="owl-carousel owl-theme">
+
+                <div class="item">
+                    <div class="product_blog_img">
+                        <img src="static/images/icedTea.png" alt="#" />
+                    </div>
+                    <div class="product_blog_cont">
+                        <h3>Classic Iced Tea</h3>
+                        <h4><span class="theme_color">$</span>1.99</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="product_blog_img">
+                        <img src="static/images/raspberryTea.png" alt="#" />
+                    </div>
+                    <div class="product_blog_cont">
+                        <h3>Raspberry Tea</h3>
+                        <h4><span class="theme_color">$</span>2.99</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="product_blog_img">
+                        <img src="static/images/blackberryTea.png" alt="#" />
+                    </div>
+                    <div class="product_blog_cont">
+                        <h3>Blackberry Tea</h3>
+                        <h4><span class="theme_color">$</span>2.99</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="product_blog_img">
+                        <img src="static/images/greenTea.png" alt="#" />
+                    </div>
+                    <div class="product_blog_cont">
+                        <h3>Green Tea</h3>
+                        <h4><span class="theme_color">$</span>3.99</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="product_blog_img">
+                        <img src="static/images/arnoldPalmer.png" alt="#" />
+                    </div>
+                    <div class="product_blog_cont">
+                        <h3>Arnold Palmer</h3>
+                        <h4><span class="theme_color">$</span>3.99</h4>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+<div class="bg_bg">
+<!-- about -->
+<div class="about">
+    <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+             <div class="title">
+                <i><img src="static/images/title.png" alt="#"/></i>
+                <h2>About Our Food & Restaurant</h2>
+                <span>It is a long established fact that a reader will be distracted by the readable content of a
+                   <br> page when looking at its layout. The point of using Lorem
+                </span>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+             <div class="about_box">
+                 <h3>Binary Tea Standards</h3>
+                 <p>Binary Brew Tea offers a premium tea experience that combines the finest handpicked leaves with a commitment to quality, sustainability, and innovation. With a diverse range of flavors, from bold black teas to soothing herbal blends, it caters to every palate and occasion. Known for its ethical sourcing and eco-friendly practices, each cup reflects care for the planet and communities. Perfectly crafted for rich flavor and wellness benefits, Binary Brew Tea transforms tea drinking into a ritual of indulgence and serenity, making every sip a moment to savor.</p>
+             </div>
+         </div>
+          <div class="col-xl-5 col-lg-5 col-md-10 col-sm-12 about_img_boxpdnt">
+             <div class="about_img">
+                 <figure><img src="static/images/warmTea2.jpg" alt="#/"></figure>
+             </div>
+         </div>
+       </div>
+    </div>
+</div>
+<!-- end about -->
+
+<!-- blog -->
+<div class="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title">
+          <i><img src="static/images/title.png" alt="#"/></i>
+          <h2>Sizes</h2>
+          <span>Choose bettween 3 sizes</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mar_bottom">
+        <div class="blog_box">
+          <div class="blog_img_box">
+            <figure><img src="static/images/small.jpeg" alt="#"/>
+             <span>6 oZ</span>
+            </figure>
+          </div>
+          <h3>Small</h3>
+          <p>Binary Brew Tea’s small-size selection offers a perfect portion for a quick yet satisfying tea experience. Carefully crafted in convenient sizes, it delivers the same premium quality and flavor, ideal for those on the go or looking for a light refreshment.
+          </p></div>
+      </div>
+       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mar_bottom">
+        <div class="blog_box">
+          <div class="blog_img_box">
+            <figure><img src="static/images/medium.jpeg" alt="#"/>
+             <span>10 oZ</span>
+            </figure>
+          </div>
+          <h3>Medium</h3>
+          <p>Binary Brew Tea’s medium-size selection strikes the perfect balance for tea enthusiasts. It offers a generous serving of their premium brews, ideal for savoring the rich flavors and aromatic blends at a relaxed pace. </p>
+        </div>
+      </div>
+       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="blog_box">
+          <div class="blog_img_box">
+            <figure><img src="static/images/large.jpeg" alt="#"/>
+             <span>16 oZ</span>
+            </figure>
+          </div>
+          <h3>Large</h3>
+          <p>Binary Brew Tea’s large-size selection is perfect for those who can’t get enough of their favorite brews. It provides a satisfying portion to enjoy the bold flavors and soothing warmth for an extended tea experience. </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end blog -->
+
+    <!-- footer -->
+    <fooetr>
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="img-box">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer_logo">
+                          <a href="index.html"><img src="static/images/logo.jpeg" alt="logo" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <ul class="lik">
+                            <li class="active"> <a href="index.html">Home</a></li>
+                            <li> <a href="about.html">About</a></li>
+                            <li> <a href="recipe.html">Recipe</a></li>
+                            <li> <a href="blog.html">Blog</a></li>
+                            <li> <a href="contact.html">Contact us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="new">
+                            <h3>Newsletter</h3>
+                            <form class="newtetter">
+                                <input class="tetter" placeholder="Your email" type="text" name="Your email">
+                                <button class="submit">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                </div>
+            </div>
+        </div>
+    </fooetr>
+    <!-- end footer -->
+
+    </div>
+    </div>
+    <div class="overlay"></div>
+    <!-- Javascript files-->
+    <script src="static/jquery.min.js"></script>
+    <script src="static/popper.min.js"></script>
+    <script src="static/bootstrap.bundle.min.js"></script>
+    <script src="static/owl.carousel.min.js"></script>
+    <script src="static/custom.js"></script>
+     <script src="static/jquery.mCustomScrollbar.concat.min.js"></script>
+
+     <script src="js/jquery-3.0.0.min.js"></script>
+   <script type="text/javascript">
+        $(document).ready(function() {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function() {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').addClass('active');
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    <style>
+    #owl-demo .item{
+        margin: 3px;
+    }
+    #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    </style>
+
+
+      <script>
+         $(document).ready(function() {
+           var owl = $('.owl-carousel');
+           owl.owlCarousel({
+             margin: 10,
+             nav: true,
+             loop: true,
+             responsive: {
+               0: {
+                 items: 1
+               },
+               600: {
+                 items: 2
+               },
+               1000: {
+                 items: 5
+               }
+             }
+           })
+         })
+      </script>
+
+</body>
+
+</html>
