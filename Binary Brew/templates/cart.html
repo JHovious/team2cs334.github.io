@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User's Cart - Binary Brew</title>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="static/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="{{url_for('index')}}"><img src="static/images/logo.jpeg" alt="Binary Brew Logo"></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="right_header_info">
+                        <ul>
+                            <li><a class="button" href="{{ url_for('login') }}">Login</a></li>
+                            <li><a class="button" href="{{ url_for('register') }}">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <form action="/handleCart" method="post">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Your Cart</h2>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tea Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example row; dynamic rows should be rendered with backend data -->
+                {% if user.cart:  %}
+                  {% for tea in user.cart:  %}
+                    <tr>
+                        <th scope="row">{{tea.amount}}</th>
+                        <td>{{tea.name}}</td>
+                        <td>${{tea.price}}</td>
+                        <td>
+                                <input type="number" name="amount" value="1" min="1" class="form-control d-inline" style="width: 80px;">
+                                <input type="hidden" name="tea" value="teaId">
+                                <button type="submit" name="update" value="update" class="btn btn-sm btn-success">Update</button>
+
+                        </td>
+                        <td>${{tea.price}}</td>
+                        <td>
+                                <button type="submit" name="remove" value="remove" class="btn btn-sm btn-danger">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <span> Get Started By adding your Favorite Teas </span>
+
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <h4>Total: $5.98</h4>
+            <form action="/checkout" method="post">
+                <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+            </form>
+        </div>
+    </div>
+  </form>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <p class="text-center">&copy; 2025 Binary Brew - All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="static/jquery.min.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+    <script src="static/owl.carousel.min.js"></script>
+    <script src="static/custom.js"></script>
+</body>
+
+</html>
