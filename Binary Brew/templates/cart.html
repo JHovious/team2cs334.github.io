@@ -16,29 +16,50 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="full">
-                        <a class="logo" href="{{url_for('index')}}"><img src="static/images/logo.jpeg" alt="Binary Brew Logo"></a>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="right_header_info">
-                        <ul>
-                            <li><a class="button" href="{{ url_for('login') }}">Login</a></li>
-                            <li><a class="button" href="{{ url_for('register') }}">Register</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+  <div class="sidebar">
+         <!-- Sidebar  -->
+         <nav id="sidebar">
+
+             <div id="dismiss">
+                 <i class="fa fa-arrow-left"></i>
+             </div>
+
+
+
+         </nav>
+     </div>
+  <header>
+    <form action="/handleProfile" method="post">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="full">
+                      <a class="logo" href="{{ url_for('index') }}"><img src="static/images/logo.jpeg" alt="#" /></a>
+                  </div>
+              </div>
+              <div class="col-md-9">
+                  <div class="full">
+                      <div class="right_header_info">
+                          <ul>
+                              <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                              <a href="{{ url_for('profile') }}">  <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"></li></a>
+                              <li>
+                                  <button type="button" id="sidebarCollapse">
+                                      <img src="static/images/menu_icon.png" alt="#">
+                                  </button>
+                              </li>
+                      </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </form>
+  </header>
+
 
     <!-- Main Content -->
-    <form action="/handleCart" method="post">
+
     <div class="container mt-5">
         <h2 class="text-center mb-4">Your Cart</h2>
 
@@ -50,6 +71,7 @@
                         <th scope="col">Tea Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">Size</th>
                         <th scope="col">Total</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -57,38 +79,47 @@
                 <tbody>
                     <!-- Example row; dynamic rows should be rendered with backend data -->
                 {% if user.cart:  %}
-                  {% for tea in user.cart:  %}
+                  {% for user_tea in user.cart:  %}
+                  <form action="/handleCart" method="post">
                     <tr>
-                        <th scope="row">{{tea.amount}}</th>
-                        <td>{{tea.name}}</td>
-                        <td>${{tea.price}}</td>
+                        <th scope="row">{{user_tea.amount}}</th>
+                        <td>{{user_tea.name}}</td>
+                        <td>${{user_tea.price}}</td>
                         <td>
-                                <input type="number" name="amount" value="1" min="1" class="form-control d-inline" style="width: 80px;">
-                                <input type="hidden" name="tea" value="teaId">
-                                <button type="submit" name="update" value="update" class="btn btn-sm btn-success">Update</button>
-
+                                <input type="number" name="amount" value="1"  min="1" class="form-control d-inline" style="width: 80px;">
+                                <button type="submit" name="action" value="update" class="btn btn-sm btn-success">Update</button>
+                                <input type="hidden" name="teaName" value="{{user_tea.name}}">
+                                <input type="hidden" name="teaSize" value="{{user_tea.size}}">
+                                <input type="hidden" name="sub_total" value="{{ sub_total | format_prices}}">
                         </td>
-                        <td>${{tea.price}}</td>
+                        <td>{{user_tea.size}}</td>
+                        <td>${{user_tea.teaTotal | format_prices}}</td>
                         <td>
                                 <button type="submit" name="remove" value="remove" class="btn btn-sm btn-danger">Remove</button>
-                            </form>
+
                         </td>
                     </tr>
+                    </form>
+                    </tbody>
                     {% endfor %}
                 {% else %}
-                    <tr>
-                        <span> Get Started By adding your Favorite Teas </span>
-
-                    </tr>
+                <tr>
+                    <td colspan="7" class="text-center font-weight-bold py-3">
+                      <span>  Get Started By adding your Favorite Teas</span>
+                    </td>
+                </tr>
                 {% endif %}
-                </tbody>
+
             </table>
         </div>
 
+
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <h4>Total: $5.98</h4>
+            <h4>Total: ${{ sub_total | format_prices }}</h4>
             <form action="/checkout" method="post">
-                <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+              <button type="submit" name="action" value="clear" class="btn btn-primary">Clear Cart</button>
+              <input type="hidden" name="sub_total" value="{{ sub_total | format_prices}}">
+                <button type="submit" name="action" value="checkout" class="btn btn-primary">Proceed to Checkout</button>
             </form>
         </div>
     </div>
