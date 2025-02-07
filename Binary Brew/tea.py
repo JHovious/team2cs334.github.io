@@ -1,11 +1,11 @@
 class Tea:
-    def __init__(self, tea, size):
+    def __init__(self, tea, size,amount):
         self.name = tea
         self.size = size
-        self.teaId = 0 # this will help for the Database
         self.description = self.__getDescription__(tea) # Making a private get tea description to make it less confusing
         self.teaImgs = {""}
-        self.amount = 1 # always 1 by default
+        self.amount = amount
+        self.images = self.__getImages__(tea)
 
 
         # Assign price based on tea type and size
@@ -31,6 +31,9 @@ class Tea:
             else:
                 self.price = 7.99  # every other flavor is that price
 
+        tax = (float(self.amount) * float(self.price)) * 0.07
+        self.teaTotal = (float(self.amount) * float(self.price)) + tax
+
     def __getDescription__(self, name):
         descriptions = {
             "Green Tea": "A soothing and refreshing drink made from steamed tea leaves, known for its light flavor and health benefits.",
@@ -40,3 +43,13 @@ class Tea:
             "Raspberry Tea": "A vibrant and aromatic tea infused with the natural sweetness of raspberries, offering a refreshing taste."
         }
         return descriptions.get(name, "Description not available for this drink.")
+
+    def __getImages__(self, name):
+        images = {
+            "Green Tea": ["static/images/greenTea.png", "static/images/greenTea2.png", "static/images/greenTea3.png"],
+            "Arnold Palmer": ["static/images/arnoldPalmer.png", "static/images/arnoldPalmer2.jpg", "static/images/arnoldPalmer3.jpeg"],
+            "Iced Tea": ["static/images/icedTea.png", "static/images/icedTea2.png", "static/images/icedTea3.png"],
+            "Blackberry Tea": ["static/images/blackberryTea.png", "static/images/blackberryTea2.jpeg", "static/images/blackberryTea3.jpeg"],
+            "Raspberry Tea": ["static/images/raspberryTea.png", "static/images/raspberryTea2.png", "static/images/raspberryTea3.png"]
+        }
+        return images.get(name, ["Images not available for this drink."])

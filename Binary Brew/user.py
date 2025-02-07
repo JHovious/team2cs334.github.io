@@ -8,6 +8,7 @@ class User:
               self.userId = 0 #  very important when working with databases
               self.cart = [] # list of all items the user can put in there cart
               self.image = None # can possibly add bytes ad image data
+              self.cards = []
 
   def setfisrtName(self,name):
       delf.firstName = name
