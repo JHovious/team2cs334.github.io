@@ -1,0 +1,4 @@
+Justin Hovious:
+- Manager Login page
+- Manager inventory
+- Manager orders
