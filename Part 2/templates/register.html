@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+  <form action="/signUp" method="post">
+    <div class="wrapper">
+        <div class="login">
+            <img src="static/images/generic.png" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            Binary Tea
+        </div>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="email" id="userName" placeholder="Email" required>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="lastName" id="firstName" placeholder="Last Name" required>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="Password" required>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="confirmpassword" id="pwd" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" name="action" value="SignUpButton" class="btn mt-3">Sign Up</button>
+
+        </form>
+        <div class="text-center fs-6">
+            <a href="recover.html">Forget password?</a>
+        </div>
+    </div>
+    </form>
+</body>
+
+</html>

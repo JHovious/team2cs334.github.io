@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Teas - Binary Brew</title>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="static/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+
+.fa-shopping-cart {
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+.trs{
+  background-color: transparent;
+}
+
+</style>
+
+<body>
+    <!-- Header -->
+    <div class="sidebar">
+           <!-- Sidebar  -->
+           <nav id="sidebar">
+
+               <div id="dismiss">
+                   <i class="fa fa-arrow-left"></i>
+               </div>
+
+
+
+           </nav>
+       </div>
+    <header>
+      <form action="/handleProfile" method="post">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="{{ url_for('index') }}"><img src="static/images/logo.jpeg" alt="#" /></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="full">
+                        <div class="right_header_info">
+                            <ul>
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                            {% if not user %}
+                                <li class="button_user"><a class="button active" href="{{ url_for('login') }}">Login</a><a class="button" href="{{ url_for('register') }}">Register</a></li>
+                            {% else %}
+                                  <a href="{{ url_for('profile') }}">  <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"></li></a>
+                              {% endif %}
+                              <button class="trs" name="action" value="cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Our Tea Collection</h2>
+        <div class="row">
+            <!-- Tea Item 1 -->
+
+            <div class="col-md-4">
+              <form action="/handleTeas" method="post">
+                <div class="card">
+                    <img src="static/images/icedTea.png" class="card-img-top" alt="Classic Iced Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Classic Iced Tea</h5>
+                        <p class="card-text">$1.99</p>
+                        <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                        <input type="hidden" name="tea" value="Iced Tea">
+                        <button name="action" value="view" class="btn btn-primary">View</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <!-- Tea Item 2 -->
+
+            <div class="col-md-4">
+              <form action="/handleTeas" method="post">
+                <div class="card">
+                    <img src="static/images/raspberryTea.png" class="card-img-top" alt="Raspberry Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Raspberry Tea</h5>
+                        <p class="card-text">$2.99</p>
+                        <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                        <input type="hidden" name="tea" value="Raspberry Tea">
+                        <button name="action" value="view" class="btn btn-primary">View</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+
+            <div class="col-md-4">
+              <form action="/handleTeas" method="post">
+                <div class="card">
+                    <img src="static/images/blackberryTea.png" class="card-img-top" alt="Blackberry Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Blackberry Tea</h5>
+                        <p class="card-text">$2.99</p>
+                        <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                        <input type="hidden" name="tea" value="Blackberry Tea">
+                        <button name="action" value="view" class="btn btn-primary">View</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+            <!-- Tea Item 4 -->
+          <div class="row">
+            <div class="col-md-4">
+              <form action="/handleTeas" method="post">
+                <div class="card">
+                    <img src="static/images/greenTea.png" class="card-img-top" alt="Green Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Green Tea</h5>
+                        <p class="card-text">$3.99</p>
+                        <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                        <input type="hidden" name="tea" value="Green Tea">
+                        <button name="action" value="view" class="btn btn-primary">View</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+
+            <!-- Tea Item 5 -->
+
+            <div class="col-md-4">
+              <form action="/handleTeas" method="post">
+                <div class="card">
+                    <img src="static/images/arnoldPalmer.png" class="card-img-top" alt="Arnold Palmer">
+                    <div class="card-body">
+                        <h5 class="card-title">Arnold Palmer</h5>
+                        <p class="card-text">$3.99</p>
+                        <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                        <input type="hidden" name="tea" value="Arnold Palmer">
+                        <button name="action" value="view" class="btn btn-primary">View</button>
+                    </div>
+
+                </div>
+                </form>
+            </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <p class="text-center">© 2025 Binary Brew - All Rights Reserved.</p>
+        </div>
+    </footer>
+    <div class="overlay">
+      <span>display</span>
+    </div>
+    <!-- Javascript files-->
+    <script src="static/jquery.min.js"></script>
+    <script src="static/popper.min.js"></script>
+    <script src="static/bootstrap.bundle.min.js"></script>
+    <script src="static/owl.carousel.min.js"></script>
+    <script src="static/custom.js"></script>
+     <script src="static/jquery.mCustomScrollbar.concat.min.js"></script>
+
+     <script src="js/jquery-3.0.0.min.js"></script>
+   <script type="text/javascript">
+        $(document).ready(function() {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function() {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').addClass('active');
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    <style>
+    #owl-demo .item{
+        margin: 3px;
+    }
+    #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    </style>
+
+
+      <script>
+         $(document).ready(function() {
+           var owl = $('.owl-carousel');
+           owl.owlCarousel({
+             margin: 10,
+             nav: true,
+             loop: true,
+             responsive: {
+               0: {
+                 items: 1
+               },
+               600: {
+                 items: 2
+               },
+               1000: {
+                 items: 5
+               }
+             }
+           })
+         })
+      </script>
+</body>
+
+<footer>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="img-box">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer_logo">
+                      <a href="index.html"><img src="static/images/logo2.png" alt="logo" /></a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <ul class="lik">
+                        <li class="active"> <a href="index.html">Home</a></li>
+                        <li> <a href="about.html">About</a></li>
+                        <li> <a href="recipe.html">Recipe</a></li>
+                        <li> <a href="blog.html">Blog</a></li>
+                        <li> <a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <div class="new">
+                        <h3>Newsletter</h3>
+                        <form class="newtetter">
+                            <input class="tetter" placeholder="Your email" type="text" name="Your email">
+                            <button class="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>© 2025 All Rights Reserved Binary Brew</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

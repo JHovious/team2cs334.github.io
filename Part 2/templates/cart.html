@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User's Cart - Binary Brew</title>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="static/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="sidebar">
+         <!-- Sidebar  -->
+         <nav id="sidebar">
+
+             <div id="dismiss">
+                 <i class="fa fa-arrow-left"></i>
+             </div>
+
+
+
+         </nav>
+     </div>
+  <header>
+    <form action="/handleProfile" method="post">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="full">
+                      <a class="logo" href="{{ url_for('index') }}"><img src="static/images/logo.jpeg" alt="#" /></a>
+                  </div>
+              </div>
+              <div class="col-md-9">
+                  <div class="full">
+                      <div class="right_header_info">
+                          <ul>
+                              <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                              <a href="{{ url_for('profile') }}">  <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"></li></a>
+                              <li>
+                                  <button type="button" id="sidebarCollapse">
+                                      <img src="static/images/menu_icon.png" alt="#">
+                                  </button>
+                              </li>
+                      </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </form>
+  </header>
+
+
+    <!-- Main Content -->
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Your Cart</h2>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tea Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Size</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example row; dynamic rows should be rendered with backend data -->
+                {% if user.cart:  %}
+                  {% for user_tea in user.cart:  %}
+                  <form action="/handleCart" method="post">
+                    <tr>
+                        <th scope="row">{{user_tea.amount}}</th>
+                        <td>{{user_tea.name}}</td>
+                        <td>${{user_tea.price}}</td>
+                        <td>
+                                <input type="number" name="amount" value="1"  min="1" class="form-control d-inline" style="width: 80px;">
+                                <button type="submit" name="action" value="update" class="btn btn-sm btn-success">Update</button>
+                                <input type="hidden" name="teaName" value="{{user_tea.name}}">
+                                <input type="hidden" name="teaSize" value="{{user_tea.size}}">
+                                <input type="hidden" name="sub_total" value="{{ sub_total | format_prices}}">
+                        </td>
+                        <td>{{user_tea.size}}</td>
+                        <td>${{user_tea.teaTotal | format_prices}}</td>
+                        <td>
+                                <button type="submit" name="remove" value="remove" class="btn btn-sm btn-danger">Remove</button>
+
+                        </td>
+                    </tr>
+                    </form>
+                    </tbody>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center font-weight-bold py-3">
+                      <span>  Get Started By adding your Favorite Teas</span>
+                    </td>
+                </tr>
+                {% endif %}
+
+            </table>
+        </div>
+
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <h4>Total: ${{ sub_total | format_prices }}</h4>
+            <form action="/checkout" method="post">
+              <button type="submit" name="action" value="clear" class="btn btn-primary">Clear Cart</button>
+              <input type="hidden" name="sub_total" value="{{ sub_total | format_prices}}">
+                <button type="submit" name="action" value="checkout" class="btn btn-primary">Proceed to Checkout</button>
+            </form>
+        </div>
+    </div>
+  </form>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <p class="text-center">&copy; 2025 Binary Brew - All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="static/jquery.min.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+    <script src="static/owl.carousel.min.js"></script>
+    <script src="static/custom.js"></script>
+</body>
+
+</html>
