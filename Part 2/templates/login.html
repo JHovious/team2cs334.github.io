@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom-styles.css') }}">
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="static/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="sidebar">
+         <!-- Sidebar  -->
+         <nav id="sidebar">
+
+             <div id="dismiss">
+                 <i class="fa fa-arrow-left"></i>
+             </div>
+
+
+
+         </nav>
+     </div>
+  <header>
+    <form action="/handleProfile" method="post">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="full">
+                      <a class="logo" href="{{ url_for('index') }}"><img src="static/images/logo.jpeg" alt="#" /></a>
+                  </div>
+              </div>
+              <div class="col-md-9">
+                  <div class="full">
+                      <div class="right_header_info">
+                          <ul>
+                              <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                      </ul>
+
+
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </form>
+  </header>
+
+
+</body>
+</html>
+
+
+<body>
+  <form action="/handleLogin" method="post">
+    <div class="wrapper">
+        <div class="login">
+            <img src="static/images/generic.png" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            Binary Tea
+        </div>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="email" id="userName" placeholder="Username">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="Password">
+            </div>
+            <button type="submit" class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center fs-6">
+            <a href="#">Forget password?</a> or <a href="{{ url_for('register') }}">Sign up</a>
+        </div>
+    </div>
+    </form>
+</body>
+
+<footer>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="img-box">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer_logo">
+                      <a href="index.html"><img src="static/images/logo2.png" alt="logo" /></a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <ul class="lik">
+                        <li class="active"> <a href="index.html">Home</a></li>
+                        <li> <a href="about.html">About</a></li>
+                        <li> <a href="recipe.html">Recipe</a></li>
+                        <li> <a href="blog.html">Blog</a></li>
+                        <li> <a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <div class="new">
+                        <h3>Newsletter</h3>
+                        <form class="newtetter">
+                            <input class="tetter" placeholder="Your email" type="text" name="Your email">
+                            <button class="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>© 2025 All Rights Reserved Binary Brew</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
