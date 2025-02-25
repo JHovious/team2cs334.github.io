@@ -1,0 +1,14 @@
+
+Contributions by Julian Marquez  
+
+During this phase, I contributed the following:  
+
+Index Page Creation: Developed the main landing page (`index.html`) to serve as the entry point for our website.  
+Static Images Implementation: Integrated various static images to enhance the visual appeal and layout of the site.  
+Project Branding: Came up with the project name "Binary Brew", which was accepted by the team.  
+Color Theme Selection: Chose and refined the overall color palette to align with the project's theme and aesthetic.  
+CSS Framework Decision: After team discussions, we agreed on using Bootstrap to streamline styling and responsiveness.  
+
+Technologies Used for this Project
+HTML, CSS (Bootstrap framework)  
+Static Images (Implemented for branding and content)  
