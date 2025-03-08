@@ -82,3 +82,29 @@ section img{
 .headername{
     margin-right:150px;
 }
+
+.headername2{
+    margin-right: 180px;
+}
+
+.contactbackground{
+    margin: 150px;
+    background-repeat: no-repeat;
+    background-image: url(images/christian/teashop2.png);
+    background-size: cover;
+}
+
+.contactbackground h1{
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.contactcolor{
+    background-color: white;
+    width: 350px;
+}
+
+.contactcolor2{
+    background-color: white;
+    width: 570px;
+}
