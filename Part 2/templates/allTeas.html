@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Teas - Binary Brew</title>
     <!-- CSS Links -->
-    <link rel="stylesheet" href="static/bootstrap.min.css">
-    <link rel="stylesheet" href="static/owl.carousel.min.css">
-    <link rel="stylesheet" href="static/style.css">
-    <link rel="stylesheet" href="static/responsive.css">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/responsive.css">
+    <link rel="stylesheet" href="../static/christian.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -48,18 +49,18 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="full">
-                        <a class="logo" href="{{ url_for('index') }}"><img src="static/images/logo.jpeg" alt="#" /></a>
+                        <a class="logo" href="{{ url_for('index') }}"><img src="../static/images/logo.jpeg" alt="#" /></a>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="full">
                         <div class="right_header_info">
                             <ul>
-                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
                             {% if not user %}
                                 <li class="button_user"><a class="button active" href="{{ url_for('login') }}">Login</a><a class="button" href="{{ url_for('register') }}">Register</a></li>
                             {% else %}
-                                  <a href="{{ url_for('profile') }}">  <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"></li></a>
+                                  <a href="{{ url_for('profile') }}">  <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"></li></a>
                               {% endif %}
                               <button class="trs" name="action" value="cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                             </ul>
@@ -83,7 +84,7 @@
             <div class="col-md-4">
               <form action="/handleTeas" method="post">
                 <div class="card">
-                    <img src="static/images/icedTea.png" class="card-img-top" alt="Classic Iced Tea">
+                    <img src="../static/images/icedTea.png" class="card-img-top" alt="Classic Iced Tea">
                     <div class="card-body">
                         <h5 class="card-title">Classic Iced Tea</h5>
                         <p class="card-text">$1.99</p>
@@ -100,7 +101,7 @@
             <div class="col-md-4">
               <form action="/handleTeas" method="post">
                 <div class="card">
-                    <img src="static/images/raspberryTea.png" class="card-img-top" alt="Raspberry Tea">
+                    <img src="../static/images/raspberryTea.png" class="card-img-top" alt="Raspberry Tea">
                     <div class="card-body">
                         <h5 class="card-title">Raspberry Tea</h5>
                         <p class="card-text">$2.99</p>
@@ -116,7 +117,7 @@
             <div class="col-md-4">
               <form action="/handleTeas" method="post">
                 <div class="card">
-                    <img src="static/images/blackberryTea.png" class="card-img-top" alt="Blackberry Tea">
+                    <img src="../static/images/blackberryTea.png" class="card-img-top" alt="Blackberry Tea">
                     <div class="card-body">
                         <h5 class="card-title">Blackberry Tea</h5>
                         <p class="card-text">$2.99</p>
@@ -133,7 +134,7 @@
             <div class="col-md-4">
               <form action="/handleTeas" method="post">
                 <div class="card">
-                    <img src="static/images/greenTea.png" class="card-img-top" alt="Green Tea">
+                    <img src="../static/images/greenTea.png" class="card-img-top" alt="Green Tea">
                     <div class="card-body">
                         <h5 class="card-title">Green Tea</h5>
                         <p class="card-text">$3.99</p>
@@ -151,7 +152,7 @@
             <div class="col-md-4">
               <form action="/handleTeas" method="post">
                 <div class="card">
-                    <img src="static/images/arnoldPalmer.png" class="card-img-top" alt="Arnold Palmer">
+                    <img src="../static/images/arnoldPalmer.png" class="card-img-top" alt="Arnold Palmer">
                     <div class="card-body">
                         <h5 class="card-title">Arnold Palmer</h5>
                         <p class="card-text">$3.99</p>
@@ -163,7 +164,86 @@
                 </div>
                 </form>
             </div>
+
+
+            <!-- Tea Item 6 -->
+             <!-- Uses christian.css for image styling -->
+
+            <div class="col-md-4">
+                <form action="/handleTeas" method="post">
+                  <div class="card">
+                      <img src="../static/images/christian/campfire.jpg" class="image2" alt="Campfire Tea">
+                      <div class="card-body">
+                          <h5 class="card-title">Campfire Tea</h5>
+                          <p class="card-text">$1.99</p>
+                          <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                          <input type="hidden" name="tea" value="Arnold Palmer">
+                          <button name="action" value="view" class="btn btn-primary">View</button>
+                      </div>
+  
+                  </div>
+                  </form>
+              </div>
     </div>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Our Coffee Collection</h2>
+        <div class="row">
+            <!-- Coffee 1 -->
+             <!-- Uses christian.css for styling changes on images-->
+
+            <div class="col-md-4">
+                <form action="/handleTeas" method="post">
+                  <div class="card">
+                      <img src="../static/images/christian/coffee.jpg" class="image1" alt="Brewed Coffee" >
+                      <div class="card-body">
+                          <h5 class="card-title">Cup O' Joe</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                          <input type="hidden" name="tea" value="Iced Tea">
+                          <button name="action" value="view" class="btn btn-primary">View</button>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+
+
+            <!-- Coffee 2 -->
+             <!-- Uses christian.css for styling changes on images-->
+
+            <div class="col-md-4">
+                <form action="/handleTeas" method="post">
+                  <div class="card">
+                      <img src="../static/images/christian/cappuccino.jpg" class="image1" alt="Cappuccino">
+                      <div class="card-body">
+                          <h5 class="card-title">Cappuccino</h5>
+                          <p class="card-text">$3.99</p>
+                          <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                          <input type="hidden" name="tea" value="Iced Tea">
+                          <button name="action" value="view" class="btn btn-primary">View</button>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+
+              <!-- Coffee 3 -->
+               <!-- Uses christian.css for styling changes on images-->
+
+            <div class="col-md-4">
+                <form action="/handleTeas" method="post">
+                  <div class="card">
+                      <img src="../static/images/christian/americano.jpg" class="image1" alt="Americano">
+                      <div class="card-body">
+                          <h5 class="card-title">Americano</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="action" value="add" class="btn btn-primary">Add To Cart</button>
+                          <input type="hidden" name="tea" value="Iced Tea">
+                          <button name="action" value="view" class="btn btn-primary">View</button>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+
 
 
 
