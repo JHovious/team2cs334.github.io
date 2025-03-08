@@ -35,6 +35,8 @@
                     <div class="full">
                         <div class="right_header_info">
                             <ul>
+                                <li class="headername" style="font-size: 30px;">Shopping Cart</li>
+
                                 <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
                             
                                 <li class="button_user"><a class="button active" href="{{ url_for('login') }}">Login</a><a class="button" href="{{ url_for('register') }}">Register</a></li>
@@ -55,12 +57,18 @@
 </header>
 <br>
 <body class = "cartbody">
-    <h1 style="text-align: center; font-size: 50px;">
-        Shopping Cart
-    </h1>
+    
 
     <section class="cartsection">
+        <img src="../static/images/christian/upside-down.svg">
+        <br>
+        <br>
         Your cart is empty, you'll see your items here when they are added
+
+        <div class="add"><a href="allTeas.html">
+            Add items
+            </a>
+        </div>
     </section>
     <article class="carttotal">
         <div class="subtotalbox">
