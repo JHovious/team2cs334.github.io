@@ -2,7 +2,7 @@ TEAM CONTRIBUTIONS
 
 Christian Kurdi: 
 
-Created cart.html, christian.css, added images and product info for coffee's and iced tea in allTeas.html, fixed image references
+Created cart.html, contact-us.html, christian.css, added images and product info for coffee's and iced tea in allTeas.html, fixed image references
 
 Justin Hovious: 
 
