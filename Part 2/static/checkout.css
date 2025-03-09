@@ -29,7 +29,9 @@ div.right_header_info ul li.dinone {
 
 }
 
-
+div.col-md-6 li.headername {
+  color: white;
+}
 
 div.container {
   box-shadow: 0px 0px 10px 0px rgb(147, 147, 147);
