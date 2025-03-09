@@ -6,34 +6,41 @@
         <link rel="stylesheet" href="../static/checkout.css">
         <link rel="stylesheet" href="../static/style.css">
     </head>
-    <body>
+    <body class="main-layout">
         <div id="content">
         
             <header>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="full">
-                                <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                <form action="/handleProfile" method="post">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="full">
+                                    <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="full">
-                                <div class="right_header_info">
-                                    <ul>
-                                        <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
-                                   
-                                        <li>
-                                            <button type="button" id="sidebarCollapse">
-                                                <img src="../static/images/menu_icon.png" alt="#">
-                                            </button>
-                                        </li>
-                                    </ul>
+                            <div class="col-md-6">
+                                <div class="full">
+                                    <li class="headername" style="font-size: 30px;">Checkout</li>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="full">
+                                    <div class="right_header_info">
+                                        <ul>
+                                            
+            
+                                            <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>                                      
+                                          
+                                        </ul>
+            
+            
+            
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    </form>
             </header>
         </div>
     </body>
