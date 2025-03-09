@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+<html lang="en">
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Orders</title>
+
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="static/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="static/profile.css">
+</head>
+<div class="container">
+
+<body> 
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="/templates/index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="full">
+                        <div class="right_header_info">
+                            <ul>
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                           
+                                <li class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
+                           
+                                <li>
+                                    <button type="button" id="sidebarCollapse">
+                                        <img src="../static/images/menu_icon.png" alt="#">
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th>Customer ID</th>
+                        <th>Product ID</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Payment Method</th>
+                        <th>Transaction ID</th>
+                        <th>Total Amount</th>
+                        <th>Shipping Address</th>
+                        <th>Shipping Method</th>
+                        <th>Tracking Number</th>
+                        <th>Discounts</th>
+                        <th>Special Instructions</th>
+                        <th>Loyalty Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Placeholder Data-->
+                    <tr>
+                        <td>001</td>
+                        <td>2025-04-08</td>
+                        <td>123</td>
+                        <td>456</td>
+                        <td>2</td>
+                        <td>$10</td>
+                        <td>Credit Card</td>
+                        <td>TX123456</td>
+                        <td>$20</td>
+                        <td>123 Tea St.</td>
+                        <td>Standard</td>
+                        <td>TRK12345</td>
+                        <td>$5 off</td>
+                        <td>None</td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    </div>
+
+
+    
+</body>
+<footer class="footer">
+    <div class="row" style="justify-content: center;">
+    <h3 >
+        Binary Brew
+    </h3>
+</div>
+</footer>
+</html>
