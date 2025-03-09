@@ -9,12 +9,12 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Login</title>
 
-    <link rel="stylesheet" href="static/bootstrap.min.css">
-    <link rel="stylesheet" href="static/login.css">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="static/style.css">
-    <link rel="stylesheet" href="static/styles.css">
-    <link rel="stylesheet" href="static/profile.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/profile.css">
 </head>
 
 <div class="container">
@@ -35,7 +35,7 @@
                             <ul>
                                 <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
                            
-                                <li class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
+                                <li class="button_user"><a class="button active" href="../../login.html">Login</a><a class="button" href="/register.html">Register</a></li>
                            
                                 <li>
                                     <button type="button" id="sidebarCollapse">
@@ -55,8 +55,8 @@
         <div class="centered">
             <div class="button">
                 <ul>
-                    <li><a href="Orders.html">Orders</a></li>
-                    <li><a href="Inventory.html">Inventory</a></li>
+                    <li><a href="/Orders.html">Orders</a></li>
+                    <li><a href="/Inventory.html">Inventory</a></li>
                 </ul>
 
             </div>
@@ -70,11 +70,17 @@
 
     
 </body>
-<footer class="footer">
-    <div class="row" style="justify-content: center;">
-    <h3 >
-        Binary Brew
-    </h3>
-</div>
-</footer>
+<style>
+.reg-footer,h3{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background: #d8b00f;
+    padding-top:90px;
+    margin-top: 90px;
+    text-align: center;
+}
+</style>
 </html>
