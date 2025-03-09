@@ -3,8 +3,33 @@
 }
 
 div.row {
-  display: block;
+  display: inline-flex;
+  width: 100%;
 }
+
+div.row div.col-md-3 {
+  margin-left: 20px;
+}
+
+div.row div.col-md-6 {
+  margin-left: 35%;
+
+}
+
+div.row div.col-md-9 {
+  margin-left: 35%;
+}
+
+div.right_header_info ul {
+  width: 100%;
+}
+
+div.right_header_info ul li.dinone {
+  margin-right: 30px;
+
+}
+
+
 
 div.container {
   box-shadow: 0px 0px 10px 0px rgb(147, 147, 147);
@@ -17,7 +42,7 @@ div.container {
 }
 
 div.container hr {
-  border: .5px solid #666666;
+  border: .5px solid#666666;
 }
 
 div.container h2 {
