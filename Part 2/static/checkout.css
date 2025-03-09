@@ -1,180 +1,105 @@
-@use postcss-preset-env {
-  stage: 0;
-}
-
-:root {
-  --color-background: #fae3ea;
-  --color-primary: #fc8080;
-  --font-family-base: Poppin, sans-serif;
-  --font-size-h1: 1.25rem;
-  --font-size-h2: 1rem;
-}
-
-
 * {
-  box-sizing: inherit;
-}
-
-html {
   box-sizing: border-box;
 }
 
-body {
-  background-color: var(--color-background);
-  display: grid;
-  font-family: var(--font-family-base);
-  line-height: 1.5;
-  margin: 0;
-  min-block-size: 100vh;
-  padding: 5vmin;
-  place-items: center;
+div.row {
+  display: block;
 }
 
-address {
-  font-style: normal;
+div.container {
+  box-shadow: 0px 0px 10px 0px rgb(147, 147, 147);
+  border-radius: 20px;
+  width: 98%;
+  margin: 1%;
+  margin-top: 200px;
+  text-align: center;
+  display: inline-flex;
 }
 
-button {
-  border: 0;
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
+div.container hr {
+  border: .5px solid#666666;
 }
 
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
+div.container h2 {
+  padding-top: 10px;
+  margin-inline: auto;
 }
 
-h1 {
-  font-size: var(--font-size-h1);
-  line-height: 1.2;
-  margin-block: 0 1.5em;
-}
-
-h2 {
-  font-size: var(--font-size-h2);
-  line-height: 1.2;
-  margin-block: 0 0.5em;
-}
-
-legend {
-  font-weight: 600;
-  margin-block-end: 0.5em;
-  padding: 0;
-}
-
-input {
-  border: 0;
-  color: inherit;
-  font: inherit;
-}
-
-input[type="radio"] {
-  accent-color: var(--color-primary);
-}
-
-table {
-  border-collapse: collapse;
-  inline-size: 100%;
-}
-
-tbody {
-  color: #b4b4b4;
-}
-
-td {
-  padding-block: 0.125em;
-}
-
-tfoot {
-  border-top: 1px solid #b4b4b4;
-  font-weight: 600;
-}
-
-.align {
-  display: grid;
-  place-items: center;
-}
-
-.button {
-  align-items: center;
-  background-color: var(--color-primary);
-  border-radius: 999em;
-  color: #fff;
-  display: flex;
-  gap: 0.5em;
-  justify-content: center;
-  padding-block: 0.75em;
-  padding-inline: 1em;
-  transition: 0.3s;
-}
-
-.button:focus,
-.button:hover {
-  background-color: #e96363;
-}
-
-.button--full {
-  inline-size: 100%;
-}
-
-.card {
-  border-radius: 1em;
-  background-color: var(--color-primary);
-  color: #fff;
-  padding: 1em;
-}
-
-.form {
-  display: grid;
-  gap: 2em;
-}
-
-.form__radios {
-  display: grid;
-  gap: 1em;
-}
-
-.form__radio {
-  align-items: center;
-  background-color: #fefdfe;
-  border-radius: 1em;
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
-  display: flex;
-  padding: 1em;
-}
-
-.form__radio label {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  gap: 1em;
-}
-
-.header {
-  display: flex;
-  justify-content: center;
-  padding-block: 0.5em;
-  padding-inline: 1em;
-}
-
-.icon {
-  block-size: 1em;
+div.column {
   display: inline-block;
-  fill: currentColor;
-  inline-size: 1em;
-  vertical-align: middle;
+  margin-block: 3px;
 }
 
-.iphone {
-  background-color: #fbf6f7;
-  background-image: linear-gradient(to bottom, #fbf6f7, #fff);
-  border-radius: 2em;
-  block-size: 812px;
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
-  inline-size: 375px;
-  overflow: auto;
-  padding: 2em;
+div.column h2 {
+  padding: 10px;
+}
+
+div.items {
+  width: 40%;
+  padding-left: 2px;
+}
+
+div.items div.drinks div.imgs {
+  display: inline-block;
+  width: 40%;
+  height: 40%;
+}
+
+div.payment {
+  width: 40%;
+  border-left: 2px solid #666666;
+  border-right: 2px solid #666666;
+  padding-inline: 3px;
+  margin-inline: 3px;
+}
+
+div.payment div.paymentmethod {
+  text-align: center;
+  display: inline-block;
+  width: 40%;
+}
+
+div.payment form {
+  text-align: left;
+  padding-left: 15px;
+  padding-block: 10px;
+}
+
+div.payment form div.method {
+  margin: 10px;
+}
+
+div.total {
+  width: 19%;
+  padding-right: 2px; 
+  align-content: flex-end;
+}
+
+div.total div.totals p {
+  display: inline-block;
+}
+
+.text {
+  text-align: left;
+}
+
+.cost {
+  text-align: right;
+}
+
+div div.button a {
+  background-color: #3A6BA5;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  padding-inline: 20px;
+  padding-block: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+div div.button a:hover {
+  background-color: #437CBF;
 }
