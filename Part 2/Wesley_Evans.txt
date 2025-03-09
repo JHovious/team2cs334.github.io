@@ -1,1 +1,3 @@
-
+Wesley Evans:
+Created: checkout.html, checkedout.html, and checkout.css
+Contributed to allteas.html - created and added some images and product info for some teas
