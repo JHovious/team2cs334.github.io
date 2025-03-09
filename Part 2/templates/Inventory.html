@@ -9,12 +9,12 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Inventory</title>
 
-    <link rel="stylesheet" href="../static/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="static/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="../static/styles.css">
-    <link rel="stylesheet" href="../static/profile.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="static/profile.css">
 </head>
 
 <div class="container">
@@ -26,14 +26,14 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="full">
-                        <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                        <a class="logo" href="/templates/index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="full">
                         <div class="right_header_info">
                             <ul>
-                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
                                 <li class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
                                 <li>
                                     <button type="button" id="sidebarCollapse">
@@ -49,6 +49,7 @@
     </header>
 
     <!-- Main Content -->
+     <!-- Table Headers -->
     <div class="container">
         <div class="table-container">
             <table>
@@ -66,7 +67,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!--Placeholder Data-->
+                    <!--Inventory Data-->
                     <tr>
                         <td>001</td>
                         <td>Earl Grey Tea</td>
@@ -80,6 +81,39 @@
                     </tr>
                     <tr>
                         <td>002</td>
+                        <td>English Breakfast Tea</td>
+                        <td>Black Tea</td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>Tea Suppliers Inc.</td>
+                        <td>$5.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Peach Tea</td>
+                        <td>Black Tea</td>
+                        <td>175</td>
+                        <td>50</td>
+                        <td>Tea Suppliers Inc.</td>
+                        <td>$5.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Black Currant Tea</td>
+                        <td>Black Tea</td>
+                        <td>150</td>
+                        <td>50</td>
+                        <td>Tea Suppliers Inc.</td>
+                        <td>$5.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
                         <td>Green Tea</td>
                         <td>Green Tea</td>
                         <td>200</td>
@@ -89,7 +123,102 @@
                         <td><input type="number" min="1" max="100" value="1"></td>
                         <td><button class="order-button">Order</button></td>
                     </tr>
-                    <!-- Add more rows as needed -->
+                    <tr>
+                        <td>006</td>
+                        <td>Matcha</td>
+                        <td>Green Tea</td>
+                        <td>175</td>
+                        <td>50</td>
+                        <td>Green Tea Co.</td>
+                        <td>$6.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>007</td>
+                        <td>Lemonade</td>
+                        <td>Mixes</td>
+                        <td>100</td>
+                        <td>25</td>
+                        <td>Tea Suppliers Inc.</td>
+                        <td>$3.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>008</td>
+                        <td>Hibiscus</td>
+                        <td>Green Tea</td>
+                        <td>175</td>
+                        <td>50</td>
+                        <td>Green Tea Co.</td>
+                        <td>$6.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>009</td>
+                        <td>Breakfast Roast</td>
+                        <td>Coffee</td>
+                        <td>200</td>
+                        <td>75</td>
+                        <td>Coffee Supply Co.</td>
+                        <td>$4.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>010</td>
+                        <td>Milk 2%</td>
+                        <td>Dairy</td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>Dairy Supply Inc.</td>
+                        <td>$7.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>011</td>
+                        <td>Milk skim</td>
+                        <td>Dairy</td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>Dairy Supply Inc.</td>
+                        <td>$7.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                        </tr>
+                        <td>012</td>
+                        <td>Milk whole</td>
+                        <td>Dairy</td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>Dairy Supply Inc.</td>
+                        <td>$7.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                        <td>013</td>
+                        <td>Milk almond</td>
+                        <td>Dairy</td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>Dairy Supply Inc.</td>
+                        <td>$7.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                        <td>014</td>
+                        <td>To-Go Cups</td>
+                        <td>Paper Supply</td>
+                        <td>300</td>
+                        <td>150</td>
+                        <td>Paper Supply</td>
+                        <td>$3.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -97,19 +226,11 @@
 </div>
 
 <!-- footer -->
-<style>
-.reg-footer,h3{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    background: #d8b00f;
-    padding-top:90px;
-    margin-top: 90px;
-    text-align: center;
-}
-</style>
+<footer class="footer">
+    <div class="row" style="justify-content: center;">
+        <h3>Binary Brew</h3>
+    </div>
+</footer>
 
 </body>
 </html>
