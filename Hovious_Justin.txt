@@ -1,0 +1,6 @@
+Justin Hovious:
+- Manager Login page
+- Manager Menu
+- Manager inventory
+- Manager orders
+- Contributed some teas and images to allTeas page
