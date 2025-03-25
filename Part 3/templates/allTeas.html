@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Teas - Binary Brew</title>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/responsive.css">
+    <link rel="stylesheet" href="../static/christian.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <Script src="../static/script.js"></Script>
+</head>
+
+<style>
+
+.fa-shopping-cart {
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+.trs{
+  background-color: transparent;
+}
+
+</style>
+
+<body style="margin-top:200px;">
+    <!-- Header -->
+    <div class="sidebar">
+           <!-- Sidebar  -->
+           <nav id="sidebar">
+
+               <div id="dismiss">
+                   <i class="fa fa-arrow-left"></i>
+               </div>
+
+
+
+           </nav>
+       </div>
+    <header>
+      <form onclick="Cart(event)">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="full">
+                        <div class="right_header_info">
+                            <ul>
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="#">Our Teas</a></li>
+                            
+                                <li class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
+                            
+                                    <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"></li>
+                              
+                              <a name="cart-btn" id="cart-btn"  href="cart.html"><img class="cartimage" src="../static/images/christian/basket2 (1).svg" alt="basket"></a>
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h2 style="font-size: xx-large; font-family: 'Times New Roman', Times, serif;" class="text-center mb-4">Our Tea Collection</h2>
+        <div class="row">
+            <!-- Tea Item 1 -->
+            <!-- Uses christian.css for image styling-->
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../static/images/christian/icedtea.png" class="image1" alt="Classic Iced Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Classic Iced Tea</h5>
+                        <p class="card-text">$1.99</p>
+                        <button name="tea" value="Iced Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tea Item 2 -->
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../static/images/raspberryTea.png" class="card-img-top" alt="Raspberry Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Raspberry Tea</h5>
+                        <p class="card-text">$2.99</p>
+                        <button name="tea" value="Raspberry Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../static/images/blackberryTea.png" class="card-img-top" alt="Blackberry Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Blackberry Tea</h5>
+                        <p class="card-text">$2.99</p>
+                        <button name="tea" value="blackberry Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- Tea Item 4 -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../static/images/greenTea.png" class="card-img-top" alt="Green Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Green Tea</h5>
+                        <p class="card-text">$3.99</p>
+                        <button name="tea" value="Green Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Tea Item 5 -->
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../static/images/arnoldPalmer.png" class="card-img-top" alt="Arnold Palmer">
+                    <div class="card-body">
+                        <h5 class="card-title">Arnold Palmer</h5>
+                        <p class="card-text">$3.99</p>
+                        <button name="tea" value="Arnold Palmer" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Tea Item 6 -->
+             <!-- Uses christian.css for image styling -->
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/christian/campfire.png" class="image1" alt="Campfire Tea">
+                      <div class="card-body">
+                          <h5 class="card-title">Campfire Tea</h5>
+                          <p class="card-text">$1.99</p>
+                          <button name="tea" value="Campfire Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+              </div>
+
+                          <!-- Tea Item 7 -->
+             <!-- Uses christian.css for image styling -->
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/matchaGreenTea.jpg" class="image1" alt="Matcha Green Tea Latte">
+                      <div class="card-body">
+                          <h5 class="card-title">Matcha Green Tea Latte</h5>
+                          <p class="card-text">$3.99</p>
+                          <button name="tea" value="Matcha Green Tea Latte" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+              </div>
+
+            <!-- Tea Item 8 -->
+             <!-- Uses christian.css for image styling -->
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/matchaLemonade.jpg" class="image1" alt="Matcha Lemonade">
+                      <div class="card-body">
+                          <h5 class="card-title">Matcha Lemonade</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="tea" value="Matcha Lemonade" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+              </div>
+
+            <!-- Tea Item 9 -->
+             <!-- Uses christian.css for image styling -->
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/londonFog.jpg" class="image1" alt="Lonndon Fog">
+                      <div class="card-body">
+                          <h5 class="card-title">London Fog</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="tea" value="London Fog" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+              </div>
+
+            <!-- Tea Item 10 -->
+             <!-- Uses christian.css for image styling -->
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/hibiscusTea.jpg" class="image1" alt="Hibiscus Tea">
+                      <div class="card-body">
+                          <h5 class="card-title">Hibiscus Tea</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="tea" value="Hibiscus Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+              </div>
+
+            <!-- Tea Item 11 -->
+             <!-- Uses christian.css for image styling -->
+
+            <div class="col-md-4">
+                <form>
+                  <div class="card">
+                      <img src="../static/images/englishBreakfastLatte.jpg" class="image1" alt="English Breakfast Latte">
+                      <div class="card-body">
+                          <h5 class="card-title">English Breakfast Latte</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="tea" value="English Breakfast Latte" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+                  </form>
+            </div>
+
+            <div class="col-md-4">
+                <form>
+                  <div class="card">
+                      <img src="../static/images/EarlGreyTea.jpg" class="image1" alt="Earl Grey Tea">
+                      <div class="card-body">
+                          <h5 class="card-title">Earl Grey Tea</h5>
+                          <p class="card-text">$1.99</p>
+                          <button name="tea" value="Earl Grey Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+                  </form>
+            </div>
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/peachIcedTea.jpg" class="image1" alt="Peach Iced Tea">
+                      <div class="card-body">
+                          <h5 class="card-title">Peach Iced Tea</h5>
+                          <p class="card-text">$3.99</p>
+                          <button name="tea" value="Peach Iced Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+            </div>
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/blackCurrantTea.jpg" class="image1" alt="Black Currant Tea">
+                      <div class="card-body">
+                          <h5 class="card-title">Black Currant Tea</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="tea" value="Black Current Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+  
+                  </div>
+            </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Our Coffee Collection</h2>
+        <div class="row">
+            <!-- Coffee 1 -->
+             <!-- Uses christian.css for styling changes on images-->
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/christian/coffee.png" class="image1" alt="Brewed Coffee" >
+                      <div class="card-body">
+                          <h5 class="card-title">Cup O' Joe</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="tea" value="Brewed Coffee" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+                  </div>
+              </div>
+
+
+            <!-- Coffee 2 -->
+             <!-- Uses christian.css for styling changes on images-->
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/christian/cappuccino.png" class="image1" alt="Cappuccino">
+                      <div class="card-body">
+                          <h5 class="card-title">Cappuccino</h5>
+                          <p class="card-text">$3.99</p>
+                          <button name="tea" value="Cappuccino" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Coffee 3 -->
+               <!-- Uses christian.css for styling changes on images-->
+
+            <div class="col-md-4">
+                  <div class="card">
+                      <img src="../static/images/christian/americano.png" class="image1" alt="Americano">
+                      <div class="card-body">
+                          <h5 class="card-title">Americano</h5>
+                          <p class="card-text">$2.99</p>
+                          <button name="tea" value="Americano" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                      </div>
+                  </div>
+              </div>
+            </form>
+
+
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <p class="text-center">© 2025 Binary Brew - All Rights Reserved.</p>
+        </div>
+    </footer>
+    <div class="overlay">
+      <span>display</span>
+    </div>
+    <!-- Javascript files-->
+    <script src="static/jquery.min.js"></script>
+    <script src="static/popper.min.js"></script>
+    <script src="static/bootstrap.bundle.min.js"></script>
+    <script src="static/owl.carousel.min.js"></script>
+    <script src="static/custom.js"></script>
+     <script src="static/jquery.mCustomScrollbar.concat.min.js"></script>
+
+     <script src="js/jquery-3.0.0.min.js"></script>
+   <script type="text/javascript">
+        $(document).ready(function() {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function() {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').addClass('active');
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    <style>
+    #owl-demo .item{
+        margin: 3px;
+    }
+    #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    </style>
+
+
+      <script>
+         $(document).ready(function() {
+           var owl = $('.owl-carousel');
+           owl.owlCarousel({
+             margin: 10,
+             nav: true,
+             loop: true,
+             responsive: {
+               0: {
+                 items: 1
+               },
+               600: {
+                 items: 2
+               },
+               1000: {
+                 items: 5
+               }
+             }
+           })
+         })
+      </script>
+</body>
+
+<footer>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="img-box">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer_logo">
+                      <a href="index.html"><img src="../static/images/logo2.png" alt="logo" /></a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <ul class="lik">
+                        <li class="active"> <a href="../../index.html">Home</a></li>
+                        <li> <a href="contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <div class="new">
+                        <h3>Newsletter</h3>
+                        <form class="newtetter">
+                            <input class="tetter" placeholder="Your email" type="text" name="Your email">
+                            <button class="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>© 2025 All Rights Reserved Binary Brew</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

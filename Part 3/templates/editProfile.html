@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+  <form action="/editProfile" method="post">
+    <div class="wrapper">
+        <div class="login">
+            <img src="static/images/generic.png" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            Edit profile
+        </div>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="email" id="userName" placeholder="{{user.email}}" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="firstName" id="firstName" placeholder="{{user.firstName}}">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="lastName" id="firstName" placeholder="{{user.lastName}}">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="{{user.password | hidden_password}}" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="confirmpassword" id="pwd" placeholder="Confirm Password" >
+            </div>
+            <button type="submit" name="action" value="editButton" class="btn mt-3">Confirm Edit</button>
+
+        </form>
+    </div>
+    </form>
+</body>
+
+</html>

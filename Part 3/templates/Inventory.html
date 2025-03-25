@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+<html lang="en">
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Inventory</title>
+
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/profile.css">
+</head>
+
+<div class="container">
+
+<body> 
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="full">
+                        <div class="right_header_info">
+                            <ul>
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
+                                <li class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
+                                <li>
+                                    <button type="button" id="sidebarCollapse">
+                                        
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+     <!-- Table Headers -->
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Current Stock</th>
+                        <th>Reorder Level</th>
+                        <th>Supplier</th>
+                        <th>Price per Unit</th>
+                        <th>Order Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Inventory Data-->
+                    <tr>
+                        <td>001</td>
+                        <td>Earl Grey Tea</td>
+                        <td>Black Tea</td>
+                        <td>150</td>
+                        <td>50</td>
+                        <td>Tea Suppliers Inc.</td>
+                        <td>$5.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>English Breakfast Tea</td>
+                        <td>Black Tea</td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>Tea Suppliers Inc.</td>
+                        <td>$5.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Peach Tea</td>
+                        <td>Black Tea</td>
+                        <td>175</td>
+                        <td>50</td>
+                        <td>Tea Suppliers Inc.</td>
+                        <td>$5.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Black Currant Tea</td>
+                        <td>Black Tea</td>
+                        <td>150</td>
+                        <td>50</td>
+                        <td>Tea Suppliers Inc.</td>
+                        <td>$5.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>Green Tea</td>
+                        <td>Green Tea</td>
+                        <td>200</td>
+                        <td>75</td>
+                        <td>Green Tea Co.</td>
+                        <td>$4.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>006</td>
+                        <td>Matcha</td>
+                        <td>Green Tea</td>
+                        <td>175</td>
+                        <td>50</td>
+                        <td>Green Tea Co.</td>
+                        <td>$6.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>007</td>
+                        <td>Hibiscus</td>
+                        <td>Green Tea</td>
+                        <td>175</td>
+                        <td>50</td>
+                        <td>Green Tea Co.</td>
+                        <td>$6.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>008</td>
+                        <td>Breakfast Roast</td>
+                        <td>Coffee</td>
+                        <td>200</td>
+                        <td>75</td>
+                        <td>Coffee Supply Co.</td>
+                        <td>$4.00</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button class="order-button">Order</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<footer class="footer">
+    <div class="row" style="justify-content: center;">
+        <h3>Binary Brew</h3>
+    </div>
+</footer>
+
+</body>
+</html>

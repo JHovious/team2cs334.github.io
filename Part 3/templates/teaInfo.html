@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Binary Brew</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <!-- owl css -->
+    <link rel="stylesheet" href="static/owl.carousel.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="static/style.css">
+    <!-- responsive-->
+    <link rel="stylesheet" href="static/responsive.css">
+    <!-- awesome fontfamily -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="static/jquery.min.js"></script>
+    <script src="static/popper.min.js"></script>
+    <script src="static/bootstrap.bundle.min.js"></script>
+
+</head>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  width: 1040px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+body {
+  margin: 0;
+  background-color: #f7f8fc;
+  font-family: "Roboto", sans-serif;
+  color: #10182f;
+}
+
+header {
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 100px;
+}
+
+.card {
+  margin: 20px auto;
+  background-color: #B0BEC5;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 500px; /* Allow responsiveness */
+  height: auto;
+}
+
+.card img {
+  width: 100%; /* Ensure image spans the width of the card */
+  height: auto;
+  object-fit: cover;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center content horizontally */
+  padding: 20px;
+  min-height: 250px; /* Ensure adequate content space */
+}
+
+.description {
+  font-family: 'Arial', sans-serif; /* Clean and readable font */
+  font-size: 16px; /* Comfortable font size */
+  line-height: 1.6; /* Improves readability */
+  color: #37474F; /* Dark, soft gray for text */
+  background: linear-gradient(135deg, #ECEFF1, #CFD8DC); /* Light gradient background */
+  padding: 20px; /* Adds spacing around the content */
+  border-radius: 10px; /* Smooth rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adds animation effects */
+  text-align: justify; /* Aligns text neatly */
+}
+
+.description:hover {
+  transform: scale(1.03); /* Slightly enlarges on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Intensifies shadow on hover */
+}
+
+.description::before {
+  content: "✨ "; /* Adds a decorative icon before the text */
+  font-size: 18px; /* Slightly larger icon */
+  color: #FFA726; /* Eye-catching orange */
+}
+
+.description::after {
+  content: " ✨"; /* Adds a decorative icon after the text */
+  font-size: 18px; /* Matches icon size */
+  color: #FFA726; /* Same color for consistency */
+}
+
+
+.tag {
+  width: auto;
+  background: #cccccc; /* Light gray background for tag */
+  border-radius: 50px; /* Rounded pill-like shape */
+  font-size: 18px; /* Small font size */
+  margin: 5px 0; /* Add spacing between tags */
+  color: #fff; /* White text color */
+  padding: 2px 10px; /* Space inside the tag */
+  text-transform: uppercase; /* Convert text to uppercase */
+  cursor: pointer; /* Pointer cursor for interactivity */
+  display: inline-block;
+}
+
+.tag-teal {
+  background-color: #47bcd4;
+}
+.tag-purple {
+  background-color: #5e76bf;
+}
+.tag-pink {
+  background-color: #cd5b9f;
+}
+
+.card-body p {
+  font-size: 13px;
+  margin: 0 0 40px;
+}
+.user {
+  width: 100%;
+  justify-content: center;
+  align-items: center; /* Center content horizontally */
+  display: flex;
+  margin-top: auto;
+}
+.user img {
+  border-radius: 38%;
+  width: 90px;
+  height: 90px;
+  margin: 34px;
+}
+.user-info h5 {
+  margin: 0;
+}
+.user-info small {
+  color: #545d7a;
+}
+.trs{
+  background-color: transparent;
+}
+
+</style>
+
+<body>
+  <header>
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="full">
+                      <a class="logo" href="{{ url_for('index') }}"><img src="static/images/logo.jpeg" alt="#" /></a>
+                  </div>
+              </div>
+              <div class="col-md-9">
+                  <div class="full">
+                      <div class="right_header_info">
+                          <ul>
+                              <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                          {% if not user %}
+                              <li class="button_user"><a class="button active" href="{{ url_for('login') }}">Login</a><a class="button" href="{{ url_for('register') }}">Register</a></li>
+                          {% else %}
+                                <a href="{{ url_for('profile') }}">  <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"></li></a>
+                            {% endif %}
+                              <li>
+                                  <button type="button" id="sidebarCollapse">
+                                      <img src="static/images/menu_icon.png" alt="#">
+                                  </button>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+
+  <div class="container">
+    <form action="/teaAction" method="post">
+    <div class="card">
+      <div class="carousel-inner">
+          {% for imgs in tea.images %}
+              <div class="carousel-item {% if loop.first %}active{% endif %}">
+                  <img src="{{ imgs }}" class="d-block w-100" alt="teaImages" style="height: 300px; object-fit: cover;">
+              </div>
+          {% endfor %}
+      </div>
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#teaCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#teaCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+      </button>
+
+      <div class="card-body">
+        <span class="tag tag-purple">{{tea.name}}</span>
+        <h4>
+          ${{tea.price}}
+        </h4>
+        <p class="description">
+          {{tea.description}}
+        </p>
+        <div class="user">
+          <button name="size" value="Small" class="trs"><img src="static/images/small.jpeg" alt="user" />
+          <li>Small</li></button>
+          <button  name="size" value="Medium" class="trs"><img src="static/images/medium.jpeg" alt="user" />
+          <li> Medium</li></button>
+          <button name="size" value="Large" class="trs"><img src="static/images/large.jpeg" alt="user" />
+          <li>Large</li></button>
+        </div>
+        {% if tea.size == "Small" %}
+          <span class="tag tag-purple">Small</span>
+        {% elif tea.size == "Medium" %}
+          <span class="tag tag-teal">Medium</span>
+        {% else %}
+          <span class="tag tag-pink">Large</span>
+        {% endif %}
+      </div>
+      <div class="d-flex justify-content-center align-items-center" >
+    <input type="number" name="amount" value="1" min="1" class="form-control d-inline text-center" style="width: 80px;">
+      </div>
+      <button  name="action" value="add"><span class="tag tag-pink">Add To Cart</span></button>
+    </div>
+  </form>
+</body>
+
+<footer>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="img-box">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer_logo">
+                      <a href="index.html"><img src="static/images/logo2.png" alt="logo" /></a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <ul class="lik">
+                        <li class="active"> <a href="index.html">Home</a></li>
+                        <li> <a href="about.html">About</a></li>
+                        <li> <a href="recipe.html">Recipe</a></li>
+                        <li> <a href="blog.html">Blog</a></li>
+                        <li> <a href="contact.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <div class="new">
+                        <h3>Newsletter</h3>
+                        <form class="newtetter">
+                            <input class="tetter" placeholder="Your email" type="text" name="Your email">
+                            <button class="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>© 2025 All Rights Reserved Binary Brew</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="static/jquery.min.js"></script>
+<script src="static/popper.min.js"></script>
+<script src="static/bootstrap.bundle.min.js"></script>
+<script src="static/owl.carousel.min.js"></script>
+<script src="static/custom.js"></script>
+ <script src="static/jquery.mCustomScrollbar.concat.min.js"></script>
+
+ <script src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function() {
+            $('#sidebar').removeClass('active');
+            $('.overlay').removeClass('active');
+        });
+
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar').addClass('active');
+            $('.overlay').addClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>
+
+<style>
+
+</style>
+
+</html>

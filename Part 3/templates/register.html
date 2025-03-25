@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<head>
+<html lang="en">
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/profile.css">
+    <script src="../static/account.js"></script>
+</head>
+
+<div class="container">
+
+<body> 
+    <div class="sidebar">
+        <!-- Sidebar  -->
+        <nav  style="justify-content: center; align-items: center;" id="sidebar">
+            <ul>
+            <li class="button_user"><a class="button active" href="../../index.html">Home</a></li>
+        </ul>
+            <div id="dismiss">
+                <i class="fa fa-arrow-left"></i>
+            </div>
+
+
+
+        </nav>
+    </div>
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="full">
+                        <div class="right_header_info">
+                            <ul>
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
+                           
+                                <li class="button_user"><a class="button" href="login.html">Login</a></li>
+                           
+                                <li>
+                                    <button type="button" id="sidebarCollapse">
+                                        
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--Sign Up Elements-->
+    
+    <div class="split left">
+        <form >
+        <div class="centered">
+            <h1 style="text-align: center; color: #fdf1dd;;"> Sign Up</h1>
+            <div class="row">
+            <label class ="label" for="uname"><b>Username</b></label>
+            <input id="username" class ="input" type="text" placeholder="Enter Username" name="uname" required>
+        </div>
+        <div class="centered">
+            <div class="row">
+            <label class ="label" for="fname"><b>First name</b></label>
+            <input id="firstName" class ="input" type="text" placeholder="First Name" name="fname" required>
+        </div>
+        
+        <div class="centered">
+            <div class="row">
+            <label class ="label" for="lname"><b>Last Name</b></label>
+            <input id="lastName" class ="input" type="email" placeholder="Last Name" name="lname" required>
+        </div>
+        <div class="centered">
+            <div class="row">
+            <label class ="label" for="email"><b>Email</b></label>
+            <input id="email" class ="input" type="email" placeholder="Enter Email" name="email" required>
+        </div>
+
+        
+
+        <div class="row">
+            <label class="label" for="psw"><b>Password</b></label>
+            <input id="password" class="input" type="password" placeholder="Enter Password" name="psw" required>
+        </div>
+        <div class="row">
+            <label class="label" for="psw"><b> Confirm Password</b></label>
+            <input id="confirmPassword"  class="input" type="password" placeholder="Confirm Password" name="cpsw" required>
+        </div>
+        <button onclick="validate(event)"  type="submit" style="color: white;" class="btn draw-border">Sign Up
+         </button>
+         
+        </div>
+        </div>
+</form>
+    </div>
+
+    <footer class="reg-footer">
+                <div class="row">
+                    
+    
+        <h3 >
+            Binary Brew
+        </h3>
+    </div>
+    </footer>
+    
+<script src="../static/jquery.min.js"></script>
+<script src="../static/popper.min.js"></script>
+<script src="../static/bootstrap.bundle.min.js"></script>
+<script src="../static/owl.carousel.min.js"></script>
+<script src="../static/custom.js"></script>
+ <script src="../static/jquery.mCustomScrollbar.concat.min.js"></script>
+
+ <script src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function() {
+            $('#sidebar').removeClass('active');
+            $('.overlay').removeClass('active');
+        });
+
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar').addClass('active');
+            $('.overlay').addClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>
+
+<style>
+#owl-demo .item{
+    margin: 3px;
+}
+#owl-demo .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+</style>
+
+
+  <script>
+     $(document).ready(function() {
+       var owl = $('.owl-carousel');
+       owl.owlCarousel({
+         margin: 10,
+         nav: true,
+         loop: true,
+         responsive: {
+           0: {
+             items: 1
+           },
+           600: {
+             items: 2
+           },
+           1000: {
+             items: 5
+           }
+         }
+       })
+     })
+     </script>
+</body>
+
+<style>
+.reg-footer,h3{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background: #d8b00f;
+    padding-top:90px;
+    margin-top: 90px;
+    text-align: center;
+}
+</style>
+
+</html>
