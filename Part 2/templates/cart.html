@@ -60,30 +60,34 @@
 <!--These classes use christian.css-->
 <body class = "cartbody">
     
-
-    <section class="cartsection">
+    <script src="../static/script.js">
+        </script>
+        <!--I just adjsuted the width for temp use-->
+    <section style="width:40%; align-items: center;" class="cartsection">
         <img src="../static/images/christian/upside-down.svg">
         <br>
+        <!--using the "id" to identify win JavaScript-->
         <br>
-        Your cart is empty, you'll see your items here when they are added
-
+        <div id="displayItems">
+            <p>No Items in your Cart</p>
+        </div>
         <div class="add"><a href="allTeas.html">
             Add items
             </a>
         </div>
     </section>
     <article class="carttotal">
-        <div class="subtotalbox">
-            Subtotal: $
+        <div id="itemCount" class="subtotalbox">
+            Items: 0
         </div>
         <br>
-        <div class="taxbox">
+        <div id="displayTax" class="taxbox">
             Tax: $
         </div>
 
         <br>
         <br>
-        <div class="totalbox">
+        <div id="displaySubtotal" class="totalbox">
             Total: $
         </div>
         <br>

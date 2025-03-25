@@ -105,6 +105,12 @@ div.total {
 div.total div.totals p {
   display: inline-block;
 }
+div.total div.totals h3 {
+  display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;  
+    text-align: center;  
+}
 
 .text {
   text-align: left;

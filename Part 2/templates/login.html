@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="../static/styles.css">
     <link rel="stylesheet" href="../static/profile.css">
+    <script src="../static/account.js"></script>
 </head>
 
 <div class="container">
@@ -51,26 +52,27 @@
     </header>
 
     <!--Login Elements-->
+  
     <div class="split left">
+        <form >
         <div class="centered">
             <h1 style="text-align: center; color: #fdf1dd;;"> Manager Login </h1>
             <div class="row">
             <label class ="label" for="uname"><b>Username</b></label>
-            <input class ="input" type="text" placeholder="Enter Username" name="uname" required>
+            <input id="email" class ="input" type="text" placeholder="Enter Username" name="uname" required>
         </div>
         <div class="row">
             <label class="label" for="psw"><b>Password</b></label>
-            <input class="input" type="password" placeholder="Enter Password" name="psw" required>
+            <input   id="password" class="input" type="password" placeholder="Enter Password" name="psw" required>
         </div>
-        <button class="btn draw-border">
-            <a href="Manager_Menu.html">Login</a>
+        <button onclick="handleLogin(event)" class="btn draw-border">Login
          </button>
          <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>
         </div>
         </div>
-
+    </form>
     </div>
 
 

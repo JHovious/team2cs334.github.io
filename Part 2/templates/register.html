@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="../static/styles.css">
     <link rel="stylesheet" href="../static/profile.css">
+    <script src="../static/account.js"></script>
 </head>
 
 <div class="container">
@@ -65,36 +66,48 @@
     </header>
 
     <!--Sign Up Elements-->
+    
     <div class="split left">
+        <form >
         <div class="centered">
             <h1 style="text-align: center; color: #fdf1dd;;"> Sign Up</h1>
             <div class="row">
             <label class ="label" for="uname"><b>Username</b></label>
-            <input class ="input" type="text" placeholder="Enter Username" name="uname" required>
+            <input id="username" class ="input" type="text" placeholder="Enter Username" name="uname" required>
+        </div>
+        <div class="centered">
+            <div class="row">
+            <label class ="label" for="fname"><b>First name</b></label>
+            <input id="firstName" class ="input" type="text" placeholder="First Name" name="fname" required>
+        </div>
+        
+        <div class="centered">
+            <div class="row">
+            <label class ="label" for="lname"><b>Last Name</b></label>
+            <input id="lastName" class ="input" type="email" placeholder="Last Name" name="lname" required>
         </div>
         <div class="centered">
             <div class="row">
             <label class ="label" for="email"><b>Email</b></label>
-            <input class ="input" type="email" placeholder="Enter Email" name="email" required>
+            <input id="email" class ="input" type="email" placeholder="Enter Email" name="email" required>
         </div>
 
         
 
         <div class="row">
             <label class="label" for="psw"><b>Password</b></label>
-            <input class="input" type="password" placeholder="Enter Password" name="psw" required>
+            <input id="password" class="input" type="password" placeholder="Enter Password" name="psw" required>
         </div>
         <div class="row">
             <label class="label" for="psw"><b> Confirm Password</b></label>
-            <input class="input" type="password" placeholder="Confirm Password" name="cpsw" required>
+            <input id="confirmPassword"  class="input" type="password" placeholder="Confirm Password" name="cpsw" required>
         </div>
-        <button class="btn draw-border">
-            <a style="color: white;" href="profile.html">Sign Up</a>
+        <button onclick="validate(event)"  type="submit" style="color: white;" class="btn draw-border">Sign Up
          </button>
          
         </div>
         </div>
-
+</form>
     </div>
 
     <footer class="reg-footer">
