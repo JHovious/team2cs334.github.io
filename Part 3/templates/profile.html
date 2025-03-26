@@ -13,17 +13,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
     <!-- owl css -->
-    <link rel="stylesheet" href="static/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/owl.carousel.min.css">
     <!-- style css -->
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="../static/style.css">
 
     <script src="../account/script.js"></script>
 
-    <link rel="stylesheet" href="static/profile.css">
+    <link rel="stylesheet" href="../static/profile.css">
     <!-- responsive-->
-    <link rel="stylesheet" href="static/responsive.css">
+    <link rel="stylesheet" href="../static/responsive.css">
     <!-- awesome fontfamily -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -35,27 +35,49 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
+<script>
+    $(document).ready(function() {
+      var owl = $('.owl-carousel');
+      owl.owlCarousel({
+        margin: 10,
+        nav: true,
+        loop: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 5
+          }
+        }
+      })
+    })
+ </script>
+
 <header>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
                 <div class="full">
-                    <a class="logo" href="index.html"><img src="static/images/logo.jpeg" alt="#" /></a>
+                    <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="full">
                     <div class="right_header_info">
                         <ul>
-                            <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
+                            <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="{{ url_for('allTeas') }}">Our Teas</a></li>
                         {% if not user %}
                             <li class="button_user"><a class="button active" href="{{ url_for('login') }}">Login</a><a class="button" href="{{ url_for('register') }}">Register</a></li>
                         {% else %}
-                              <a href="{{ url_for('profile') }}">  <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="static/images/hotTeaCircle.png" alt="#"></li></a>
+                              <a href="{{ url_for('profile') }}">  <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"></li></a>
                           {% endif %}
                             <li>
                                 <button type="button" id="sidebarCollapse">
-                                    <img src="static/images/menu_icon.png" alt="#">
+                                    <img src="../static/images/menu_icon.png" alt="#">
                                 </button>
                             </li>
                         </ul>
@@ -66,28 +88,28 @@
     </div>
 </header>
 
-<form action="/handleProfile" method="post" onclick="handleProfile(event)">
+<form >
 <body>
   <div class="container">
 
-    <div class="card">
-      <img src="static/images/generic_user.png" alt="Person" class="card__image">
-      <p id="fullName" class="card__name">{{ user.firstName }} {{ user.lastName }}</p>
+    <div style="height:auto;" class="card">
+      <img src="../static/images/generic_user.png" alt="Person" class="card__image">
+      <p id="fullName" class="card__name">full name</p>
       <div class="grid-container">
-        <p id="username" class="card__name">{{ user.firstName }} {{ user.lastName }}</p>
-        <div id="displayEmail" class="grid-child-posts">
-          {{user.email}}
+        <p id="username" class="card__name">usernasme </p>
+        <div id="displayEmail" name="displayEmail" class="grid-child-posts">
+         email
         </div>
 
         <div id="displayPassword" class="grid-child-followers">
-          {{user.password | hidden_password}}
+         password
         </div>
 
       </div>
-      <button name="action" value="edit" class="btn draw-border">Edit Profile</button>
+      <a href="editProfile.html" value="edit" class="btn draw-border">Edit Profile</a>
       <button onclick="logout(event)" name="action" value="logout" class="btn draw-border">logOut</button>
-      <button name="action" value="cart" class="btn draw-border">View Cart</button>
-      <button name="action" value="delete" class="btn draw-border">Delete Account</button>
+      <a href="allTeas.html" name="action" value="cart" class="btn draw-border">View Cart</a>
+      <button onclick="deleteAccount(event)" name="action" value="delete" class="btn draw-border">Delete Account</button>
     </div>
   </div>
 
@@ -108,16 +130,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer_logo">
-                      <a href="index.html"><img src="static/images/logo.jpeg" alt="logo" /></a>
+                      <a href="../../index.html"><img src="../static/images/logo.jpeg" alt="logo" /></a>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <ul class="lik">
-                        <li > <a href="{{ url_for('index') }}">Home</a></li>
-                        <li> <a href="about.html">About</a></li>
-                        <li> <a href="recipe.html">Recipe</a></li>
-                        <li> <a href="blog.html">Blog</a></li>
-                        <li> <a href="contact.html">Contact us</a></li>
+                        <li > <a href="../../index.html">Home</a></li>
                     </ul>
                 </div>
                     <div class="container">
@@ -135,12 +153,12 @@
 
 
 
-<script src="static/jquery.min.js"></script>
-<script src="static/popper.min.js"></script>
-<script src="static/bootstrap.bundle.min.js"></script>
-<script src="static/owl.carousel.min.js"></script>
-<script src="static/custom.js"></script>
- <script src="static/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../static/jquery.min.js"></script>
+<script src="../static/popper.min.js"></script>
+<script src="../static/bootstrap.bundle.min.js"></script>
+<script src="../static/owl.carousel.min.js"></script>
+<script src="../static/custom.js"></script>
+ <script src="../static/jquery.mCustomScrollbar.concat.min.js"></script>
 
  <script src="js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
