@@ -53,7 +53,7 @@ function Cart(event) {
 }
 
 //In some languages they have there own built in StringBuilder, in JavaScript they do not
-class StringBuilder {
+export class StringBuilder {
     constructor(value = '') {
       this._value = Array.isArray(value) ? value : [value];
     }

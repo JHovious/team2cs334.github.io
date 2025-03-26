@@ -1,4 +1,5 @@
 
+
 let allUsers = JSON.parse(localStorage.getItem("allUsers")) || []; //this is for all users
 let user = JSON.parse(localStorage.getItem("loggedinUser")); //this will simulate a logged in user
 
@@ -14,29 +15,27 @@ function handleLogin(event){
 
     let allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
-    const loggedinUser = null;
+    let loggedinUser = null;
 
     if(allUsers && email && password){ // text feilds must not be empty
         
         for(logged of allUsers){
-            if(logged.email == email && logged.password == password || logged.username == email && logged.password == password){ // to be dynamic they can also use there username
 
-                loggedinUser = logged;
+            if(logged.email.toString() === email.toString() && logged.password.toString()  === password.toString() 
+                || logged.username === email && logged.password === password){ // to be dynamic they can also use there username
 
-                alert('User found');
-                localStorage.setItem("loggedinUser", JSON.stringify(loggedinUser));
+                loggedinUser = logged; // assign the obj if they are valid
 
-                window.location.href = "profile.html";
-                return;
+                localStorage.setItem("loggedinUser", JSON.stringify(loggedinUser)); //set the user obj as "loggedin"
+
+                 window.location.href = "profile.html"; // redirect them to there profile indicating success
+                 return;
             }
         }
 
     }
 
-        window.location.href = "register.html";
-    
-
-
+        window.location.href = "register.html"; //locate to register as default
 
 }
 
@@ -89,9 +88,9 @@ function validate(event) {
         return false;
     }
 
-   if(allUsers){
+   if(allUsers){ 
     for(logged of allUsers){
-        if(logged.email == email){
+        if(logged.email == email){ //this just checks so we dont have duplicate accounts
             alert("Email already in use.")
             return false;
         }
@@ -110,33 +109,51 @@ function validate(event) {
    
 }
 
-window.onload = function(){
+function deleteAccount(event){
+    event.preventDefault(); 
+    //load the obj from the local storage
+    let allUsers = JSON.parse(localStorage.getItem("allUsers"));
     let user = JSON.parse(localStorage.getItem("loggedinUser"));
 
+    allUsers = allUsers.filter(u => u.email !== user.email); 
+
+    // Update local storage
+    localStorage.setItem("allUsers", JSON.stringify(allUsers));
+    localStorage.removeItem("loggedinUser");
+    
+    setTimeout(() => {
+    window.location.href = "login.html"; // then redirect them back to the login page
+        }, 100);
+}
+
+
+window.onload = function(){
+    const user = JSON.parse(localStorage.getItem("loggedinUser"));
+
+    if(user){
+     //   alert("user not null: "+ user.firstName);
+    }
     let email = document.getElementById("displayEmail");
-    let username = documnet.getElementById("username");
+    let username = document.getElementById("username");
     let password = document.getElementById("displayPassword");
     let fullName = document.getElementById("fullName");
 
-    const sb = new StringBuilder();
-    for(car of user.password){
-        sb.append("*"); // keeping the password hidden but keeping the lenght 
-    }
-
-    email.innerText = user.email;
+  
+    email.innerText = user.email.toString();
     username.innerText = user.username;
     fullName.innerText = user.firstName + " " + user.lastName;
-    password.innertext = sb;
+    password.innerText = "*".repeat(user.password.length);
+
 
 }
 
-function logout(event){
-
-    localStorage.removeItem("loggeinUser");
-
-    window.location.href = "../index.html";
+function logout(event) {
+    event.preventDefault(); 
+    localStorage.removeItem("loggedinUser");
+    setTimeout(() => {
+        window.location.href = "../../index.html";
+    }, 100);
 }
-
 
 class User{
 
