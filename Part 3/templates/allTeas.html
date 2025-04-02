@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="../static/christian.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <Script src="../static/script.js"></Script>
+    
+    
 </head>
 
 <style>
@@ -59,7 +60,7 @@
                             <ul>
                                 <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="#">Our Teas</a></li>
                             
-                                <li class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
+                                <li id="accountOptions" class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
                             
                                     <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"></li>
                               
@@ -76,8 +77,9 @@
     </header>
 
     <!-- Main Content -->
-    <div class="container mt-5">
-        <h2 style="font-size: xx-large; font-family: 'Times New Roman', Times, serif;" class="text-center mb-4">Our Tea Collection</h2>
+    <h2 style="font-size: xx-large; font-family: 'Times New Roman', Times, serif;" class="text-center mb-4">Our Tea Collection</h2>
+    <div id="displayAllTeas" class="container mt-5">
+        
         <div class="row">
             <!-- Tea Item 1 -->
             <!-- Uses christian.css for image styling-->
@@ -277,9 +279,10 @@
                   </div>
             </div>
     </div>
-
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Our Coffee Collection</h2>
+</div>
+    <h2 id="coffeeTitle" class="text-center mb-4">Our Coffee Collection</h2>
+    <div id="displayAllCoffee" class="container mt-5">
+        
         <div class="row">
             <!-- Coffee 1 -->
              <!-- Uses christian.css for styling changes on images-->
@@ -323,26 +326,17 @@
                       </div>
                   </div>
               </div>
-            </form>
+              </div>
+</div>
 
 
-
-    <!-- Footer -->
-    <footer class="mt-5">
-        <div class="container">
-            <p class="text-center">© 2025 Binary Brew - All Rights Reserved.</p>
-        </div>
-    </footer>
-    <div class="overlay">
-      <span>display</span>
-    </div>
-    <!-- Javascript files-->
-    <script src="static/jquery.min.js"></script>
-    <script src="static/popper.min.js"></script>
-    <script src="static/bootstrap.bundle.min.js"></script>
-    <script src="static/owl.carousel.min.js"></script>
-    <script src="static/custom.js"></script>
-     <script src="static/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../static/jquery.min.js"></script>
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap.bundle.min.js"></script>
+    <script src="../static/owl.carousel.min.js"></script>
+    <script src="../static/custom.js"></script>
+    <script src="../static/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../static/script.js"></script>
 
      <script src="js/jquery-3.0.0.min.js"></script>
    <script type="text/javascript">
