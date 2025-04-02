@@ -24,6 +24,9 @@ function handleLogin(event){
             if(logged.email.toString() === email.toString() && logged.password.toString()  === password.toString() 
                 || logged.username === email && logged.password === password){ // to be dynamic they can also use there username
 
+                    if(logged.email === "marquezjulian09@gmail.com"){
+                        logged.isAdmin = true;
+                    }
                 loggedinUser = logged; // assign the obj if they are valid
 
                 localStorage.setItem("loggedinUser", JSON.stringify(loggedinUser)); //set the user obj as "loggedin"
@@ -130,19 +133,21 @@ function deleteAccount(event){
 window.onload = function(){
     const user = JSON.parse(localStorage.getItem("loggedinUser"));
 
-    if(user){
-     //   alert("user not null: "+ user.firstName);
-    }
     let email = document.getElementById("displayEmail");
     let username = document.getElementById("username");
     let password = document.getElementById("displayPassword");
     let fullName = document.getElementById("fullName");
+    let adminOptions = document.getElementById("adminOptions");
 
   
     email.innerText = user.email.toString();
     username.innerText = user.username;
     fullName.innerText = user.firstName + " " + user.lastName;
     password.innerText = "*".repeat(user.password.length);
+
+    if(user.isAdmin){
+        adminOptions.innerHTML = '<a href="addTea.html" class="btn draw-border">Add Tea</a> <a href="allSales.html" class="btn draw-border">All Sales</a>'
+    }
 
 
 }
@@ -163,8 +168,10 @@ class User{
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.isAdmin;
 
     }
 
 
 }
+
