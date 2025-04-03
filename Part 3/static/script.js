@@ -127,6 +127,8 @@ class StringBuilder {
     let fullName = document.getElementById("fullName");
     let adminOptions = document.getElementById("adminOptions");
 
+    let isAdmin = false;
+
     if(accountOptions && !user){ //this just means if the user is null or not logged in diplay the options
         accountOptions.innerHTML = '<li id="accountOptions" class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>';
     }
@@ -139,8 +141,10 @@ class StringBuilder {
     username.innerText = user.username;
     fullName.innerText = user.firstName + " " + user.lastName;
     password.innerText = "*".repeat(user.password.length);
+    
     if(user.isAdmin){
-        adminOptions.innerHTML = '<a href="addTea.html" class="btn draw-border">Add Tea</a> <a href="allSales.html" class="btn draw-border">All Sales</a>'
+        isAdmin = true;
+        adminOptions.innerHTML = '<a href="addTea.html" class="btn draw-border">Add Tea</a> <a href="allSales.html" class="btn draw-border">All Sales</a><div><a href="inventory.html" class="btn draw-border">Inventory</a><a href="addTea.html" class="btn draw-border">Add To Inventory</a>'
     }
 
     if(cartItems && !user.cartItems){ //if the user has any from last session
@@ -162,6 +166,8 @@ class StringBuilder {
     let displaySubtotal = document.getElementById("displaySubtotal");
     let displayTax = document.getElementById("displayTax");
     let itemCount = document.getElementById("itemCount");
+
+    let buildTable = document.getElementById("inventoryTable");
 
     // If there are no teas in localStorage, initialize them
     if (!allTeas || allTeas.length === 0) {
@@ -209,6 +215,8 @@ class StringBuilder {
 
     const coffeeElements = [];
     let coffeeCount = 0; // Track number of coffee items added
+
+    let delete_elemnt  = '<button id="deleteButton"><button  class="btn btn-danger" onclick="deleteDrink(event)" >Delete</button>';
     
     allTeas.forEach((drink, index) => {
         if (!drink.isCoffee) {
@@ -226,13 +234,15 @@ class StringBuilder {
                             <p class="card-text">$${drink.price}</p>
                             <p class="card-text">Inventory: ${drink.amount}</p>
                             <button name="tea" value="${drink.name}" class="btn btn-primary" onclick="handleCart(event)">
-                                Add To Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                                Add To Cart</button><input type='hidden' value="${index}"></input>
+                            
             `);
-    
+
+            if(user.isAdmin && user){
+                teaElements.push(delete_elemnt);
+            }
+            teaElements.push('</div></div></div>')
+
             if (index % 3 === 2 || index === allTeas.length - 1) {
                 teaElements.push('</div>');
             }
@@ -252,12 +262,15 @@ class StringBuilder {
                             <p class="card-text">$${drink.price}</p>
                             <p class="card-text">Inventory: ${drink.amount}</p>
                             <button name="tea" value="${drink.name}" class="btn btn-primary" onclick="handleCart(event)">
-                                Add To Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                                Add To Cart</button><input type='hidden" value="index">
+                            
             `);
+
+            if(user.isAdmin && user){
+                coffeeElements.push(delete_elemnt);
+            }
+            coffeeElements.push('</div></div></div>')
+
     
             coffeeCount++; // Increment coffee counter
     
@@ -300,63 +313,27 @@ class StringBuilder {
         displayTax.innerText = "$" + totalTax.toFixed(2);
         itemCount.innerText = 'Items: ' + cartItems.length;
         displayElement.innerText = sb;
-}
+    }
+        if (buildTable) {
+            let build = '';
+        
+            allTeas.forEach((tea, index) => {
+                build += `<tr>
+                    <td>${index}</td>
+                    <td>${tea.name}</td>
+                    <td>Black Tea</td>
+                    <td>${tea.amount}</td>
+                    <td>50</td>
+                    <td>Tea Suppliers Inc.</td>
+                    <td>${tea.price}</td>
+                    <td><input type="number" min="1" max="100" value="1"></td>
+                    <td><button class="btn btn-primary">Order</button></td>
+                </tr>`;
+            });
+            buildTable.innerHTML = build;
+        }
+
 };
-
-function arrayBufferToBase64(arrayBuffer) {
-    let binary = '';
-    let bytes = new Uint8Array(arrayBuffer);
-    let length = bytes.byteLength;
-    for (let i = 0; i < length; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-}
-
-function convertImagePathToBytes(imagePath, callback) {
-    const img = new Image();
-    img.crossOrigin = "anonymous";  // Prevents CORS issues
-
-    img.onload = function() {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-
-        // Convert image to base64
-        const base64String = canvas.toDataURL("image/png");
-        callback(base64String);  // Pass base64 data to callback
-    };
-
-    img.onerror = function() {
-        console.error("Failed to load image at path:", imagePath);
-       // alert("Failed to load image at path: " + imagePath);
-    };
-
-    img.src = imagePath;
-}
-  async function imagePathToBytes(imagePath) {
-    try {
-      const response = await fetch(imagePath);
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      const arrayBuffer = await response.arrayBuffer();
-      const bytes = new Uint8Array(arrayBuffer);
-      return bytes;
-    } catch (error) {
-      console.error("Error fetching or converting image:", error);
-      throw error;
-    }
-  }
-
-  
-
-
-
 
 function handleLogin(event){
 
@@ -552,3 +529,15 @@ function addTea(event) {
     reader.readAsDataURL(file);
 }
 
+function deleteDrink(event){
+    event.preventDefault();
+
+    let index = document.getElementById('index').value;
+        
+   alert(index);
+
+  //  allTeas.splice(index,index);
+
+
+
+}
