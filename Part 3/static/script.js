@@ -198,7 +198,6 @@ class StringBuilder {
         
     
 
-alert("Initializing teas...");
         // Pushing the created tea objects into the allTeas array
         allTeas.push(tea1, tea2, tea3, tea4, tea5, tea6, tea7, tea8, tea9, tea10, tea11, tea12, tea13, tea14, coffee1, coffee2, coffee3);
 
@@ -511,5 +510,45 @@ class User{
     }
 
 
+}
+
+function addTea(event) {
+    event.preventDefault();
+
+    let teaName = document.getElementById('teaName').value;
+    let teaPrice = document.getElementById('price').value;
+    let amount = document.getElementById('amount').value;
+    let image = document.getElementById('teaImage'); // This gets the image input
+    let drinkButton = document.getElementById('toggleButton');
+    let drinkType = drinkButton.dataset.state; // 'tea' or 'coffee'
+
+    if (!teaName || !teaPrice || !amount || !image.files[0]) {
+        alert("Please fill out all fields correctly");
+        return;
+    }
+
+    let file = image.files[0]; // Get the first file
+    let reader = new FileReader();
+
+    reader.onload = function(event) {
+        // The result will be a base64 string representing the image data
+        let imageData = event.target.result;
+
+        // Create the Tea object with the image data
+        const tea = new Tea(teaName, teaPrice, amount, imageData);
+
+        if (drinkType === "coffee") {
+            tea.isCoffee = true; // Set this true
+            alert("Coffee " + tea.name + " successfully added");
+        } else { // Otherwise it's a normal tea
+            alert("Tea " + tea.name + " successfully added");
+        }
+
+        allTeas.push(tea);
+        localStorage.setItem('allTeas', JSON.stringify(allTeas));
+    };
+
+    // Read the image file as a data URL (base64)
+    reader.readAsDataURL(file);
 }
 
