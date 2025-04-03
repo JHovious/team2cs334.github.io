@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<head>
+<html lang="en">
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Add Tea</title>
+
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/profile.css">
+    <script src="../static/script.js"></script>
+</head>
+
+<div class="container">
+
+<body> 
+    <div class="sidebar">
+        <!-- Sidebar  -->
+        <nav  style="justify-content: center; align-items: center;" id="sidebar">
+            <ul>
+            <li class="button_user"><a class="button active" href="../../index.html">Home</a></li>
+        </ul>
+            <div id="dismiss">
+                <i class="fa fa-arrow-left"></i>
+            </div>
+
+
+
+        </nav>
+    </div>
+    <!-- header -->
+    <header style="height: auto;">
+
+       
+        <div  class="container-fluid">
+            
+            <div class="row">
+                
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                    </div>
+                </div>
+               
+                <div class="col-md-9">
+                  
+                        
+                  
+                    <div class="full">
+                        <div class="right_header_info">
+                            <ul>
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
+                           
+                                <li class="button_user">
+                                    <a class="button active"  type="button" id="sidebarCollapse">
+                                        
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--Tea elements-->
+    <div class="teaContainer">
+    <div class="container mt-5">
+     
+        <form  action="#" method="post" enctype="multipart/form-data" class="shadow p-4 rounded bg-light">
+            <div class="mb-3">
+                <label for="teaName" class="form-label"><b>Tea Name</b></label>
+                <input type="text" id="teaName" name="teaName" class="form-control" placeholder="Enter tea name" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label"><b>Price ($)</b></label>
+                <input type="number" id="price" name="price" class="form-control" step="0.01" min="0.01" placeholder="Enter price" required>
+            </div>
+            <div class="mb-3">
+                <label for="amount" class="form-label"><b>Inventory Amount</b></label>
+                <input type="number" id="amount" name="amount" class="form-control"step="1" min="1" placeholder="Enter inventory amount" required>
+            </div>
+            <button id="toggleButton" onclick="toggleContent()" class="btn-custom">🍵 Tea</button>
+            <div class="mb-3">
+                <label for="teaImage" class="form-label"><b>Upload Tea Image</b></label>
+                <input type="file" id="teaImage" name="teaImage" class="form-control" accept="image/*" required>
+            </div>
+            <button onclick="addTea(event)" class="btn-custom" type="submit">Add Tea</button>
+        </form>
+    </div>
+</div>
+
+    <footer class="reg-footer">
+        <div class="row">
+            
+
+<h3 >
+    Binary Brew
+</h3>
+</div>
+</footer>
+    
+<script src="../static/jquery.min.js"></script>
+<script src="../static/popper.min.js"></script>
+<script src="../static/bootstrap.bundle.min.js"></script>
+<script src="../static/owl.carousel.min.js"></script>
+<script src="../static/custom.js"></script>
+ <script src="../static/jquery.mCustomScrollbar.concat.min.js"></script>
+
+ <script src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function() {
+            $('#sidebar').removeClass('active');
+            $('.overlay').removeClass('active');
+        });
+
+        $('#sidebarCollapse').on('click', function() {
+            $('#sidebar').addClass('active');
+            $('.overlay').addClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+
+    function toggleContent() {
+    var button = document.getElementById("toggleButton");
+
+    if (button.dataset.state === "tea") {
+        button.textContent = "☕ Coffee";
+        button.style.backgroundColor = "#A0522D"; // Coffee brown
+        button.dataset.state = "coffee";
+    } else {
+        button.textContent = "🍵 Tea";
+        button.style.backgroundColor = "#8B4513"; // Tea brown
+        button.dataset.state = "tea";
+    }
+}
+
+// Set initial state to Tea when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    var button = document.getElementById("toggleButton");
+    button.textContent = "🍵 Tea";
+    button.style.backgroundColor = "#8B4513"; // Tea brown
+    button.dataset.state = "tea";
+});
+    </script>
+<style>
+#owl-demo .item{
+    margin: 3px;
+}
+#owl-demo .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+.btn-custom {
+    background-color: #8B4513; /* Tea brown */
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+    transform: scale(1.05);
+}
+
+.btn-custom:active {
+    transform: scale(0.98);
+}
+
+</style>
+
+
+  <script>
+     $(document).ready(function() {
+       var owl = $('.owl-carousel');
+       owl.owlCarousel({
+         margin: 10,
+         nav: true,
+         loop: true,
+         responsive: {
+           0: {
+             items: 1
+           },
+           600: {
+             items: 2
+           },
+           1000: {
+             items: 5
+           }
+         }
+       })
+     })
+     </script>
+</body>
+
+<style>
+.reg-footer,h3{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background: #d8b00f;
+    padding-top:40px;
+    margin-top: 40px;
+    text-align: center;
+}
+.teaContainer {
+    padding-bottom: 100px; /* Or adjust to match your footer's height */
+}
+</style>
+
+</html>
