@@ -5,6 +5,7 @@ let subTotal = JSON.parse(localStorage.getItem("subTotal")) || 0; // Set default
 let allTeas = JSON.parse(localStorage.getItem("allTeas")) || []; //this will represent our tea inventory
 let user = JSON.parse(localStorage.getItem("loggedinUser"));
 let allUsers = JSON.parse(localStorage.getItem("allUsers")) || []; //this is for all users
+let allItems = JSON.parse(localStorage.getItem("allItems")) || []; //this is all items (teas and store products)
 
 function handleCart(event) {
     event.preventDefault(); 
@@ -314,24 +315,60 @@ class StringBuilder {
         itemCount.innerText = 'Items: ' + cartItems.length;
         displayElement.innerText = sb;
     }
-        if (buildTable) {
-            let build = '';
+    if (buildTable) {
+        let build = '';
+    
+
+    
         
-            allTeas.forEach((tea, index) => {
-                build += `<tr>
-                    <td>${index}</td>
-                    <td>${tea.name}</td>
-                    <td>Black Tea</td>
-                    <td>${tea.amount}</td>
-                    <td>50</td>
-                    <td>Tea Suppliers Inc.</td>
-                    <td>${tea.price}</td>
-                    <td><input type="number" min="1" max="100" value="1"></td>
-                    <td><button class="btn btn-primary">Order</button></td>
-                </tr>`;
-            });
-            buildTable.innerHTML = build;
-        }
+            const header = document.querySelector('header');
+            const footer = document.querySelector('footer');
+
+            document.documentElement.style.setProperty('--dynamic-header-space', `${header.offsetHeight + 20}px`);
+            document.documentElement.style.setProperty('--dynamic-footer-space', `${footer.offsetHeight + 30}px`);
+
+            let Items_and_Teas = allItems.concat(allTeas);
+    
+            Items_and_Teas.forEach((tea, index) => {
+            let buttons = `
+            <button id="deleteItemButton" onclick="deleteItem(${index})"  class="button delete-btn" >
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <div class="front">
+                    <span>Delete</span>
+                </div>
+            </button>
+           <a href="editItem.html" class="button edit-btn">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <div class="front">
+                        <span>Edit</span>
+                    </div>
+                </a>
+        `;
+        
+
+            //very IMPORTANT that the index is the value to idenify when deletions
+           
+
+            build += `<tr>
+                <td>${index + 1}</td>
+                <td>${tea.name}</td>
+                <td><img src="${tea.image}" style="width:auto; height:80px;" ></td>
+                <td>${tea.amount}</td>
+                <td>50</td>
+                <td>Tea Suppliers Inc.</td>
+                <td>$${tea.price}</td>
+                <td><input type="number" min="1" max="100" value="1"></td>
+                <td>${buttons}</td>
+            </tr>`;
+        });
+    
+        buildTable.innerHTML = build;
+    
+        //window.scrollTo(0, 0); // Scroll to top after content update
+    }
+    
 
 };
 
@@ -540,4 +577,77 @@ function deleteDrink(event){
 
 
 
+}
+function deleteItem(index) {
+   // event.preventDefault();
+
+    //let index = document.getElementById('deleteItemButton').value;
+
+    alert(index + " index recieved")
+
+    allTeas.splice(index,1); // removing one element from the the recived index
+
+    localStorage.setItem("allTeas", JSON.stringify(allTeas)); // update the local storage 
+
+    window.location.href = 'inventory.html'; //reload the page to show the the difference
+
+}
+
+function addItem(event) {
+    event.preventDefault();
+
+    let name = document.getElementById('itemName').value;
+    let supplier = document.getElementById('supplier').value;
+    let price = document.getElementById('price').value;
+    let amount = document.getElementById('amount').value;
+    let image = document.getElementById('image');
+
+    if (!name || !price || !amount || !supplier) {
+        alert("Please fill out all fields correctly");
+        return;
+    }
+
+    let imageData = "../static/images/defaultItem.png"; // Default image path
+    
+    if (image && image.files.length > 0) {
+        let file = image.files[0]; 
+        let reader = new FileReader();
+
+        reader.onload = function(event) {
+            imageData = event.target.result; 
+
+            // Create the Item object with the image data
+            const newItem = new Item(name, supplier, price, amount, imageData);
+
+            alert("Item " + newItem.name + " added Succesfully");
+
+            allItems.push(newItem);
+
+            localStorage.setItem(JSON.stringify('allItems',allItems));
+        };
+
+        reader.readAsDataURL(file); // Asynchronously read the file
+
+        return;
+    } else {
+        const newItem = new Item(name, supplier, price, amount, imageData);
+
+        alert("Item " + newItem.name + " added Succesfully");
+
+        allItems.push(newItem);
+
+        localStorage.setItem(JSON.stringify('allItems',allItems));
+    }
+}
+
+
+class Item{
+
+    constructor(name,supplier,price,amount,image){
+        this.name = name;
+        this.supplier = supplier;
+        this.price = price;
+        this.amount = amount;
+        this.image = image;
+    }
 }
