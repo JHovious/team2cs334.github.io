@@ -120,7 +120,7 @@ class StringBuilder {
 
   window.onload = function () {
 
-   // let indexItems = document.getElementById('carousel');
+    let indexItems = document.getElementById('carousel');
 
     const user = JSON.parse(localStorage.getItem("loggedinUser"));
 
@@ -174,7 +174,6 @@ class StringBuilder {
     let buildTable = document.getElementById("inventoryTable");
 
     if(indexItems && allTeas && false){
-        alert("index page");
 
         let carousel =  '';
 
