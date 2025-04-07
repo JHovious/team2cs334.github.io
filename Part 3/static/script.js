@@ -6,6 +6,7 @@ let allTeas = JSON.parse(localStorage.getItem("allTeas")) || []; //this will rep
 let user = JSON.parse(localStorage.getItem("loggedinUser"));
 let allUsers = JSON.parse(localStorage.getItem("allUsers")) || []; //this is for all users
 let allItems = JSON.parse(localStorage.getItem("allItems")) || []; //this is all items (teas and store products)
+let item_to_edit = JSON.parse(localStorage.getItem("Item"));
 
 function handleCart(event) {
     event.preventDefault(); 
@@ -119,6 +120,8 @@ class StringBuilder {
 
   window.onload = function () {
 
+   // let indexItems = document.getElementById('carousel');
+
     const user = JSON.parse(localStorage.getItem("loggedinUser"));
 
     let accountOptions = document.getElementById("accountOptions");
@@ -145,7 +148,7 @@ class StringBuilder {
     
     if(user.isAdmin){
         isAdmin = true;
-        adminOptions.innerHTML = '<a href="addTea.html" class="btn draw-border">Add Tea</a> <a href="allSales.html" class="btn draw-border">All Sales</a><div><a href="inventory.html" class="btn draw-border">Inventory</a><a href="addTea.html" class="btn draw-border">Add To Inventory</a>'
+        adminOptions.innerHTML = '<a href="addTea.html" class="btn draw-border">Add Tea</a> <a href="allSales.html" class="btn draw-border">All Sales</a><div><a href="inventory.html" class="btn draw-border">Inventory</a><a href="addItem.html" class="btn draw-border">Add To Inventory</a>'
     }
 
     if(cartItems && !user.cartItems){ //if the user has any from last session
@@ -169,6 +172,30 @@ class StringBuilder {
     let itemCount = document.getElementById("itemCount");
 
     let buildTable = document.getElementById("inventoryTable");
+
+    if(indexItems && allTeas){
+        alert("index page");
+
+        let carousel =  '';
+
+        allTeas.forEach((tea,index) => {
+
+            carousel += `
+            <div class="item">
+                <div class="product_blog_img">
+                    <img src="${tea.image}" alt="${tea.name}" style="height: 215px;"/>
+                </div>
+                <div class="product_blog_cont">
+                    <h3>${tea.name}</h3>
+                    <h4><span class="theme_color">$</span>${tea.price}</h4>
+                </div>
+            </div>
+        `;
+    
+        });
+
+        indexItems.innerHTML = carousel;
+    }
 
     // If there are no teas in localStorage, initialize them
     if (!allTeas || allTeas.length === 0) {
@@ -317,9 +344,6 @@ class StringBuilder {
     }
     if (buildTable) {
         let build = '';
-    
-
-    
         
             const header = document.querySelector('header');
             const footer = document.querySelector('footer');
@@ -327,7 +351,13 @@ class StringBuilder {
             document.documentElement.style.setProperty('--dynamic-header-space', `${header.offsetHeight + 20}px`);
             document.documentElement.style.setProperty('--dynamic-footer-space', `${footer.offsetHeight + 30}px`);
 
-            let Items_and_Teas = allItems.concat(allTeas);
+            let Items_and_Teas = [];
+
+            if(allItems){
+            Items_and_Teas = allItems.concat(allTeas);
+            }else{
+                Items_and_Teas = allTeas;
+            }
     
             Items_and_Teas.forEach((tea, index) => {
             let buttons = `
@@ -338,15 +368,19 @@ class StringBuilder {
                     <span>Delete</span>
                 </div>
             </button>
-           <a href="editItem.html" class="button edit-btn">
+           <button id="editButton" onclick="setItemToEdit(${index})" class="button edit-btn">
                     <span class="shadow"></span>
                     <span class="edge"></span>
                     <div class="front">
                         <span>Edit</span>
                     </div>
-                </a>
+                </button>
         `;
-        
+        let supplier = 'Tea Suppliers Inc.';
+
+        if(tea.supplier){
+            supplier = tea.supplier;
+        }
 
             //very IMPORTANT that the index is the value to idenify when deletions
            
@@ -357,7 +391,7 @@ class StringBuilder {
                 <td><img src="${tea.image}" style="width:auto; height:80px;" ></td>
                 <td>${tea.amount}</td>
                 <td>50</td>
-                <td>Tea Suppliers Inc.</td>
+                <td>${supplier}</td>
                 <td>$${tea.price}</td>
                 <td><input type="number" min="1" max="100" value="1"></td>
                 <td>${buttons}</td>
@@ -366,7 +400,43 @@ class StringBuilder {
     
         buildTable.innerHTML = build;
     
-        //window.scrollTo(0, 0); // Scroll to top after content update
+    }
+
+
+    let editName = document.getElementById('editName');
+    let editSupplier = document.getElementById('editSupplier');
+    let editPrice = document.getElementById('editPrice');
+    let editAmount = document.getElementById('editAmount');
+
+    if (editName) { //this just confirms what we are editing
+
+        editName.placeholder = item_to_edit.name; 
+
+        if(item_to_edit.supplier){ //checks if this an item or a drink object
+            editSupplier.placeholder = item_to_edit.supplier; //for now the tea supplier is tsatic and will not be able to be changed
+        }
+
+        editPrice.placeholder = item_to_edit.price;
+        editAmount.placeholder = item_to_edit.amount;
+
+    }
+
+    let profileImage = document.getElementById('eProfilePic');
+    let editUsername = document.getElementById('editUsername');
+    let editEmail = document.getElementById('editEmail');
+    let editFname = document.getElementById('editFname');
+    let editLname = document.getElementById('editLname');
+    let editPassword = document.getElementById('editPassword');
+
+    if(editEmail){
+
+       // profileImage.src = user.image;
+        editUsername.placeholder = user.username;
+        editEmail.placeholder = user.email;
+        editFname.placeholder = user.firstName;
+        editLname.placeholder = user.lastName;
+        editPassword.placeholder = "*".repeat(user.password.length);
+
     }
     
 
@@ -579,15 +649,24 @@ function deleteDrink(event){
 
 }
 function deleteItem(index) {
-   // event.preventDefault();
 
-    //let index = document.getElementById('deleteItemButton').value;
+    let list = allItems.concat(allTeas); //combine the drinks and store supplies
 
-    alert(index + " index recieved")
+    if(!list[index].supplier){ //this just checks if the item is only a drink object
 
-    allTeas.splice(index,1); // removing one element from the the recived index
+        allTeas.splice(index,1); // removing one element from the the recived index
 
-    localStorage.setItem("allTeas", JSON.stringify(allTeas)); // update the local storage 
+        localStorage.setItem("allTeas", JSON.stringify(allTeas)); // update the local storage 
+
+
+    }else{
+
+        allItems.splice(index,1); // removing one element from the the recived index
+
+        localStorage.setItem("allItems", JSON.stringify(allItems)); // update the local storage 
+
+
+    }
 
     window.location.href = 'inventory.html'; //reload the page to show the the difference
 
@@ -600,15 +679,17 @@ function addItem(event) {
     let supplier = document.getElementById('supplier').value;
     let price = document.getElementById('price').value;
     let amount = document.getElementById('amount').value;
-    let image = document.getElementById('image');
+    let image = document.getElementById('image');  // This should be a file input element
 
+    // Check if the required fields are filled
     if (!name || !price || !amount || !supplier) {
         alert("Please fill out all fields correctly");
         return;
     }
 
-    let imageData = "../static/images/defaultItem.png"; // Default image path
-    
+    let imageData = "../static/images/defualtItem.png"; // Default image path
+
+    // If there is an image selected, read it 
     if (image && image.files.length > 0) {
         let file = image.files[0]; 
         let reader = new FileReader();
@@ -616,28 +697,192 @@ function addItem(event) {
         reader.onload = function(event) {
             imageData = event.target.result; 
 
-            // Create the Item object with the image data
             const newItem = new Item(name, supplier, price, amount, imageData);
 
-            alert("Item " + newItem.name + " added Succesfully");
+            alert("Item " + newItem.name + " added successfully");
 
             allItems.push(newItem);
 
-            localStorage.setItem(JSON.stringify('allItems',allItems));
+            localStorage.setItem('allItems', JSON.stringify(allItems)); 
         };
 
-        reader.readAsDataURL(file); // Asynchronously read the file
+        reader.readAsDataURL(file); 
 
-        return;
+        return; 
     } else {
         const newItem = new Item(name, supplier, price, amount, imageData);
 
-        alert("Item " + newItem.name + " added Succesfully");
+        alert("Item " + newItem.name + " added successfully");
 
         allItems.push(newItem);
 
-        localStorage.setItem(JSON.stringify('allItems',allItems));
+        localStorage.setItem('allItems', JSON.stringify(allItems)); 
     }
+}
+
+function setItemToEdit(index){// this function will set the item we want to edit oin the edit page
+
+    let list = allItems.concat(allTeas); //combine the drinks and store supplies
+
+    localStorage.setItem("Item",JSON.stringify(list[index]));
+
+    window.location.href = "editItem.html";
+
+}
+
+function confirmEdit(event){
+
+    let editName = document.getElementById('editName').value;
+    let editSupplier = document.getElementById('editSupplier').value;
+    let editPrice = document.getElementById('editPrice').value;
+    let editAmount = document.getElementById('editAmount').value;
+    let editImage = document.getElementById('editImage');
+
+    let originalName = item_to_edit.name;
+
+            let Items_and_Teas = allItems.concat(allTeas); 
+            let found = false;
+
+            Items_and_Teas.forEach((item, index) => {
+                if (item.name == originalName) {
+                    // Update the fields
+                    if (editName) item_to_edit.name = editName;
+                    if (editPrice) item_to_edit.price = editPrice;
+                    if (editAmount) item_to_edit.amount = editAmount;
+            
+                    // Check if it's an item (has supplier)
+                    let isItem = item.hasOwnProperty('supplier');
+            
+                    if (isItem && editSupplier) {
+                        item_to_edit.supplier = editSupplier;
+                    }
+            
+                    // Function to save and redirect
+                    const saveAndRedirect = () => {
+                        if (isItem) {
+                            let itemIndex = allItems.findIndex(i => i.name === item.name);
+                            allItems[itemIndex] = item_to_edit;
+                            localStorage.setItem('allItems', JSON.stringify(allItems));
+                        } else {
+                            let teaIndex = allTeas.findIndex(t => t.name === item.name);
+                            allTeas[teaIndex] = item_to_edit;
+                            localStorage.setItem('allTeas', JSON.stringify(allTeas));
+                        }
+            
+                        localStorage.setItem('Item', JSON.stringify(null)); // reset
+                        window.location.href = "inventory.html";
+                    };
+            
+                    if (editImage && editImage.files.length > 0) {
+                        let file = editImage.files[0];
+                        let reader = new FileReader();
+            
+                        reader.onload = function(event) {
+                            item_to_edit.image = event.target.result;
+                            saveAndRedirect();
+                        };
+            
+                        reader.readAsDataURL(file);
+                    } else {
+                        // No image change
+                        saveAndRedirect();
+                    }
+            
+                    found = true;
+                    return; // break out of forEach
+                }
+            });
+            
+            if (!found) {
+                alert("Item to edit was not found in combined list.");
+            }
+            
+
+}
+
+function editAccount(event){
+    event.preventDefault();
+    const user = JSON.parse(localStorage.getItem("loggedinUser"));
+
+    let originalEmail = user.email;
+
+    let editUsername = document.getElementById('editUsername').value;
+    let editEmail = document.getElementById('editEmail').value;
+    let editFname = document.getElementById('editFname').value;
+    let editLname = document.getElementById('editLname').value;
+    let editPassword = document.getElementById('editPassword').value;
+    let confirmPassword = document.getElementById('confirmPassword').value;
+
+    if(editUsername) user.username = editUsername;
+    if(editEmail) user.email = editEmail;
+    if(editFname) user.firstName = editFname;
+    if(editLname) user.lastName = editLname;
+    if(editPassword){
+        let passwordChanged  = true;
+        if (editPassword !== confirmPassword) {
+            alert("Passwords do not match.");
+            passwordChanged  = false;
+        }
+    
+        const specialChars = "@!#$%^&*";
+        const Caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let containsSpecial = false;
+        let Capitals = false;
+    
+        for (let char of Caps) {
+            if (editPassword.includes(char)) {
+                Capitals = true;
+                break;
+            }
+        }
+    
+        for (let char of specialChars) {
+            if (editPassword.includes(char)) {
+                containsSpecial = true;
+                break;
+            }
+        }
+    
+        if (!Capitals) {
+            alert("Password must contain at least one Capital. ");
+            passwordChanged  = false;
+        }
+    
+        if (!containsSpecial) {
+            alert("Password must contain at least one special character (@, !, #, $, %, ^, &, *).");
+            passwordChanged  = false;
+        }
+    
+        if (editPassword.length < 8) {
+            alert("Password must be at least 8 characters long.");
+            passwordChanged  = false;
+        }
+
+        if(passwordChanged && Capitals && containsSpecial){
+            user.password = editPassword;
+        }
+        else{
+            alert('password not changed'); //this message indicates that just the PASSWORD was not valid and will not chnage
+        }
+    }
+
+            allUsers.forEach((logged,index) => {
+                alert(logged.email);
+
+                if(logged.email == originalEmail){
+                    allUsers[index] = user;
+                   alert("User " + allUsers[index].firstName + " updated Successfully :)"  );
+
+                   //reset the list and context
+                   localStorage.setItem('loggedinUser',JSON.stringify(allUsers[index]));
+                   localStorage.setItem('allUsers',JSON.stringify(allUsers));
+
+                   window.location.href = 'profile.html'; //redirect them back to show there changes
+                }
+
+            });
+
+    
 }
 
 
