@@ -173,7 +173,7 @@ class StringBuilder {
 
     let buildTable = document.getElementById("inventoryTable");
 
-    if(indexItems && allTeas){
+    if(indexItems && allTeas && false){
         alert("index page");
 
         let carousel =  '';
