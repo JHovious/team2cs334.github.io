@@ -173,29 +173,42 @@ class StringBuilder {
 
     let buildTable = document.getElementById("inventoryTable");
 
-    if(indexItems && allTeas && false){
-
-        let carousel =  '';
-
-        allTeas.forEach((tea,index) => {
-
-            carousel += `
-            <div class="item">
-                <div class="product_blog_img">
-                    <img src="${tea.image}" alt="${tea.name}" style="height: 215px;"/>
-                </div>
-                <div class="product_blog_cont">
-                    <h3>${tea.name}</h3>
-                    <h4><span class="theme_color">$</span>${tea.price}</h4>
-                </div>
-            </div>
-        `;
+    if (indexItems && allTeas) {
+        let carousel = '';
     
+        allTeas.slice(0, 10).forEach((tea) => {
+            let indexImage = tea.image.slice(2);
+    
+            carousel += `
+                <div class="item">
+                    <div class="product_blog_img">
+                        <img src="Part 3/${indexImage}" alt="${tea.name}" style="height: 215px;"/>
+                    </div>
+                    <div class="product_blog_cont">
+                        <h3>${tea.name}</h3>
+                        <h4><span class="theme_color">$</span>${tea.price}</h4>
+                    </div>
+                </div>
+            `;
         });
-
+    
+        // Replace content
         indexItems.innerHTML = carousel;
+    
+        // Destroy old carousel (if any), then reinit
+        $('#carousel').trigger('destroy.owl.carousel');
+        $('#carousel').removeClass('owl-loaded');
+        $('#carousel').find('.owl-stage-outer').children().unwrap();
+    
+        // Reinitialize Owl Carousel
+        $('#carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            items: 4
+        });
     }
-
+    
     // If there are no teas in localStorage, initialize them
     if (!allTeas || allTeas.length === 0) {
         let imagePaths = [             "../static/images/christian/icedtea.png",             "../static/images/raspberryTea.png",             "../static/images/blackberryTea.png",             "../static/images/greenTea.png",             "../static/images/arnoldPalmer.png",             "../static/images/matchaGreenTea.jpg",             "../static/images/matchaLemonade.jpg",             "../static/images/londonFog.jpg",             "../static/images/hibiscusTea.jpg",             "../static/images/englishBreakfastLatte.jpg",             "../static/images/EarlGreyTea.jpg",             "../static/images/peachIcedTea.jpg",             "../static/images/blackCurrantTea.jpg",             "../static/images/christian/campfire.png",             "../static/images/christian/coffee.png",             "../static/images/christian/cappuccino.png",             "../static/images/christian/americano.png"         ];
@@ -374,6 +387,13 @@ class StringBuilder {
                         <span>Edit</span>
                     </div>
                 </button>
+                <button id="quickOrder" onclick="quickOrder(${index})" class="button edit-btn">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <div class="front">
+                        <span>Quick Order</span>
+                    </div>
+                </button>
         `;
         let supplier = 'Tea Suppliers Inc.';
 
@@ -389,10 +409,9 @@ class StringBuilder {
                 <td>${tea.name}</td>
                 <td><img src="${tea.image}" style="width:auto; height:80px;" ></td>
                 <td>${tea.amount}</td>
-                <td>50</td>
                 <td>${supplier}</td>
                 <td>$${tea.price}</td>
-                <td><input type="number" min="1" max="100" value="1"></td>
+                <td><input id='${index}quickAmount' type="number" min="1" max="100" value="1"></td>
                 <td>${buttons}</td>
             </tr>`;
         });
@@ -404,6 +423,7 @@ class StringBuilder {
 
     let editName = document.getElementById('editName');
     let editSupplier = document.getElementById('editSupplier');
+    let editSupplierHolder = document.getElementById('holdSupplier');
     let editPrice = document.getElementById('editPrice');
     let editAmount = document.getElementById('editAmount');
 
@@ -412,7 +432,12 @@ class StringBuilder {
         editName.placeholder = item_to_edit.name; 
 
         if(item_to_edit.supplier){ //checks if this an item or a drink object
-            editSupplier.placeholder = item_to_edit.supplier; //for now the tea supplier is tsatic and will not be able to be changed
+            editSupplier.placeholder = item_to_edit.supplier; //for now the tea supplier is satic and will not be able to be changed
+            editSupplierHolder.innerHTML = `
+  <label for="editSupplier" class="form-label"><b>New Supplier</b></label>
+  <input type="text" id="editSupplier" name="editSupplier" class="form-control" placeholder="Enter item's supplier">
+`;
+
         }
 
         editPrice.placeholder = item_to_edit.price;
@@ -648,27 +673,32 @@ function deleteDrink(event){
 
 }
 function deleteItem(index) {
+    let list = allItems.concat(allTeas); // Combine all items
 
-    let list = allItems.concat(allTeas); //combine the drinks and store supplies
+    if (!list[index].supplier) {
+        // It's a drink (from allTeas)
 
-    if(!list[index].supplier){ //this just checks if the item is only a drink object
+        // Get the index in allTeas and in allItems
+        let teaIndex = index - allItems.length;
 
-        allTeas.splice(index,1); // removing one element from the the recived index
+        // Safety check just in case
+        if (teaIndex >= 0 && teaIndex < allTeas.length) {
+            allTeas.splice(teaIndex, 1);
+            localStorage.setItem("allTeas", JSON.stringify(allTeas));
+        }
 
-        localStorage.setItem("allTeas", JSON.stringify(allTeas)); // update the local storage 
+        // Remove from allItems too
+        allItems.splice(index, 1);
+        localStorage.setItem("allItems", JSON.stringify(allItems));
 
-
-    }else{
-
-        allItems.splice(index,1); // removing one element from the the recived index
-
-        localStorage.setItem("allItems", JSON.stringify(allItems)); // update the local storage 
-
-
+    } else {
+        // It's a supply (from allItems only)
+        allItems.splice(index, 1);
+        localStorage.setItem("allItems", JSON.stringify(allItems));
     }
 
-    window.location.href = 'inventory.html'; //reload the page to show the the difference
-
+    // Reload the page to reflect the change
+    window.location.href = 'inventory.html';
 }
 
 function addItem(event) {
@@ -729,74 +759,79 @@ function setItemToEdit(index){// this function will set the item we want to edit
 
 }
 
-function confirmEdit(event){
+function confirmEdit(event) {
+    event.preventDefault(); // Prevent default form submission (if it's in a form)
 
-    let editName = document.getElementById('editName').value;
-    let editSupplier = document.getElementById('editSupplier').value;
-    let editPrice = document.getElementById('editPrice').value;
-    let editAmount = document.getElementById('editAmount').value;
-    let editImage = document.getElementById('editImage');
+    const editName = document.getElementById('editName').value.trim();
+    const editSupplier = document.getElementById('editSupplier')?.value.trim();
+    const editPrice = document.getElementById('editPrice').value.trim();
+    const editAmount = document.getElementById('editAmount').value.trim();
+    const editImage = document.getElementById('editImage');
 
-    let originalName = item_to_edit.name;
+    const originalName = item_to_edit?.name;
 
-            let Items_and_Teas = allItems.concat(allTeas); 
-            let found = false;
+    if (!originalName) {
+        alert("Original item data not found.");
+        return;
+    }
 
-            Items_and_Teas.forEach((item, index) => {
-                if (item.name == originalName) {
-                    // Update the fields
-                    if (editName) item_to_edit.name = editName;
-                    if (editPrice) item_to_edit.price = editPrice;
-                    if (editAmount) item_to_edit.amount = editAmount;
-            
-                    // Check if it's an item (has supplier)
-                    let isItem = item.hasOwnProperty('supplier');
-            
-                    if (isItem && editSupplier) {
-                        item_to_edit.supplier = editSupplier;
-                    }
-            
-                    // Function to save and redirect
-                    const saveAndRedirect = () => {
-                        if (isItem) {
-                            let itemIndex = allItems.findIndex(i => i.name === item.name);
-                            allItems[itemIndex] = item_to_edit;
-                            localStorage.setItem('allItems', JSON.stringify(allItems));
-                        } else {
-                            let teaIndex = allTeas.findIndex(t => t.name === item.name);
-                            allTeas[teaIndex] = item_to_edit;
-                            localStorage.setItem('allTeas', JSON.stringify(allTeas));
-                        }
-            
-                        localStorage.setItem('Item', JSON.stringify(null)); // reset
-                        window.location.href = "inventory.html";
-                    };
-            
-                    if (editImage && editImage.files.length > 0) {
-                        let file = editImage.files[0];
-                        let reader = new FileReader();
-            
-                        reader.onload = function(event) {
-                            item_to_edit.image = event.target.result;
-                            saveAndRedirect();
-                        };
-            
-                        reader.readAsDataURL(file);
-                    } else {
-                        // No image change
-                        saveAndRedirect();
-                    }
-            
-                    found = true;
-                    return; // break out of forEach
-                }
-            });
-            
-            if (!found) {
-                alert("Item to edit was not found in combined list.");
+    const Items_and_Teas = allItems.concat(allTeas);
+    let found = false;
+
+    Items_and_Teas.forEach((item, index) => {
+        if (item.name === originalName) {
+            // Apply edits
+            if (editName) item_to_edit.name = editName;
+            if (editPrice) item_to_edit.price = parseFloat(editPrice);
+            if (editAmount) item_to_edit.amount = parseInt(editAmount);
+
+            const isItem = item.hasOwnProperty('supplier');
+
+            if (isItem && editSupplier) {
+                item_to_edit.supplier = editSupplier;
             }
-            
 
+            const saveAndRedirect = () => {
+                if (isItem) {
+                    const itemIndex = allItems.findIndex(i => i.name === item.name);
+                    if (itemIndex !== -1) {
+                        allItems[itemIndex] = item_to_edit;
+                        localStorage.setItem('allItems', JSON.stringify(allItems));
+                    }
+                } else {
+                    const teaIndex = allTeas.findIndex(t => t.name === item.name);
+                    if (teaIndex !== -1) {
+                        allTeas[teaIndex] = item_to_edit;
+                        localStorage.setItem('allTeas', JSON.stringify(allTeas));
+                    }
+                }
+
+                localStorage.setItem('Item', null);
+                window.location.href = "inventory.html";
+            };
+
+            if (editImage && editImage.files.length > 0) {
+                const file = editImage.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    item_to_edit.image = e.target.result;
+                    saveAndRedirect();
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                saveAndRedirect();
+            }
+
+            found = true;
+            return;
+        }
+    });
+
+    if (!found) {
+        alert("Item to edit was not found.");
+    }
 }
 
 function editAccount(event){
@@ -895,3 +930,32 @@ class Item{
         this.image = image;
     }
 }
+
+
+function quickOrder(index) {
+    let list = allItems.concat(allTeas);
+    let newAmount = document.getElementById(`${index}quickAmount`).value;
+
+    if (!newAmount) return;
+
+    alert("Ordering " + newAmount + " more for " + list[index].name );
+
+    // Convert newAmount to an integer
+    newAmount = parseInt(newAmount);
+
+    // Determine if the item is from allItems or allTeas
+    if (index < allItems.length) {
+        // It's a supply item
+        allItems[index].amount = parseInt(allItems[index].amount) + newAmount; // Adds to the existing stock
+        localStorage.setItem('allItems', JSON.stringify(allItems));
+    } else {
+        // It's a tea item
+        let tea_index = index - allItems.length;
+        allTeas[tea_index].amount = parseInt(allTeas[tea_index].amount) + newAmount; // Adds to the existing stock
+        localStorage.setItem('allTeas', JSON.stringify(allTeas));
+    }
+
+    window.location.href = 'inventory.html'; // Force reload to show updated stock
+}
+
+  
