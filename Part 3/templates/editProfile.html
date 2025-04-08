@@ -14,7 +14,7 @@
 <body>
     <div class="wrapper">
         <div class="login">
-            <img src="../static/images/generic.png" alt="">
+            <img id="eProfilePic" src="../static/images/generic.png" alt="">
         </div>
         <div class="text-center mt-4 name">
             Edit profile
@@ -43,6 +43,10 @@
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
                 <input type="password" name="confirmpassword" id="confirmPassword" placeholder="Confirm Password" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="file" name="editPic" id="editPic"  >
             </div>
             <button name="action" value="editButton" onclick="editAccount(event)" class="btn mt-3">Confirm Edit</button>
 
