@@ -178,11 +178,14 @@ class StringBuilder {
     
         allTeas.slice(0, 10).forEach((tea) => {
             let indexImage = tea.image.slice(2);
+
+            if(tea.image.slice(0,2) === ".."){ indexImage = `Part 3/${indexImage}`}
+            else{ indexImage = tea.image;};
     
             carousel += `
                 <div class="item">
                     <div class="product_blog_img">
-                        <img src="Part 3/${indexImage}" alt="${tea.name}" style="height: 215px;"/>
+                        <img src="${indexImage}" alt="${tea.name}" style="height: 215px;"/>
                     </div>
                     <div class="product_blog_cont">
                         <h3>${tea.name}</h3>
