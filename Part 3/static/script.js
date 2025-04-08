@@ -130,6 +130,7 @@ class StringBuilder {
     let password = document.getElementById("displayPassword");
     let fullName = document.getElementById("fullName");
     let adminOptions = document.getElementById("adminOptions");
+    let profilePicture = document.getElementById('profilePicture');
 
     let isAdmin = false;
 
@@ -149,6 +150,9 @@ class StringBuilder {
     if(user.isAdmin){
         isAdmin = true;
         adminOptions.innerHTML = '<a href="addTea.html" class="btn draw-border">Add Tea</a> <a href="allSales.html" class="btn draw-border">All Sales</a><div><a href="inventory.html" class="btn draw-border">Inventory</a><a href="addItem.html" class="btn draw-border">Add To Inventory</a>'
+    }
+    if(user.image){
+        profilePicture.src = user.image;
     }
 
     if(cartItems && !user.cartItems){ //if the user has any from last session
@@ -457,12 +461,15 @@ class StringBuilder {
 
     if(editEmail){
 
-       // profileImage.src = user.image;
         editUsername.placeholder = user.username;
         editEmail.placeholder = user.email;
         editFname.placeholder = user.firstName;
         editLname.placeholder = user.lastName;
         editPassword.placeholder = "*".repeat(user.password.length);
+
+        if(user.image){
+            profileImage.src = user.image;
+        }
 
     }
     
@@ -516,6 +523,9 @@ function validate(event) {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let confirm = document.getElementById("confirmPassword").value;
+    let profilePic = document.getElementById('profilePic');
+
+    alert(profilePic);
     
     if (password !== confirm) {
         alert("Passwords do not match.");
@@ -542,7 +552,7 @@ function validate(event) {
     }
 
     if (!Capitals) {
-        alert("Password must contain at least one Capital. ");
+        alert("Password must contain at least one capital letter.");
         return false;
     }
 
@@ -556,29 +566,44 @@ function validate(event) {
         return false;
     }
 
-   if(allUsers){ 
-    for(logged of allUsers){
-        if(logged.email == email){ //this just checks so we dont have duplicate accounts
-            alert("Email already in use.")
-            return false;
+    if (allUsers) { 
+        for (logged of allUsers) {
+            if (logged.email == email) {
+                alert("Email already in use.");
+                return false;
+            }
         }
     }
-   }
 
-   const newUser =  new User(username,email,password,firstName,lastName); // if all is valid make a new user
+    const newUser = new User(username, email, password, firstName, lastName);
 
-   if(newUser.email === 'marquezjulian09@gmail.com'){
-    newUser.isAdmin = true;
-   }
+    if (newUser.email === 'marquezjulian09@gmail.com') {
+        newUser.isAdmin = true;
+    }
 
-   allUsers.push(newUser); // update the list
+    // If a profile pic was uploaded
+    if (profilePic && profilePic.files.length > 0) {
+        let file = profilePic.files[0];
+        let reader = new FileReader();
 
-   localStorage.setItem("loggedinUser",JSON.stringify(newUser));
-   localStorage.setItem("allUsers",JSON.stringify(allUsers)); // save in the local data as JSON to Access it later as an Obj
+        reader.onload = function(event) {
+            let imageData = event.target.result;
+            newUser.image = imageData;
+            // Now save and redirect
+            allUsers.push(newUser);
+            localStorage.setItem("loggedinUser", JSON.stringify(newUser));
+            localStorage.setItem("allUsers", JSON.stringify(allUsers));
+            window.location.href = "profile.html";
+        };
 
-   window.location.href = "profile.html";
-
-   
+        reader.readAsDataURL(file);
+    } else {
+        // No profile pic provided
+        allUsers.push(newUser);
+        localStorage.setItem("loggedinUser", JSON.stringify(newUser));
+        localStorage.setItem("allUsers", JSON.stringify(allUsers));
+        window.location.href = "profile.html";
+    }
 }
 
 function deleteAccount(event){
@@ -617,6 +642,7 @@ class User{
         this.lastName = lastName;
         this.isAdmin;
         this.cartItems = [];
+        this.image = null;
 
     }
 
@@ -849,6 +875,8 @@ function editAccount(event){
     let editLname = document.getElementById('editLname').value;
     let editPassword = document.getElementById('editPassword').value;
     let confirmPassword = document.getElementById('confirmPassword').value;
+    let editPicture = document.getElementById('editPic');
+
 
     if(editUsername) user.username = editUsername;
     if(editEmail) user.email = editEmail;
@@ -903,6 +931,14 @@ function editAccount(event){
         }
     }
 
+    if(editPicture){
+        alert(editPicture);
+        let file = editPicture.files[0];
+        let reader = new FileReader();
+
+        reader.onload = function(event) {
+            let imageData = event.target.result;
+            user.image = imageData;
             allUsers.forEach((logged,index) => {
                 alert(logged.email);
 
@@ -918,6 +954,27 @@ function editAccount(event){
                 }
 
             });
+
+        };
+
+        reader.readAsDataURL(file);
+    }else{
+
+            allUsers.forEach((logged,index) => {
+                alert(logged.email);
+
+                if(logged.email == originalEmail){
+                    allUsers[index] = user;
+                   alert("User " + allUsers[index].firstName + " updated Successfully :)"  );
+
+                   //reset the list and context
+                   localStorage.setItem('loggedinUser',JSON.stringify(allUsers[index]));
+                   localStorage.setItem('allUsers',JSON.stringify(allUsers));
+
+                   window.location.href = 'profile.html'; //redirect them back to show there changes
+                }
+
+            });}
 
     
 }
