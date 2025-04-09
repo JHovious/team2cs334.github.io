@@ -7,7 +7,7 @@
     <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <title>Login</title>
+    <title>Recover Account</title>
 
     <link rel="stylesheet" href="../static/bootstrap.min.css">
     <link rel="stylesheet" href="../static/login.css">
@@ -22,7 +22,7 @@
 
 <body> 
     <!-- header -->
-    <header style="margin-bottom: 40px;">
+    <header>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
@@ -37,15 +37,12 @@
                                 <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
                            
                                 <li id="accountOptions" class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
-                                
-                                    
-                                
+                           
                                 <li>
                                     <button type="button" id="sidebarCollapse">
                                         
                                     </button>
                                 </li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -57,65 +54,62 @@
     <!--Login Elements-->
   
     <div style='height:430px; margin-top:90px;' class="split left">
+        
         <div class="centered">
-            <h1 style="text-align: center; color: #fdf1dd;;"> Manager Login </h1>
+            <h1 style="text-align: center; color: #fdf1dd;;"> Recover Login </h1>
             <div class="row">
-            <label class ="label" for="uname"><b>Username</b></label>
-            <input id="email" class="input" type="text" placeholder="Enter Username" name="uname" required>
+            <label class ="label" for="uname"><b>Email</b></label>
+            <input id="email" class="input" type="text" placeholder="Enter Username or Email" name="uname" required>
         </div>
-        <div class="row">
-            <label class="label" for="psw"><b>Password</b></label>
-            <input   id="password" class="input" type="password" placeholder="Enter Password" name="psw" required>
+        <div id="codeRow" class="row">
+            <label class="label" for="code"><b>Recover Code</b></label>
+            <input   id="code" class="input" type="number" min='10000000' placeholder="Recovery Code" name="code" >
         </div>
-        <button onclick="handleLogin(event)" class="btn draw-border">Login
+        <button id='recoverButton' onclick="sendEmail(event)" class="btn draw-border">Send Email
          </button>
-         <a class='button_user' style='color: rgb(0, 157, 255); font-style: italic;' href="recover.html">Forgot Password</a>
-         <label>
-            <input style="padding:25px;" type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
         </div>
         </div>
     </div>
     
 </body>
 <footer class="footer" style="width: 100%;">
-        <div class="container-fluid">
-            <div class="row">
+    <div class="container-fluid">
+        <div class="row">
 
 
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <div class="img-box">
-                    </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="img-box">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="footer_logo">
-                      <a href="../../index.html"><img src="../static/images/logo2.png" alt="logo" /></a>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <ul class="lik">
-                        <li class="active"> <a href="../../index.html">Home</a></li>
-                        <li> <a href="contact-us.html">Contact us</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-12">
-                    <div class="new">
-                        <h3>Newsletter</h3>
-                        <form class="newtetter">
-                            <input class="tetter" placeholder="Your email" type="text" name="Your email">
-                            <button class="submit">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div style='width: 100%'class="copyright">
-                    <p>© 2025 All Rights Reserved Binary Brew</p>
-                
             </div>
         </div>
-     
+        <div class="row">
+            <div class="col-md-12">
+                <div class="footer_logo">
+                  <a href="../../index.html"><img src="../static/images/logo2.png" alt="logo" /></a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="lik">
+                    <li class="active"> <a href="../../index.html">Home</a></li>
+                    <li> <a href="contact-us.html">Contact us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-12">
+                <div class="new">
+                    <h3>Newsletter</h3>
+                    <form class="newtetter">
+                        <input class="tetter" placeholder="Your email" type="text" name="Your email">
+                        <button class="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style='width: 100%'class="copyright">
+                <p>© 2025 All Rights Reserved Binary Brew</p>
+            
+        </div>
+    </div>
+ 
 </footer>
 
 </html>
