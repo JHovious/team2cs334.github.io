@@ -263,9 +263,11 @@ class StringBuilder {
     const coffeeElements = [];
     let coffeeCount = 0; // Track number of coffee items added
 
-    let delete_elemnt  = '<button id="deleteButton"><button  class="btn btn-danger" onclick="deleteDrink(event)" >Delete</button>';
-    
+
     allTeas.forEach((drink, index) => {
+
+        let delete_elemnt  = `<button id="deleteButton"><button  class="btn btn-danger" onclick="deleteDrink(${index})" >Delete</button>`;
+    
         if (!drink.isCoffee) {
             
             if (index % 3 === 0) {
@@ -309,7 +311,7 @@ class StringBuilder {
                             <p class="card-text">$${drink.price}</p>
                             <p class="card-text">Inventory: ${drink.amount}</p>
                             <button name="tea" value="${drink.name}" class="btn btn-primary" onclick="handleCart(event)">
-                                Add To Cart</button><input type='hidden" value="index">
+                                Add To Cart</button>
                             
             `);
 
@@ -689,16 +691,13 @@ function addTea(event) {
     reader.readAsDataURL(file);
 }
 
-function deleteDrink(event){
-    event.preventDefault();
+function deleteDrink(index){
 
-    let index = document.getElementById('index').value;
-        
-   alert(index);
+    allTeas.splice(index,1);
 
-  //  allTeas.splice(index,index);
+    localStorage.setItem('allTeas',JSON.stringify(allTeas));
 
-
+    window.location.href = 'allTeas.html';
 
 }
 function deleteItem(index) {
@@ -1018,4 +1017,61 @@ function quickOrder(index) {
     window.location.href = 'inventory.html'; // Force reload to show updated stock
 }
 
-  
+function sendEmail(event){ //this funtion cant be used yet as nothing is on a server, yet
+
+    let email = document.getElementById('email').value;
+    let code = document.getElementById('code').value;
+
+    if(allUsers){
+        allUsers.forEach((user, index) => {
+
+            if(user.email === email || user.username === email){ //user could either or
+
+                min = Math.ceil(10000000); // Code must be 8 in length
+                max = Math.floor(99999999); // no bigger 
+                let recoveryCode = Math.floor(Math.random() * (max - min + 1)) + min;
+
+                sendRecoveryEmail(user, recoveryCode);
+
+              //  alert('your recovery code is: ' + recoveryCode);
+            }
+
+
+        });
+
+    }
+
+
+}
+
+//const nodemailer = require('nodemailer');
+
+async function sendRecoveryEmail(user, code) {
+  const subject = "Recovery Code Request";
+  const content = `Hello ${user.firstName}, your recovery code is: ${code}`;
+
+  // Create a transporter using Gmail's SMTP
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Use TLS
+    auth: {
+      user: "turbotowing505@gmail.com", //this is just a previous email I used in the past with the API
+      pass: "pwnd mleh nfgf tkxt", // App-specific password
+    },
+  });
+
+  try {
+    // Send the email
+    await transporter.sendMail({
+      from: '"Binary Brew" <The_Binary_Brew@gmail.com>',
+      to: user.email,
+      subject: subject,
+      text: content,
+    });
+
+    alert("Email sent successfully to : " + user.email);
+  } catch (error) {
+    alert("Failed to send email:", error);
+  }
+}
