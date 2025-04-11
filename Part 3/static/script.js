@@ -498,7 +498,7 @@ function handleLogin(event){
             if(logged.email.toString() === email.toString() && logged.password.toString()  === password.toString() 
                 || logged.username === email && logged.password === password){ // to be dynamic they can also use there username
 
-                    if(logged.email.toString() === "marquezjulian09@gmail.com"){ //add you account as well for admin
+                    if(logged.email.toString() === "marquezjulian09@gmail.com" || logged.email.toString() === "Admin@123email.com"){ //add you account as well for admin
                         logged.isAdmin = true;
                     }
                 loggedinUser = logged; // assign the obj if they are valid
@@ -579,7 +579,7 @@ function validate(event) {
 
     const newUser = new User(username, email, password, firstName, lastName);
 
-    if (newUser.email === 'marquezjulian09@gmail.com') {
+    if (newUser.email === 'marquezjulian09@gmail.com' || newUser.email.toString() === "Admin@123email.com") {
         newUser.isAdmin = true;
     }
 
