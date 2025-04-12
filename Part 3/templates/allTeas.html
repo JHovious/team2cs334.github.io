@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../static/christian.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="../static/christian.js"></script>
     
     
 </head>
@@ -90,7 +91,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Classic Iced Tea</h5>
                         <p class="card-text">$1.99</p>
-                        <button name="tea" value="Iced Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                        <button name="tea" value="Iced Tea" class="btn btn-primary" onclick="addToCart('Iced Tea')">Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -103,7 +104,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Raspberry Tea</h5>
                         <p class="card-text">$2.99</p>
-                        <button name="tea" value="Raspberry Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                        <button name="tea" value="Raspberry Tea" class="btn btn-primary" onclick="addToCart('Raspberry Tea')">Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -115,7 +116,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Blackberry Tea</h5>
                         <p class="card-text">$2.99</p>
-                        <button name="tea" value="blackberry Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                        <button name="tea" value="blackberry Tea" class="btn btn-primary" onclick="addToCart('Blackberry Tea')">Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -128,7 +129,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Green Tea</h5>
                         <p class="card-text">$3.99</p>
-                        <button name="tea" value="Green Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                        <button name="tea" value="Green Tea" class="btn btn-primary" onclick="addToCart('Green Tea')">Add To Cart</button>
                     </div>
                 </div>
             </div>
@@ -142,7 +143,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Arnold Palmer</h5>
                         <p class="card-text">$3.99</p>
-                        <button name="tea" value="Arnold Palmer" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                        <button name="tea" value="Arnold Palmer" class="btn btn-primary" onclick="addToCart('Arnold Palmer')">Add To Cart</button>
                     </div>
 
                 </div>
@@ -158,7 +159,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Campfire Tea</h5>
                           <p class="card-text">$1.99</p>
-                          <button name="tea" value="Campfire Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Campfire Tea" class="btn btn-primary" onclick="addToCart('Campfire Tea')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -173,7 +174,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Matcha Green Tea Latte</h5>
                           <p class="card-text">$3.99</p>
-                          <button name="tea" value="Matcha Green Tea Latte" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Matcha Green Tea Latte" class="btn btn-primary" onclick="addToCart('Matcha Green Tea Latte')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -188,7 +189,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Matcha Lemonade</h5>
                           <p class="card-text">$2.99</p>
-                          <button name="tea" value="Matcha Lemonade" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Matcha Lemonade" class="btn btn-primary" onclick="addToCart('Matcha Lemonade')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -203,7 +204,7 @@
                       <div class="card-body">
                           <h5 class="card-title">London Fog</h5>
                           <p class="card-text">$2.99</p>
-                          <button name="tea" value="London Fog" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="London Fog" class="btn btn-primary" onclick="addToCart('London Fog')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -218,7 +219,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Hibiscus Tea</h5>
                           <p class="card-text">$2.99</p>
-                          <button name="tea" value="Hibiscus Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Hibiscus Tea" class="btn btn-primary" onclick="addToCart('Hibiscus Tea')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -234,7 +235,7 @@
                       <div class="card-body">
                           <h5 class="card-title">English Breakfast Latte</h5>
                           <p class="card-text">$2.99</p>
-                          <button name="tea" value="English Breakfast Latte" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="English Breakfast Latte" class="btn btn-primary" onclick="addToCart('English Breakfast Latte')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -248,7 +249,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Earl Grey Tea</h5>
                           <p class="card-text">$1.99</p>
-                          <button name="tea" value="Earl Grey Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Earl Grey Tea" class="btn btn-primary" onclick="addToCart('Earl Grey Tea')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -261,7 +262,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Peach Iced Tea</h5>
                           <p class="card-text">$3.99</p>
-                          <button name="tea" value="Peach Iced Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Peach Iced Tea" class="btn btn-primary" onclick="addToCart('Peach Iced Tea')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -273,7 +274,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Black Currant Tea</h5>
                           <p class="card-text">$2.99</p>
-                          <button name="tea" value="Black Current Tea" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Black Current Tea" class="btn btn-primary" onclick="addToCart('Black Currant Tea')">Add To Cart</button>
                       </div>
   
                   </div>
@@ -293,7 +294,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Cup O' Joe</h5>
                           <p class="card-text">$2.99</p>
-                          <button name="tea" value="Brewed Coffee" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Brewed Coffee" class="btn btn-primary" onclick="addToCart('Cup O\' Joe')">Add To Cart</button>
                       </div>
                   </div>
               </div>
@@ -308,7 +309,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Cappuccino</h5>
                           <p class="card-text">$3.99</p>
-                          <button name="tea" value="Cappuccino" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Cappuccino" class="btn btn-primary" onclick="addToCart('Cappuccino')">Add To Cart</button>
                       </div>
                   </div>
               </div>
@@ -322,7 +323,7 @@
                       <div class="card-body">
                           <h5 class="card-title">Americano</h5>
                           <p class="card-text">$2.99</p>
-                          <button name="tea" value="Americano" class="btn btn-primary" onclick="handleCart(event)">Add To Cart</button>
+                          <button name="tea" value="Americano" class="btn btn-primary" onclick="addToCart('Americano')">Add To Cart</button>
                       </div>
                   </div>
               </div>
