@@ -2,7 +2,7 @@ function addToCart(itemName){
     //Find if item exists in cart already
     let tempString = "cart_" + itemName;
     let currentQuantity = Number(searchCart(tempString));
-    if (currentQuantity === 0){
+    if (currentQuantity == 0){
         localStorage.setItem(tempString, 1); //Pair is ("cart_icedTea", 1) for example
         addCartLength();//Store cart length in storage, needed in cart.js
         addToCurrent(tempString);//Need this for keeping track of items in current cart
@@ -10,8 +10,6 @@ function addToCart(itemName){
     }else if (currentQuantity > 0){
         let newQuantity = currentQuantity + 1;
         localStorage.setItem(tempString, newQuantity);
-        addCartLength();
-        addToCurrent(tempString);
 
 
     }
