@@ -23,12 +23,15 @@ window.onload = function (){ //For updating cart section if cart exists
                     const head1 = document.createElement('h1');
                     head1.id = "nameBox";
                     head1.textContent = name;
+                    head1.style.fontSize = "40px";
                     const head2 = document.createElement('h4');
                     head2.id = "quantityBox";
                     head2.textContent = "Quantity: " + qty;
+                    head2.style.fontSize = "20px";
                     const priceLine = document.createElement('h4');
                     priceLine.id = "priceBox";
-                    priceLine.textContent = "Price: " + (price * qty).toFixed(2);
+                    priceLine.textContent = "Price: $" + (price * qty).toFixed(2);
+                    priceLine.style.fontSize = "20px";
 
                     const remove = document.createElement('button');
                     remove.textContent = "Remove";
@@ -43,14 +46,33 @@ window.onload = function (){ //For updating cart section if cart exists
                         newDiv.removeChild(remove);
                         newDiv.removeChild(breakGap);
                         newDiv.removeChild(image);
+                        newDiv.removeChild(refresh);
                         
                         
                     });
 
 
+                    const refresh = document.createElement('a');
+                    refresh.href='cart.html';
+
+                    const update = document.createElement('button');
+                    update.textContent = "Add More";
+                    update.id = "updateButton";
+                    update.style.marginBottom = "20px";
+                    update.name = "updateButton";
+                    update.addEventListener('click', function(){
+                        
+                        addToCart(name);
+
+                    });
+
+                    refresh.appendChild(update);
+
+
                     const breakGap = document.createElement('hr');
                     newDiv.appendChild(head1);
                     newDiv.appendChild(head2);
+                    newDiv.appendChild(refresh);
                     newDiv.appendChild(priceLine);
                     newDiv.appendChild(remove);
                     let imageLocation = getImage(name);
@@ -169,6 +191,55 @@ function getImage(name){
     }
 
     return source;
+
+}
+
+function addToCart(itemName){
+    //Find if item exists in cart already
+    let tempString = "cart_" + itemName;
+    let currentQuantity = Number(searchCart(tempString));
+    if (currentQuantity == 0){
+        localStorage.setItem(tempString, 1); //Pair is ("cart_icedTea", 1) for example
+        addCartLength();//Store cart length in storage, needed in cart.js
+        addToCurrent(tempString);//Need this for keeping track of items in current cart
+        
+    }else if (currentQuantity > 0){
+        let newQuantity = currentQuantity + 1;
+        localStorage.setItem(tempString, newQuantity);
+
+
+    }
+}
+
+function addToCurrent(item){
+    if(localStorage.getItem("current_cart")){
+       let currentString = localStorage.getItem("current_cart");//Need to convert to array first
+       let currentArray = JSON.parse(currentString);
+       currentArray.push(item);
+       currentString = JSON.stringify(currentArray)//Now need to convert back to string
+       localStorage.setItem("current_cart", currentString);
+
+    }else{
+        let tempArray = [item];
+        let tempString = JSON.stringify(tempArray);
+        localStorage.setItem("current_cart", tempString);
+    }
+}
+
+function searchCart(stringItemName){//Method to search if value exists in cart
+    
+
+    if (localStorage.getItem(stringItemName)){
+        return localStorage.getItem(stringItemName);
+    }else{
+        return 0;
+    }
+
+}
+
+
+function updateQuantity(item, quantity){
+    localStorage.setItem(item, quantity);
 
 }
 
