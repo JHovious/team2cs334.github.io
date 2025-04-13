@@ -3,9 +3,27 @@
     margin-right: 20px;
 }
 
+
+
 .image1{
     width: 350px;
     height: 350px;
+}
+
+.circle-number {
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    right: -10px; /* Adjust as needed */
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
 }
 
 .cartbody{
@@ -13,12 +31,13 @@
     background-image: url("images/christian/shop.jpg");
 }
 
+
 .cartsection{
     display: inline-block;
     border-style: solid;
     height: 400px;
     margin-bottom: 40px;
-    overflow-y: auto;
+    overflow-y: scroll;
     background-color:white;
 
 }
@@ -31,7 +50,7 @@
     border-style: solid;
     font-size: 20px;
     color: white;
-    height:400px;
+    height:500px;
 }
 
 .cartimage{
@@ -107,4 +126,11 @@ section img{
 .contactcolor2{
     background-color: white;
     width: 570px;
+}
+
+#removeButton{
+    background-color: gray;
+    color: white;
+    width: 20%;
+    margin-right: 70px;
 }
