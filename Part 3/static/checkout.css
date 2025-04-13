@@ -133,6 +133,23 @@ div div.button a {
   margin: 10px;
 }
 
+div div.button button {
+  background-color: #3A6BA5;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  padding-inline: 20px;
+  padding-block: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+div div.button button:hover {
+  background-color: #437CBF;
+}
+
 div div.button a:hover {
   background-color: #437CBF;
 }
