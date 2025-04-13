@@ -12,8 +12,6 @@ window.onload = function (){ //For updating cart section if cart exists
         
 
         if (cartSection){
-            //const bigDiv = document.createElement('div');
-            //bigDiv.style.display = flex;
 
             for (let item of cartArray){
                 if(localStorage.getItem(item)){
@@ -44,6 +42,7 @@ window.onload = function (){ //For updating cart section if cart exists
                         newDiv.removeChild(priceLine);
                         newDiv.removeChild(remove);
                         newDiv.removeChild(breakGap);
+                        newDiv.removeChild(image);
                         
                         
                     });
@@ -54,12 +53,14 @@ window.onload = function (){ //For updating cart section if cart exists
                     newDiv.appendChild(head2);
                     newDiv.appendChild(priceLine);
                     newDiv.appendChild(remove);
+                    let imageLocation = getImage(name);
+                    const image = document.createElement('img')
+                    image.src = imageLocation;
+                    image.style.height = '200px';
+                    image.style.width = '200px';
+                    image.style.textAlign = 'right';
+                    newDiv.appendChild(image);
                     newDiv.appendChild(breakGap);
-                    //let imageLocation = getImage(name);
-                    //const image = document.createElement('img')
-                    //image.src = imageLocation;
-                    //bigDiv.appendChild(newDiv);
-                    //bigDiv.appendChild(image);
                     cartSection.appendChild(newDiv);
                     
                 }
@@ -166,6 +167,8 @@ function getImage(name){
             source = "../static/images/christian/americano.png";
             break;
     }
+
+    return source;
 
 }
 
