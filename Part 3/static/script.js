@@ -515,7 +515,6 @@ function handleLogin(event){
         window.location.href = "register.html"; //locate to register as default
 
 }
-
 function validate(event) {
     event.preventDefault(); // Prevents form from actually submitting
 
@@ -1074,4 +1073,89 @@ async function sendRecoveryEmail(user, code) {
   } catch (error) {
     alert("Failed to send email:", error);
   }
+}
+
+
+function checkout(event) {
+    event.preventDefault();
+    let current_cart = JSON.parse(localStorage.getItem("current_cart")) || [];
+    
+    let firstName = document.getElementById("fname").value;
+    let lastName = document.getElementById("lname").value;
+    let email = document.getElementById("email").value;
+    
+    let credit = document.getElementById("ccn").value;
+    let cvc = document.getElementById("cvc").value;
+    let date = document.getElementById("date").value;
+    // alert(firstName);
+    // alert(lastName);
+    // alert(email);
+    // alert(credit);
+    // alert(cvc);
+    // alert(date);
+
+    if (firstName.length == 0 || lastName.length == 0){
+        alert("Somethings Empty");
+        return false;
+    }
+    var isEmail = false;
+    for(let char of email){
+        if (char == '@') {
+            isEmail = true;
+            break;
+        }
+    }
+    if (!isEmail) {
+        alert("No email");
+        return false;
+    }
+
+    if (false){
+        alert("Check credit card info");
+        return false;  
+    }
+
+    if (getCartLength() == 0){
+        alert("Cart Empty");
+        return false;
+    }
+    // if (allUsers) { 
+    //     for (logged of allUsers) {
+    //         if (logged.email == email) {
+    //             alert("help");
+    //         }
+    //     }
+    // }
+
+    emptyCart();
+    alert("Checked Out");
+    window.location.href = "checkedout.html";
+}
+
+function getCartLength(){//Method for easy retrieval of cart length
+    if (localStorage.getItem("cart_length")){
+        let cart_length = Number(localStorage.getItem("cart_length"))
+        return cart_length;
+    }else{
+        return 0;
+    }
+}
+
+function emptyCart(){//Method empties cart
+    if(localStorage.getItem("cart_length")){
+        let cart_length = Number(localStorage.getItem("cart_length"))
+            cart_length == 0;
+            localStorage.setItem("cart_length", cart_length);
+    }
+    for(itemName in allTeas){
+        tempString = "cart_" + itemName;
+        let check = searchCart(tempString);
+
+        if(check === 0 || check>0){
+            localStorage.removeItem(tempString);
+            removeCartLength();
+        }else{
+            alert("Item not in cart");
+        }
+    }
 }
