@@ -1,6 +1,4 @@
 Justin Hovious:
-- Manager Login page
-- Manager Menu
-- Manager inventory
-- Manager orders
-- Contributed some teas and images to allTeas page
+- Adjusted design on footers to fix responsiveness 
+- Created local storage for Orders 
+- Updated Orders to pull data from checkout to update the orders table
