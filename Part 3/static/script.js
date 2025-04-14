@@ -1129,7 +1129,8 @@ function checkout(event) {
 
     emptyCart();
     alert("Checked Out");
-    window.location.href = "checkedout.html";
+    //window.location.href = "checkedout.html";
+    return true;
 }
 
 function getCartLength(){//Method for easy retrieval of cart length
@@ -1142,19 +1143,26 @@ function getCartLength(){//Method for easy retrieval of cart length
 }
 
 function emptyCart(){//Method empties cart
+    let cartArray = JSON.parse(localStorage.getItem("current_cart"));
     for(itemName in allTeas){
         tempString = "cart_" + itemName;
-        let check = searchCart(tempString);
-
-        if(check === 0 || check>0){
+        if (existsCart(tempString, cartArray) {
             localStorage.removeItem(tempString);
-        }else{
-            alert("Item not in cart");
         }
     }
     if(localStorage.getItem("cart_length")){
         let cart_length = Number(localStorage.getItem("cart_length"))
             cart_length == 0;
             localStorage.setItem("cart_length", cart_length);
+    }
+}
+
+function existsCart(item, array){
+    for (let cartItem of array){
+        if (cartItem == item){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
