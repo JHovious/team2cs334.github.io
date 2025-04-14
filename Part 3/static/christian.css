@@ -35,7 +35,7 @@
 .cartsection{
     display: inline-block;
     border-style: solid;
-    height: 400px;
+    height: 600px;
     margin-bottom: 40px;
     overflow-y: scroll;
     background-color:white;
@@ -51,6 +51,7 @@
     font-size: 20px;
     color: white;
     height:500px;
+    width: 250px;
 }
 
 .cartimage{
