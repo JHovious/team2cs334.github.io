@@ -29,6 +29,8 @@
 .cartbody{
     margin: 100px;
     background-image: url("images/christian/shop.jpg");
+    display: flex;
+
 }
 
 
@@ -37,6 +39,8 @@
     border-style: solid;
     height: 600px;
     margin-bottom: 40px;
+    margin-right: 40px;
+    margin-top: 30px;
     overflow-y: scroll;
     background-color:white;
 
@@ -52,6 +56,8 @@
     color: white;
     height:500px;
     width: 250px;
+    margin-left: 600px;
+    margin-top: 30px;
 }
 
 .cartimage{
