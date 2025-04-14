@@ -1113,8 +1113,8 @@ function checkout(event) {
     }
 
     emptyCart();
-    alert("Checked Out");
-    //window.location.href = "checkedout.html";
+    //alert("Checked Out");
+    window.location.href = "checkedout.html";
     return true;
 }
 
