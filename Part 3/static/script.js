@@ -1142,20 +1142,19 @@ function getCartLength(){//Method for easy retrieval of cart length
 }
 
 function emptyCart(){//Method empties cart
-    if(localStorage.getItem("cart_length")){
-        let cart_length = Number(localStorage.getItem("cart_length"))
-            cart_length == 0;
-            localStorage.setItem("cart_length", cart_length);
-    }
     for(itemName in allTeas){
         tempString = "cart_" + itemName;
         let check = searchCart(tempString);
 
         if(check === 0 || check>0){
             localStorage.removeItem(tempString);
-            removeCartLength();
         }else{
             alert("Item not in cart");
         }
+    }
+    if(localStorage.getItem("cart_length")){
+        let cart_length = Number(localStorage.getItem("cart_length"))
+            cart_length == 0;
+            localStorage.setItem("cart_length", cart_length);
     }
 }
