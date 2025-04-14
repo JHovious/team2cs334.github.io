@@ -13,6 +13,7 @@ function addToCart(itemName){
 
 
     }
+    alert("Item added to cart");
 }
 
 function addToCurrent(item){
