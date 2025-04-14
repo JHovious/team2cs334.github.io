@@ -149,7 +149,7 @@ class StringBuilder {
     
     if(user.isAdmin){
         isAdmin = true;
-        adminOptions.innerHTML = '<a href="addTea.html" class="btn draw-border">Add Tea</a> <a href="allSales.html" class="btn draw-border">All Sales</a><div><a href="inventory.html" class="btn draw-border">Inventory</a><a href="addItem.html" class="btn draw-border">Add To Inventory</a>'
+        adminOptions.innerHTML = '<a href="addTea.html" class="btn draw-border">Add Tea</a> <a href="orders.html" class="btn draw-border">All Sales</a><div><a href="inventory.html" class="btn draw-border">Inventory</a><a href="addItem.html" class="btn draw-border">Add To Inventory</a>'
     }
     if(user.image){
         profilePicture.src = user.image;
