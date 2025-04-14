@@ -49,18 +49,14 @@
             <div class="column items">
                 <h2>Items in cart</h2><hr>
                 <div class="drinks">
-                    <div class="imgs">
-                        <img src="../static/images/arnoldPalmer3.jpeg">
-                    </div>
-                    <div class="imgs">
-                        <img src="../static/images/blackberryTea.png">
-                    </div>
-                    <br>
-                    <div class="imgs">
-                        <img src="../static/images/greenTea.png">
-                    </div>
-                    <div class="imgs">
-                        <img src="../static/images/raspberryTea.png">
+                    <div style="width:40%; align-items: center;" class="cartsection" id="cartsection">
+
+                        <div id = "remove1">Your cart is empty, you'll see your items here when they are added</div>
+                
+                        <div class="add" id = "remove2"><a href="allTeas.html">
+                            Add items
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="button">
@@ -104,12 +100,17 @@
             <div class="column total">
                 <div class="totals">
                     <h3  id="itemCount" class="cost">0</h3>
-                    <p  class="text">Tax:</p>
-                    <p id="displayTax">$0.00</p>
-                    
+                    <div class="subtotalbox" id="subtotalbox">
+                        Subtotal:
+                    </div>
+                    <br>
+                    <div class="taxbox" id="taxbox">
+                        Tax:
+                    </div>
                     <hr>
-                    <p class="text">Total:</p>
-                    <p id="displaySubtotal" class="cost">29.69$</p><br>
+                    <div class="totalbox" id = "totalbox">
+                        Total:
+                    </div>
                     <hr>
                 </div>
                 <div class="button">
@@ -119,5 +120,5 @@
         </div>
     </body>
 </html>
-
+<script src="../static/cart_Christian.js"></script>
 <Script src="../static/script.js"></Script>
