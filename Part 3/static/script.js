@@ -1102,7 +1102,7 @@ function checkout(event) {
         return false;
     }
 
-    if (false){
+    if (getLength(cvc) != 3 || getLength(credit) != 16 || getLength(date) != 4){
         alert("Check credit card info");
         return false;  
     }
@@ -1132,4 +1132,9 @@ function emptyCart(){//Method empties cart
     if(localStorage.getItem("cart_length")){
         localStorage.setItem("cart_length", "");
     }
+}
+
+function getLength(num){
+    let numStr = String(num);
+    return numStr.length;
 }
