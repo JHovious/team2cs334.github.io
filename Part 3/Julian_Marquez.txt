@@ -1,14 +1,12 @@
+Contributions by Julian Marquez
+During this phase, I contributed the following:
 
-Contributions by Julian Marquez  
+Dynamic Script Development: Designed and implemented the core functionality in the script.js file. This script powers key features like cart handling, tea inventory management, login/logout, profile updates, and admin features.
 
-During this phase, I contributed the following:  
+DOM Integration via HTML IDs: Strategically assigned id attributes to key HTML elements (e.g., #username, #fullName, #displayEmail, #displayPassword, #profilePicture, etc.) to enable seamless DOM manipulation from JavaScript.
 
-Index Page Creation: Developed the main landing page (`index.html`) to serve as the entry point for our website.  
-Static Images Implementation: Integrated various static images to enhance the visual appeal and layout of the site.  
-Project Branding: Came up with the project name "Binary Brew", which was accepted by the team.  
-Color Theme Selection: Chose and refined the overall color palette to align with the project's theme and aesthetic.  
-CSS Framework Decision: After team discussions, we agreed on using Bootstrap to streamline styling and responsiveness.  
+Interactive Profile Page Logic: Enabled profile rendering using localStorage data to dynamically populate user details including full name, email, password masking, and profile picture.
 
-Technologies Used for this Project
-HTML, CSS (Bootstrap framework)  
-Static Images (Implemented for branding and content)  
+Cart System Implementation: Built a cart system that persists across sessions using localStorage, including item addition, quantity handling, subtotal/tax calculation, and display rendering.
+
+Inventory and Admin Controls: Developed admin-only interfaces for adding, editing, and deleting teas or items, and built logic for conditional rendering based on user roles (admin vs. regular user).
