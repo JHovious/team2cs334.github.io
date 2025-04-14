@@ -1,1 +1,3 @@
 Wesley Evans:
+- Team Leader for this stage
+- Added functionality to checkout.html
