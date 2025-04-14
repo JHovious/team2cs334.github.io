@@ -1078,8 +1078,6 @@ async function sendRecoveryEmail(user, code) {
 
 function checkout(event) {
     event.preventDefault();
-    let current_cart = JSON.parse(localStorage.getItem("current_cart")) || [];
-    
     let firstName = document.getElementById("fname").value;
     let lastName = document.getElementById("lname").value;
     let email = document.getElementById("email").value;
@@ -1087,12 +1085,6 @@ function checkout(event) {
     let credit = document.getElementById("ccn").value;
     let cvc = document.getElementById("cvc").value;
     let date = document.getElementById("date").value;
-    // alert(firstName);
-    // alert(lastName);
-    // alert(email);
-    // alert(credit);
-    // alert(cvc);
-    // alert(date);
 
     if (firstName.length == 0 || lastName.length == 0){
         alert("Somethings Empty");
@@ -1115,17 +1107,10 @@ function checkout(event) {
         return false;  
     }
 
-    if (getCartLength() == 0){
+    if (localStorage.getItem("cart_length") == ""){
         alert("Cart Empty");
         return false;
     }
-    // if (allUsers) { 
-    //     for (logged of allUsers) {
-    //         if (logged.email == email) {
-    //             alert("help");
-    //         }
-    //     }
-    // }
 
     emptyCart();
     alert("Checked Out");
@@ -1135,7 +1120,7 @@ function checkout(event) {
 
 function getCartLength(){//Method for easy retrieval of cart length
     if (localStorage.getItem("cart_length")){
-        let cart_length = Number(localStorage.getItem("cart_length"))
+        let cart_length = Number(localStorage.getItem("cart_length"));
         return cart_length;
     }else{
         return 0;
@@ -1143,26 +1128,8 @@ function getCartLength(){//Method for easy retrieval of cart length
 }
 
 function emptyCart(){//Method empties cart
-    let cartArray = JSON.parse(localStorage.getItem("current_cart"));
-    for(itemName in allTeas){
-        tempString = "cart_" + itemName;
-        if (existsCart(tempString, cartArray) {
-            localStorage.removeItem(tempString);
-        }
-    }
+    localStorage.setItem("current_cart", "");
     if(localStorage.getItem("cart_length")){
-        let cart_length = Number(localStorage.getItem("cart_length"))
-            cart_length == 0;
-            localStorage.setItem("cart_length", cart_length);
-    }
-}
-
-function existsCart(item, array){
-    for (let cartItem of array){
-        if (cartItem == item){
-            return true;
-        }else{
-            return false;
-        }
+        localStorage.setItem("cart_length", "");
     }
 }
