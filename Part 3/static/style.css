@@ -4,12 +4,28 @@
  @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
  @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 /*--------------------------------------------------------------------- basic ---------------------------------------------------------------------*/
- body {
+ html, body {
      color: #666666;
      font-size: 14px;
      font-family: 'poppins', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
+     height: 100%;
+     margin: 0;
+     display: flex;
+     flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    display: flext;
+    flex-direction: column;
+    justify-content: center;
 }
  a {
      color: #1f1f1f;
@@ -654,8 +670,35 @@ img {
 /*--------------------------------------------------------------------- footer ---------------------------------------------------------------------*/
  .footer {
      background: #d8b00f;
-     padding-top:90px;
-     margin-top: 90px;
+     padding:20px 0;
+     margin-top: 20px;
+     max-height: unset;
+     height: auto;
+     overflow: visible;
+     width: 100%;
+}
+
+.footer .container {
+    height: auto;
+    max-height: 300px;
+    padding: 10px 0;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+
+
+}
+
+.footer .container-fluid {
+    padding: 0 20px;
+    width: max-content;
+}
+
+.footer .row {
+    height: auto;
+    max-height: 300px;
+    padding: 0;
+    margin: 0;
 }
  .footer h2 {
      color: #000;
@@ -711,15 +754,19 @@ img {
      padding-right: 25px;
 }
  .footer_logo {
-     margin-top: 40px;
+     margin-top: 20px;
      text-align: center;
      border-bottom: #ddd solid 1px;
-     padding-bottom: 15px;
-     margin-bottom: 15px;
+     padding-bottom: 10px;
+     margin-bottom: 10px;
+}
+
+.col-md-12 {
+    text-align: center;
 }
  ul.lik {
     text-align: center;
-     margin-top: 10px;
+     margin-top: 5px;
 }
  ul.lik li {
     display: inline-block;
@@ -727,8 +774,8 @@ img {
  ul.lik li a {
      color: #292323;
      font-size: 17px;
-     line-height: 27px;
-     padding: 0px 25px;
+     line-height: 24px;
+     padding: 0 15px;
      font-weight: 500;
 }
  ul.lik li a:hover {
@@ -778,14 +825,18 @@ img {
     width: 100%;
 }
  .copyright {
-    background: #fff;
-     margin-top: 90px;
+    background: #d8b00f;
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    overflow: visible;
 }
  .copyright p {
     color: #000;
-     text-align: center;
-     padding: 25px 0px;
-     font-size: 17px;
+    text-align: center;
+    
+    margin: 0;
+    font-size: 17px;
 }
  .copyright a:hover {
     color: #d8b00f;
