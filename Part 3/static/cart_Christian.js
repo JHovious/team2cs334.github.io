@@ -78,8 +78,8 @@ window.onload = function (){ //For updating cart section if cart exists
                     let imageLocation = getImage(name);
                     const image = document.createElement('img')
                     image.src = imageLocation;
-                    image.style.height = '200px';
-                    image.style.width = '200px';
+                    image.style.height = '300px';
+                    image.style.width = '350px';
                     image.style.textAlign = 'right';
                     newDiv.appendChild(image);
                     newDiv.appendChild(breakGap);
