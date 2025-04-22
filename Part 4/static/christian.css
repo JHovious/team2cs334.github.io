@@ -1,0 +1,110 @@
+.carticon{
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.image1{
+    width: 350px;
+    height: 350px;
+}
+
+.cartbody{
+    margin: 100px;
+    background-image: url("images/christian/shop.jpg");
+}
+
+.cartsection{
+    display: inline-block;
+    border-style: solid;
+    height: 400px;
+    margin-bottom: 40px;
+    overflow-y: auto;
+    background-color:white;
+
+}
+
+.carttotal{
+    float: right;
+    padding: 40px;
+    background-color: gray;
+    text-align: left;
+    border-style: solid;
+    font-size: 20px;
+    color: white;
+    height:400px;
+}
+
+.cartimage{
+    height:28px;
+    fill:white;
+
+}
+
+.subtotalbox{
+    font-size: 15px;
+}
+
+.taxbox{
+    font-size: 12px;
+}
+
+.totalbox{
+    border-style: solid;
+    padding-left:5px;
+    
+}
+
+article a{
+    border-style:solid;
+    border-radius:3px;
+    padding: 10px;
+    background-color: black;
+    color:white;
+}
+
+article a:hover{
+    background-color: #ffba12;
+}
+
+.add{
+    position:absolute;
+    bottom:auto;
+    left: 23%;
+    font-weight: 800;
+}
+
+section img{
+    margin: 20px;
+    margin-left: 38%;
+    height:100px;
+}
+
+.headername{
+    margin-right:150px;
+}
+
+.headername2{
+    margin-right: 180px;
+}
+
+.contactbackground{
+    margin: 150px;
+    background-repeat: no-repeat;
+    background-image: url(images/christian/teashop2.png);
+    background-size: cover;
+}
+
+.contactbackground h1{
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.contactcolor{
+    background-color: white;
+    width: 350px;
+}
+
+.contactcolor2{
+    background-color: white;
+    width: 570px;
+}

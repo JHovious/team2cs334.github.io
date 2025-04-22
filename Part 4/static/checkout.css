@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+}
+
+div.row {
+  display: inline-flex;
+  width: 100%;
+}
+
+div.row div.col-md-3 {
+  margin-left: 20px;
+}
+
+div.row div.col-md-6 {
+  margin-left: 35%;
+
+}
+
+div.row div.col-md-9 {
+  margin-left: 35%;
+}
+
+div.right_header_info ul {
+  width: 100%;
+}
+
+div.right_header_info ul li.dinone {
+  margin-right: 30px;
+
+}
+
+div.col-md-6 li.headername {
+  color: white;
+}
+
+div.container {
+  box-shadow: 0px 0px 10px 0px rgb(147, 147, 147);
+  border-radius: 20px;
+  width: 98%;
+  margin: 1%;
+  margin-top: 200px;
+  text-align: center;
+  display: inline-flex;
+}
+
+div.container hr {
+  border: .5px solid#666666;
+}
+
+div.container h2 {
+  padding-top: 10px;
+  margin-inline: auto;
+}
+
+div.column {
+  display: inline-block;
+  margin-block: 3px;
+}
+
+div.column h2 {
+  padding: 10px;
+}
+
+div.items {
+  width: 40%;
+  padding-left: 2px;
+}
+
+div.items div.drinks div.imgs {
+  display: inline-block;
+  width: 40%;
+  height: 40%;
+}
+
+div.payment {
+  width: 40%;
+  border-left: 2px solid #666666;
+  border-right: 2px solid #666666;
+  padding-inline: 3px;
+  margin-inline: 3px;
+}
+
+div.payment div.paymentmethod {
+  text-align: center;
+  display: inline-block;
+  width: 40%;
+}
+
+div.payment form {
+  text-align: left;
+  padding-left: 15px;
+  padding-block: 10px;
+}
+
+div.payment form div.method {
+  margin: 10px;
+}
+
+div.total {
+  width: 19%;
+  padding-right: 2px; 
+  align-content: flex-end;
+}
+
+div.total div.totals p {
+  display: inline-block;
+}
+div.total div.totals h3 {
+  display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;  
+    text-align: center;  
+}
+
+.text {
+  text-align: left;
+}
+
+.cost {
+  text-align: right;
+}
+
+div div.button a {
+  background-color: #3A6BA5;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  padding-inline: 20px;
+  padding-block: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+div div.button a:hover {
+  background-color: #437CBF;
+}
