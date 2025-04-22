@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/styles.css">
+
+</head>
+
+
+<body>
+    <form action='/editAccount' method='POST' class="p-3 mt-3" enctype="multipart/form-data">
+    <div class="wrapper">
+        <div class="login">
+            <img id="eProfilePic" src="../static/images/generic.png" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            Edit profile
+        </div>
+        <input type="hidden" name="userId" value="{{ user.userId }}">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="editUsername" id="editUsername" placeholder="{{ user.username }}" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="email" id="editEmail" placeholder="{{ user.email }}" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="firstName" id="editFname" placeholder="{{ user.firstName }}" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="lastName" id="editLname" placeholder="{{ user.lastName }}" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="editPassword" placeholder="{{ user.password }}" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="confirmpassword" id="confirmPassword" placeholder="Confirm Password" >
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="file" name="pic" id="editPic"  >
+            </div>
+            <button name="action" value="editButton" onclick="editAccount(event)" class="btn mt-3">Confirm Edit</button>
+
+    </div>
+    </form>
+</body>
+<footer class="reg-footer">
+    <div class="row">
+        
+
+<h3 >
+Binary Brew
+</h3>
+</div>
+</footer>
+
+<script src="../static/jquery.min.js"></script>
+<script src="../static/popper.min.js"></script>
+<script src="../static/bootstrap.bundle.min.js"></script>
+<script src="../static/owl.carousel.min.js"></script>
+<script src="../static/custom.js"></script>
+<script src="../static/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script src="js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+
+    $('#dismiss, .overlay').on('click', function() {
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+    });
+
+    $('#sidebarCollapse').on('click', function() {
+        $('#sidebar').addClass('active');
+        $('.overlay').addClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
+
+function toggleContent() {
+var button = document.getElementById("toggleButton");
+
+if (button.dataset.state === "tea") {
+    button.textContent = "☕ Coffee";
+    button.style.backgroundColor = "#A0522D"; // Coffee brown
+    button.dataset.state = "coffee";
+} else {
+    button.textContent = "🍵 Tea";
+    button.style.backgroundColor = "#8B4513"; // Tea brown
+    button.dataset.state = "tea";
+}
+}
+
+// Set initial state to Tea when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+var button = document.getElementById("toggleButton");
+button.textContent = "🍵 Tea";
+button.style.backgroundColor = "#8B4513"; // Tea brown
+button.dataset.state = "tea";
+});
+</script>
+<style>
+#owl-demo .item{
+margin: 3px;
+}
+#owl-demo .item img{
+display: block;
+width: 100%;
+height: auto;
+}
+
+body {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+.container {
+flex: 1;
+}
+.btn-custom {
+background-color: #8B4513; /* Tea brown */
+color: black;
+border: none;
+padding: 12px 20px;
+font-size: 16px;
+font-weight: bold;
+text-transform: uppercase;
+border-radius: 8px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+transform: scale(1.05);
+}
+
+.btn-custom:active {
+transform: scale(0.98);
+}
+
+</style>
+
+
+<script>
+ $(document).ready(function() {
+   var owl = $('.owl-carousel');
+   owl.owlCarousel({
+     margin: 10,
+     nav: true,
+     loop: true,
+     responsive: {
+       0: {
+         items: 1
+       },
+       600: {
+         items: 2
+       },
+       1000: {
+         items: 5
+       }
+     }
+   })
+ })
+ </script>
+</body>
+
+<style>
+.reg-footer,h3{
+position: fixed;
+bottom: 0;
+width: 100%;
+align-items: center;
+justify-content: center;
+background: #d8b00f;
+padding-top:40px;
+margin-top: 40px;
+text-align: center;
+}
+.teaContainer {
+padding-bottom: 100px; /* Or adjust to match your footer's height */
+}
+</style>
+
+</html>

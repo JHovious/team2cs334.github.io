@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+     <title>Binary Brew</title>
+     <meta name="keywords" content="">
+     <meta name="author" content="Christian">
+
+     <link rel="stylesheet" href="../static/bootstrap.min.css">
+     <link rel="stylesheet" href="../static/owl.carousel.min.css">
+     <link rel="stylesheet" href="../static/style.css">
+     <link rel="stylesheet" href="../static/responsive.css">
+     <link rel="stylesheet" href="../static/christian.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+     <script src="../static/script.js"></script>
+</head>
+
+<header>
+    <form action="/handleProfile" method="post">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="full">
+                        <a class="logo" href="/"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="full">
+                        <div class="right_header_info">
+                            <ul>
+                                <li class="headername" style="font-size: 30px;">Shopping Cart</li>
+
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="/allTeas ">Our Teas</a></li>
+                            
+                                <li   class="button_user"><a class="button active" href="login ">Login</a><a class="button" href="register ">Register</a></li>
+                            
+                                <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"></li>
+                              
+                              
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+</header>
+<br>
+<!--These classes use christian.css-->
+<body class = "cartbody">
+    
+        <!--I just adjsuted the width for temp use-->
+    <section style="width:40%; align-items: center;" class="cartsection">
+        <img src="../static/images/christian/upside-down.svg">
+        <br>
+        <!--using the "id" to identify win JavaScript-->
+        <br>
+        <div id="displayItems">
+            <p>No Items in your Cart</p>
+        </div>
+        <div class="add"><a href="/allTeas ">
+            Add items
+            </a>
+        </div>
+    </section>
+    <article class="carttotal">
+        <div id="itemCount" class="subtotalbox">
+            Items: 0
+        </div>
+        <br>
+        <div id="displayTax" class="taxbox">
+            Tax: $
+        </div>
+
+        <br>
+        <br>
+        <div id="displaySubtotal" class="totalbox">
+            Total: $
+        </div>
+        <br>
+        <br>
+        <div class="checkoutbutton"> <a href="checkout ">
+            Checkout
+        </a></div> 
+    </article>
+</body>
+</html>
