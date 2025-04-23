@@ -46,7 +46,6 @@
            </nav>
        </div>
     <header>
-      <form >
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
@@ -60,11 +59,15 @@
                             <ul>
                                 <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="#">Our Teas</a></li>
                             
+                                
+                                {% if user: %}
+                                <li   class="button_user"><a class="button active" href="/profile">Profile</a></li>
+                                {% else %}
                                 <li   class="button_user"><a class="button active" href="/login">Login</a><a class="button" href="/register">Register</a></li>
-                            
+                                {% endif %}
                                     <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"></li>
                               
-                              <a name="cart-btn" id="cart-btn"  href="cart.html"><img onclick="Cart(event)" class="cartimage" src="../static/images/christian/basket2 (1).svg" alt="basket"></a>
+                              <a name="cart-btn" id="cart-btn"  href="/cart"><img class="cartimage" src="../static/images/christian/basket2 (1).svg" alt="basket"></a>
                             </ul>
 
 
@@ -79,11 +82,31 @@
     <!-- Main Content -->
     <h2 style="font-size: xx-large; font-family: 'Times New Roman', Times, serif;" class="text-center mb-4">Our Tea Collection</h2>
     <div id="displayAllTeas" class="container mt-5">
-        
+        <form action="/handleDrinks" method="POST">
         <div class="row">
             <!-- Tea Item 1 -->
             <!-- Uses christian.css for image styling-->
-
+            
+            {% if allTeas %}
+            {% for drink in allTeas %}
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="data:image/jpeg;base64,{{ drink.displayImage }}" class="image1" alt="Classic Iced Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ drink.name }}</h5>
+                        <p class="card-text">${{ drink.price }}</p>
+                        <input type="hidden" name="drinkId" value ="{{ drink.id }}">
+                        <button name="action" value="add" class="btn btn-primary" >Add To Cart</button>
+                        {% if user.isAdmin %}
+                            <button name="action" value="remove" class="btn btn-primary" >Remove</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+            {% else %}
             <div class="col-md-4">
                 <div class="card">
                     <img src="../static/images/christian/icedtea.png" class="image1" alt="Classic Iced Tea">
@@ -228,7 +251,6 @@
              <!-- Uses christian.css for image styling -->
 
             <div class="col-md-4">
-                <form>
                   <div class="card">
                       <img src="../static/images/englishBreakfastLatte.jpg" class="image1" alt="English Breakfast Latte">
                       <div class="card-body">
@@ -238,11 +260,9 @@
                       </div>
   
                   </div>
-                  </form>
             </div>
 
             <div class="col-md-4">
-                <form>
                   <div class="card">
                       <img src="../static/images/EarlGreyTea.jpg" class="image1" alt="Earl Grey Tea">
                       <div class="card-body">
@@ -252,7 +272,6 @@
                       </div>
   
                   </div>
-                  </form>
             </div>
 
             <div class="col-md-4">
@@ -278,6 +297,7 @@
   
                   </div>
             </div>
+            
     </div>
 </div>
     <h2 id="coffeeTitle" class="text-center mb-4">Our Coffee Collection</h2>
@@ -326,6 +346,8 @@
                       </div>
                   </div>
               </div>
+              {% endif %}
+            </form>
               </div>
 </div>
 
@@ -336,7 +358,7 @@
     <script src="../static/owl.carousel.min.js"></script>
     <script src="../static/custom.js"></script>
     <script src="../static/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="../static/script.js"></script>
+   
 
      <script src="js/jquery-3.0.0.min.js"></script>
    <script type="text/javascript">
@@ -408,22 +430,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer_logo">
-                      <a href="index.html"><img src="../static/images/logo2.png" alt="logo" /></a>
+                      <a href="/"><img src="../static/images/logo2.png" alt="logo" /></a>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <ul class="lik">
-                        <li class="active"> <a href="../../index.html">Home</a></li>
+                        <li class="active"> <a href="/">Home</a></li>
                         <li> <a href="contact-us.html">Contact us</a></li>
                     </ul>
                 </div>
                 <div class="col-md-12">
                     <div class="new">
                         <h3>Newsletter</h3>
-                        <form class="newtetter">
+                        <div class="newtetter">
                             <input class="tetter" placeholder="Your email" type="text" name="Your email">
                             <button class="submit">Subscribe</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="../static/styles.css">
     <link rel="stylesheet" href="../static/profile.css">
-    <script src="../static/script.js"></script>
 </head>
 
 
@@ -34,7 +33,7 @@
                             <ul>
                                 <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
                             
-                                <li id="accountOptions" class="button_user"><a class="button active" href="login.html">Login</a><a class="button" href="register.html">Register</a></li>
+                                <li id="accountOptions" class="button_user"><a class="button active" href="/profile">Profile</a></li>
                             
                                     <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"></li>
                               
@@ -69,6 +68,42 @@
                 </thead>
                 <tbody  id="inventoryTable">
                     <!--Inventory Data-->
+                    {% if inventory %}
+                    
+
+                    {% for item in inventory %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td><img style="width: 120px; height: auto;" src="data:image/jpeg;base64,{{ item.displayImage }}"></td>
+                        <td>{{ item.amount }}</td>
+                        <td>{{ item.supplier }}</td>
+                        <td>${{ item.price }}</td>
+                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><button id="deleteItemButton" onclick="deleteItem(${index})"  class="button delete-btn" >
+                            <span class="shadow"></span>
+                            <span class="edge"></span>
+                            <div class="front">
+                                <span>Delete</span>
+                            </div>
+                        </button>
+                       <button id="editButton" onclick="setItemToEdit(${index})" class="button edit-btn">
+                                <span class="shadow"></span>
+                                <span class="edge"></span>
+                                <div class="front">
+                                    <span>Edit</span>
+                                </div>
+                            </button>
+                            <button id="quickOrder" onclick="quickOrder(${index})" class="button edit-btn">
+                                <span class="shadow"></span>
+                                <span class="edge"></span>
+                                <div class="front">
+                                    <span>Quick Order</span>
+                                </div>
+                            </button></td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
                     <tr>
                         <td>001</td>
                         <td>Earl Grey Tea</td>
@@ -157,6 +192,7 @@
                         <td><input type="number" min="1" max="100" value="1"></td>
                         <td><button class="order-button">Order</button></td>
                     </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
