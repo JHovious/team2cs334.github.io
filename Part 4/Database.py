@@ -1,6 +1,7 @@
 from Item import Item
 from User import User
 from Card import Card
+import base64
 import sqlite3
 
 class Database:
@@ -86,7 +87,7 @@ class Database:
                 item.userId = user_id
                 item.isCoffee = row[5] 
                 item.isTea = row[6]
-                item.images = self.getAllItemsImages(item.id)
+                item.image = self.getAllItemsImages(item.id)
                 items.append(item)
             return items
         except Exception as e:
@@ -111,12 +112,14 @@ class Database:
             self.cursor.execute(query)
             results = self.cursor.fetchall()
             for row in results:
-                item = Item(row[1], row[2], row[3], row[4], None)
+                images = self.getAllItemsImages(row[0])
+                item = Item(row[1], row[2], row[3], row[4], images[0])
                 item.id = row[0]
-                item.userId = row[5]
                 item.isCoffee = row[5] 
                 item.isTea = row[6]
-                item.images = self.getAllItemsImages(item.id)
+                for i in range(len(images)):
+                    if images[i] is not None:
+                        item.image.append(images[i])
                 items.append(item)
             return items
         except Exception as e:
@@ -131,10 +134,21 @@ class Database:
             results = self.cursor.fetchall()
             for row in results:
                 item_images.append(row[0])
+
+            print('successfully got images')    
             return item_images
         except Exception as e:
             print("Error getting images:", e)
             return []
+
+    def deleteItem(self, item_id):
+        try:
+            query = "DELETE FROM items WHERE item_id = ?;"
+            self.cursor.execute(query, (item_id,))
+            self.connect.commit()
+        except Exception as e:
+            print(f"Error deleting item {item_id}:", e)
+            self.connect.rollback()
 
     def insertUser(self, user):
         query = "INSERT INTO users (first_name, last_name, email, password, username, image, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?);"
@@ -155,13 +169,14 @@ class Database:
             print("Error inserting user item:", e)
 
     def insertItem(self, item):
-        query = "INSERT INTO items (name, supplier, price, amount, isCoffee, isTea) VALUES (?, ?, ?, ?, ?, ?, ?);"
+        query = "INSERT INTO items (name, supplier, price, amount, isCoffee, isTea) VALUES (?, ?, ?, ?, ?, ?);"
         try:
             self.cursor.execute(query, (item.name, item.supplier, item.price, item.amount, item.isCoffee, item.isTea))
-            self.insertItemImages(item_id, item.images)
+            item_id = self.cursor.lastrowid 
+            self.insertItemImages(item_id, item.image)
             self.connect.commit()
         except Exception as e:
-            print("Error inserting user item:", e)
+            print("Error inserting new item:", e)
 
     def insertItemImages(self, item_id, images):
         image_query = "INSERT INTO item_images (item_id, image) VALUES (?, ?);"

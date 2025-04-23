@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, session
 from Database import Database
 from User import User
+from Item import Item
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import pickle
@@ -92,7 +93,7 @@ def accountActions():
 
     # Logout
     if action == 'logout':
-        session['loggedinUser'] = None
+        session['userId'] = None
         return render_template('index.html')
 
     # Edit
@@ -162,13 +163,68 @@ def edit():
     return render_template('profile.html',user = edit, profilePic = base64.b64encode(edit.image).decode('utf-8'),password = hidden)
 
 
+@app.route('/addDrink',methods=['POST'])
+def addDrink():
+
+    teaName = request.form.get('teaName')
+    supplier = request.form.get("supplier")
+    price = request.form.get('price')
+    amount = request.form.get('amount')
+    drinkType = request.form.get('drinkType')
+    image = request.files.get('teaImage')
+
+    print(f'{teaName} {supplier} {price} {amount} {drinkType}')
+
+    drink = Item(teaName,supplier,price,amount,image.read())
+
+    if drinkType == 'Coffee':
+        drink.isCoffee = True
+    else:
+        drink.isTea = True
+
+    Database().insertItem(drink)
+
+    return render_template('addTea.html')
+    
+@app.route('/handleDrinks',methods=['POST'])
+def handleDrinks():
+    
+    drinkId = request.form.get('drinkId')
+    action = request.form.get('action')
+
+    print(f" {action}  {drinkId}")
+
+    if action == 'remove':
+        Database().deleteItem(drinkId)
+        return render_template('allTeas.html', allTeas = Database().getAllItems())
+    else:
+        userData = session['userId']
+        if userData:
+            drink = None
+
+            for _drink in Database().getAllItems():
+                if _drink.id == drinkId:
+                    drink = _drink
+                    drink.amount = 1 # only add one drink 
+
+            userId = pickle.loads(userData)
+
+            for user in Database().getAllUsers():
+                if user.userId == userId:
+                    #to do update amount logic
+                    user.cart.append(drink)
+
+        return render_template('allTeas.html', allTeas = Database().getAllItems())
+
+
 @app.route("/profile")
 def profile():
-    userData = session.get('loggedinUser')
-    loggeduser = pickle.loads(userData)
-    if loggeduser:
-        hidden = len(loggeduser.password) * '*'
-        return render_template('profile.html',user = loggeduser, profilePic = base64.b64encode(loggeduser.image).decode('utf-8'),password = hidden)
+    userData = session.get('userId')
+    userId = pickle.loads(userData)
+    for user in Database().getAllUsers():
+        if userId == user.userId:
+            hidden = len(user.password) * '*'
+            return render_template('profile.html',user = user, profilePic = base64.b64encode(user.image).decode('utf-8'),password = hidden)
     else:
         return render_template('login.html')
 
@@ -199,11 +255,14 @@ def editItem():
 
 @app.route("/allTeas")
 def allTeas():
-    return render_template('allTeas.html')
+    for drink in Database().getAllItems():
+        if drink.displayImage:
+            print('item has images')
+    return render_template('allTeas.html',allTeas = Database().getAllItems())
 
-@app.route("/Inventory")
+@app.route("/inventory")
 def Inventory():
-    return render_template('Inventory.html',items = Database().getAllItems())
+    return render_template('inventory.html',inventory = Database().getAllItems())
 
 @app.route("/addItem")
 def addItem():
@@ -216,6 +275,21 @@ def addTea():
 @app.route("/cart")
 def cart():
     return render_template('cart.html')
+
+@app.context_processor
+def inject_logged_in_user():
+    user = None
+    if "userId" in session:
+        try:
+            userId = pickle.loads(session["userId"])  # Retrieve the user from the session
+            for _user in Database().getAllUsers():
+                if userId == _user.userId:
+                    user = _user
+
+        except Exception as e:
+            print(f"Error retrieving user: {e}")
+        pass
+    return {"user": user}
 
 if __name__ == '__main__':# main 
     app.run(debug=True) 
