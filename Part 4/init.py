@@ -100,7 +100,7 @@ def accountActions():
     elif action == 'edit':
         for user in Database().getAllUsers():
             if user.userId == userId:
-                return render_template('editProfile.html', user= user)
+                return render_template('editProfile.html', user= user,profilePic = base64.b64encode(user.image).decode('utf-8'))
 
     # Delete
     elif action == 'delete':
@@ -173,13 +173,11 @@ def addDrink():
     drinkType = request.form.get('drinkType')
     image = request.files.get('teaImage')
 
-    print(f'{teaName} {supplier} {price} {amount} {drinkType}')
-
     drink = Item(teaName,supplier,price,amount,image.read())
 
     if drinkType == 'Coffee':
         drink.isCoffee = True
-    else:
+    elif drinkType == 'Tea':
         drink.isTea = True
 
     Database().insertItem(drink)
@@ -191,8 +189,6 @@ def handleDrinks():
     
     drinkId = request.form.get('drinkId')
     action = request.form.get('action')
-
-    print(f" {action}  {drinkId}")
 
     if action == 'remove':
         Database().deleteItem(drinkId)
@@ -228,6 +224,71 @@ def profile():
     else:
         return render_template('login.html')
 
+@app.route('/handleInventory',methods = ['POST'])
+def handleInventory():
+
+    action = request.form.get('action')
+    itemId = request.form.get('itemId')
+    amount = request.form.get('amount')
+
+    print(f" {action} itemId: {itemId}")
+
+    if action == 'delete':
+        Database().deleteItem(itemId)
+        return render_template('inventory.html', inventory = Database().getAllItems())
+
+    item = None
+    for _item in Database().getAllItems():
+        if int(_item.id) == int(itemId):
+            if _item.image:
+                print('image found')
+            item = _item
+
+    if action == 'edit':
+        return render_template('editItem.html',item = item)
+
+    else:
+        item.amount = int(item.amount) + int(amount)
+        Database().updateItem(item)
+
+    return render_template('inventory.html', inventory = Database().getAllItems())
+
+@app.route('/editItem',methods = ['POST'], endpoint='edit_item_post')
+def editItem():
+
+    name = request.form.get('name')
+    supplier = request.form.get('supplier')
+    price = request.form.get('price')
+    amount = request.form.get('amount')
+    drinkType = request.form.get('drinkType') # only if its a drink
+    image = request.files.get('teaImage')
+    itemId = int(request.form.get('itemId'))
+
+    for item in Database().getAllItems():
+        if item.id == itemId:
+
+            if name:
+                item.name = name 
+            if supplier:
+                item.supplier = supplier
+            if price:
+                item.pricev = price
+            if amount:
+                item.amount = int(amount)
+            if drinkType == 'Tea':
+                item.isTea = True
+                item.isCoffee = False
+            if drinkType == 'Coffee':
+                item.isTea = False
+                item.isCoffee = True
+            if image:
+                item.image[0] = image.read()
+
+            Database().updateItem(item)
+
+    return render_template('inventory.html',inventory = Database().getAllItems())
+
+
 @app.route("/")
 def home():
     return render_template('index.html')
@@ -255,9 +316,6 @@ def editItem():
 
 @app.route("/allTeas")
 def allTeas():
-    for drink in Database().getAllItems():
-        if drink.displayImage:
-            print('item has images')
     return render_template('allTeas.html',allTeas = Database().getAllItems())
 
 @app.route("/inventory")
@@ -270,7 +328,7 @@ def addItem():
 
 @app.route("/addTea")
 def addTea():
-    return render_template('addTea.html')
+    return render_template('addItem.html')
 
 @app.route("/cart")
 def cart():

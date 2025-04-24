@@ -144,11 +144,53 @@ class Database:
     def deleteItem(self, item_id):
         try:
             query = "DELETE FROM items WHERE item_id = ?;"
+            delete_images_query = "DELETE FROM item_images WHERE item_id = ?;"
             self.cursor.execute(query, (item_id,))
+            self.cursor.execute(delete_images_query, (item_id,))
             self.connect.commit()
         except Exception as e:
             print(f"Error deleting item {item_id}:", e)
             self.connect.rollback()
+
+    def updateItem(self, item):
+        item_query = """
+            UPDATE items
+            SET name = ?,
+                supplier = ?,
+                price = ?,
+                amount = ?,
+                isCoffee = ?,
+                isTea = ?
+            WHERE item_id = ?;
+        """
+        delete_images_query = "DELETE FROM item_images WHERE item_id = ?;"
+        insert_image_query = "INSERT INTO item_images (item_id, image) VALUES (?, ?);"
+
+        try:
+            # Update the main item info
+            self.cursor.execute(item_query, (
+                item.name,
+                item.supplier,
+                item.price,
+                item.amount,
+                item.isCoffee,
+                item.isTea,
+                item.id
+            ))
+
+            self.cursor.execute(delete_images_query, (item.id,))
+
+            # Insert new images
+            for image in item.image:  
+                self.cursor.execute(insert_image_query, (item.id, image))
+
+            # Commit all changes
+            self.connect.commit()
+            print(f"Item with ID {item.id} and its images updated successfully. {item.name}")
+
+        except Exception as e:
+            print(f"Error updating item {item.id} and its images:", e)
+
 
     def insertUser(self, user):
         query = "INSERT INTO users (first_name, last_name, email, password, username, image, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?);"
