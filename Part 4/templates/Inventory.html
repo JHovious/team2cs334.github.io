@@ -53,6 +53,7 @@
      <!-- Table Headers -->
     <div style="  width: 80%;" id="adjust" class="dynamic-spacing">
         <div  >
+            
             <table>
                 <thead>
                     <tr>
@@ -72,6 +73,7 @@
                     
 
                     {% for item in inventory %}
+                    <form action="/handleInventory" method="POST">
                     <tr>
                         <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
@@ -79,22 +81,23 @@
                         <td>{{ item.amount }}</td>
                         <td>{{ item.supplier }}</td>
                         <td>${{ item.price }}</td>
-                        <td><input type="number" min="1" max="100" value="1"></td>
-                        <td><button id="deleteItemButton" onclick="deleteItem(${index})"  class="button delete-btn" >
+                        <td><input name='amount' type="number" min="1" max="100" value="1"></td>
+                        <input type="hidden" value="{{ item.id }}" name="itemId">
+                        <td><button name='action' value='delete' id="deleteItemButton" onclick="deleteItem(${index})"  class="button delete-btn" >
                             <span class="shadow"></span>
                             <span class="edge"></span>
                             <div class="front">
                                 <span>Delete</span>
                             </div>
                         </button>
-                       <button id="editButton" onclick="setItemToEdit(${index})" class="button edit-btn">
+                       <button name='action' value='edit' id="editButton" onclick="setItemToEdit(${index})" class="button edit-btn">
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
                                 <div class="front">
                                     <span>Edit</span>
                                 </div>
                             </button>
-                            <button id="quickOrder" onclick="quickOrder(${index})" class="button edit-btn">
+                            <button name='action' value='quickOrder'   id="quickOrder" onclick="quickOrder(${index})" class="button edit-btn">
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
                                 <div class="front">
@@ -102,6 +105,7 @@
                                 </div>
                             </button></td>
                     </tr>
+                </form>
                     {% endfor %}
                     {% else %}
                     <tr>
@@ -134,7 +138,7 @@
                         <td>50</td>
                         <td>Tea Suppliers Inc.</td>
                         <td>$5.00</td>
-                        <td><input type="number" min="1" max="100" value="1"></td>
+                        <td><input name="amount" type="number" min="1" max="100" value="1"></td>
                         <td><button class="order-button">Order</button></td>
                     </tr>
                     <tr>

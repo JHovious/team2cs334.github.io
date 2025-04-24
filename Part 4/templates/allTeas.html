@@ -82,15 +82,15 @@
     <!-- Main Content -->
     <h2 style="font-size: xx-large; font-family: 'Times New Roman', Times, serif;" class="text-center mb-4">Our Tea Collection</h2>
     <div id="displayAllTeas" class="container mt-5">
-        <form action="/handleDrinks" method="POST">
+        
         <div class="row">
             <!-- Tea Item 1 -->
             <!-- Uses christian.css for image styling-->
             
             {% if allTeas %}
             {% for drink in allTeas %}
-            
-            <div class="col-md-4">
+                {% if drink.isTea or drink.isCoffee %}
+                <form action="/handleDrinks" method="POST" class="col-md-4">
                 <div class="card">
                     <img src="data:image/jpeg;base64,{{ drink.displayImage }}" class="image1" alt="Classic Iced Tea">
                     <div class="card-body">
@@ -103,7 +103,8 @@
                         {% endif %}
                     </div>
                 </div>
-            </div>
+            </form>
+                {% endif %}
             
             {% endfor %}
             {% else %}
@@ -347,7 +348,6 @@
                   </div>
               </div>
               {% endif %}
-            </form>
               </div>
 </div>
 

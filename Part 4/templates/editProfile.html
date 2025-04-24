@@ -14,7 +14,11 @@
     <form action='/editAccount' method='POST' class="p-3 mt-3" enctype="multipart/form-data">
     <div class="wrapper">
         <div class="login">
+            {% if user.image %}
+            <img id="eProfilePic" src="data:image/jpeg;base64,{{ profilePic }}" alt="">
+            {% else %}
             <img id="eProfilePic" src="../static/images/generic.png" alt="">
+            {% endif %}
         </div>
         <div class="text-center mt-4 name">
             Edit profile

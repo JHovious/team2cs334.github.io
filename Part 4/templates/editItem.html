@@ -15,45 +15,85 @@
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="../static/styles.css">
     <link rel="stylesheet" href="../static/profile.css">
-    <script src="../static/script.js"></script>
 </head>
-<header style=" margin-bottom: 90px; ">
-
-       
-    <div  class="container-fluid">
-        
-        <div class="row">
-            
-            <div class="col-md-3">
-                <div class="full">
-                    <a class="logo" href="../..//"><img src="../static/images/logo.jpeg" alt="#" /></a>
-                </div>
-            </div>
-           
-            <div class="col-md-9">
-              
-                    
-              
-                <div class="full">
-                    <div class="right_header_info">
-                        <ul>
-                            <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>
-                       
-                            <li class="button_user">
-                                <a class="button active"  type="button" id="sidebarCollapse">
-                                    
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<body > 
+  <header>
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <a class="logo" href="/"><img src="../static/images/logo.jpeg" alt="#" /></a>
         </div>
+        <div class="col-md-9">
+          <div class="right_header_info">
+            <ul>
+              <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="/allTeas">Our Teas</a></li>
+              <li class="button_user">
+                <a class="button active" id="sidebarCollapse"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-</header>
+  </header>
+  <style>
+    body {
+      padding-top: 60px; /* height of header */
+      padding-bottom: 100px; /* height of footer */
+      min-height: 100vh;
+    }
+
+    header {
+      height: 60px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer.reg-footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #d8b00f;
+      text-align: center;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    .teaContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 120px; /* ⬅️ Add this to push the bottom button above the footer */
+}
+
+
+    .btn-custom {
+      background-color: #8B4513;
+      color: black;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-custom:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-custom:active {
+      transform: scale(0.98);
+    }
+  </style>
 <div class="container">
 
-<body style="margin-bottom: 90px;"> 
+
     <div class="sidebar">
         <!-- Sidebar  -->
         <nav  style="justify-content: center; align-items: center;" id="sidebar">
@@ -73,40 +113,39 @@
 
     <!--Tea elements-->
     <div class="teaContainer">
-    <div class="container mt-5">
-     
-        <form  action="#" method="post" enctype="multipart/form-data" class="shadow p-4 rounded bg-light">
-            <div class="mb-3">
-                <label for="editName" class="form-label"><b>New Name</b></label>
-                <input type="text" id="editName" name="editName" class="form-control" placeholder="Enter Item name" >
-            </div>
-            <div id="holdSupplier" class="mb-3">
-           </div>
-            <div class="mb-3">
-                <label for="editPrice" class="form-label"><b>New Price ($)</b></label>
-                <input type="number" id="editPrice" name="ditPrice" class="form-control" step="0.01" min="0.01" placeholder="Enter price" >
-            </div>
-            <div class="mb-3">
-                <label for="editAmount" class="form-label"><b>New Inventory Amount</b></label>
-                <input type="number" id="editAmount" name="editAmount" class="form-control"step="1" min="1" placeholder="Enter inventory amount" >
-            </div>
-            <div class="mb-3">
-                <label for="editImage" class="form-label"><b>Replace Image(Optional)</b></label>
-                <input type="file" id="editImage" name="editImage" class="form-control" accept="image/*" >
-            </div>
-            <button id="editButton" onclick="confirmEdit(event)" class="btn-custom" type="submit">Confirm Edit</button>
+        <form action="/editItem" method="POST" enctype="multipart/form-data" class="shadow p-4 rounded bg-light">
+          <label for="name" class="form-label"><b>Tea Name</b></label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="{{ item.name }}" >
+
+          <input type="hidden" name="itemId" value="{{ item.id }}">
+    
+          <label for="supplier" class="form-label"><b>Drink Supplier</b></label>
+          <input type="text" id="supplier" name="supplier" class="form-control" placeholder="{{ item.supplier }}" >
+    
+          <label for="price" class="form-label"><b>Price ($)</b></label>
+          <input type="number" id="price" name="price" class="form-control" step="0.01" min="0.01" placeholder="{{ item.price }}" >
+    
+          <label for="amount" class="form-label"><b>Inventory Amount</b></label>
+          <input type="number" id="amount" name="amount" class="form-control" step="1" min="1" placeholder="{{ item.amount }}"  >
+    
+          {% if item.isTea or item.isCoffee %}
+          <input type="hidden" id="drinkType" name="drinkType" value="Tea">
+          <button type="button" id="toggleButton" onclick="toggleContent()" class="btn-custom">🍵 Tea</button>
+          {% endif %}
+          <label for="teaImage" class="form-label"><b>Upload Tea Image</b></label>
+          <input type="file" id="teaImage" name="teaImage" class="form-control" accept="image/*">
+    
+          <button class="btn-custom" type="submit">Confirm Edit</button>
         </form>
-    </div>
-</div>
+      </div>
 
     <footer class="reg-footer">
-        <div class="row">
+     
             
 
 <h3 >
     Binary Brew
 </h3>
-</div>
 </footer>
     
 <script src="../static/jquery.min.js"></script>
@@ -139,16 +178,25 @@
     function toggleContent() {
     var button = document.getElementById("toggleButton");
 
-    if (button.dataset.state === "tea") {
-        button.textContent = "☕ Coffee";
-        button.style.backgroundColor = "#A0522D"; // Coffee brown
-        button.dataset.state = "coffee";
-    } else {
-        button.textContent = "🍵 Tea";
-        button.style.backgroundColor = "#8B4513"; // Tea brown
-        button.dataset.state = "tea";
+    switch (button.dataset.state) {
+        case "tea":
+            button.textContent = "☕ Coffee";
+            button.style.backgroundColor = "#A0522D"; // Coffee brown
+            button.dataset.state = "coffee";
+            break;
+        case "coffee":
+            button.textContent = "📦 Item";
+            button.style.backgroundColor = "#4682B4"; // Steel blue for item
+            button.dataset.state = "item";
+            break;
+        default: // item or undefined
+            button.textContent = "🍵 Tea";
+            button.style.backgroundColor = "#8B4513"; // Tea brown
+            button.dataset.state = "tea";
+            break;
     }
 }
+
 
 // Set initial state to Tea when the page loads
 document.addEventListener("DOMContentLoaded", function () {
