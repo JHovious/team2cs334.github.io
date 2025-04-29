@@ -77,22 +77,48 @@ class Database:
 
     def getAllUserItems(self, user_id):
         items = []
-        query = "SELECT item_id, name, supplier, price, amount, isCoffee, isTea FROM user_items WHERE user_id = ?;"
+        query = """
+        SELECT i.item_id, i.name, i.supplier, i.price, ui.amount, i.isCoffee, i.isTea
+        FROM user_items ui
+        JOIN items i ON ui.item_id = i.item_id
+        WHERE ui.user_id = ?;
+        """
         try:
             self.cursor.execute(query, (user_id,))
             results = self.cursor.fetchall()
             for row in results:
-                item = Item(row[1], row[2], row[3], row[4], None)  # image=None for now
-                item.id = row[0]
-                item.userId = user_id
-                item.isCoffee = row[5] 
+                images = self.getAllItemsImages(row[0])  # Get images by item id
+                first_image = images[0] if images else None
+
+                # Create the Item object
+                item = Item(row[1], row[2], row[3], row[4], first_image)
+                item.id = row[0]   # Set the item id
+                item.isCoffee = row[5]
                 item.isTea = row[6]
-                item.image = self.getAllItemsImages(item.id)
+
+                # Add other images if they exist
+                if images:
+                    for img in images:
+                        if img is not None:
+                            item.image.append(img)
+
                 items.append(item)
             return items
         except Exception as e:
             print("Error getting user's items:", e)
             return []
+
+
+    def clearUsersCart(self,userId):
+
+        query = 'DELETE FROM user_items WHERE user_id = ?;'
+
+        try:
+            self.cursor.execute(query, (userId,))
+            self.connect.commit()
+        except Exception as e:
+            print(f"Error deleting user's Item {userId}:", e)
+            self.connect.rollback()
 
     def deleteUser(self, user_id):
         try:
@@ -133,9 +159,7 @@ class Database:
             self.cursor.execute(query, (item_id,))
             results = self.cursor.fetchall()
             for row in results:
-                item_images.append(row[0])
-
-            print('successfully got images')    
+                item_images.append(row[0]) 
             return item_images
         except Exception as e:
             print("Error getting images:", e)
@@ -191,6 +215,42 @@ class Database:
         except Exception as e:
             print(f"Error updating item {item.id} and its images:", e)
 
+    def updateUserItems(self, user_id, item):
+    # Prepare the SQL query to update the user item in the cart
+        query = """
+            UPDATE user_items
+            SET amount = ? WHERE user_id = ? AND item_id = ?;
+        """
+        try:
+            self.cursor.execute(query, (item.amount, user_id, item.id))
+            
+            self.connect.commit()
+            
+        except Exception as e:
+            print("Error updating user item:", e)
+
+    def removeItemForUser(self,drinkId,userId):
+
+        query = 'DELETE FROM user_items WHERE item_id = ? and user_id = ?;'
+
+        try:
+            self.cursor.execute(query, (drinkId, userId))
+            
+            self.connect.commit()
+            
+        except Exception as e:
+            print("Error clearing user item:", e)
+
+
+    def clearUsersCart(self,userId):
+
+        query = 'DELETE FROM user_items WHERE user_id = ?;'
+
+        try:
+            self.cursor.execute(query, (userId))
+            self.connect.commit()
+        except Exception as e:
+            print("Error clearing the user'a cart:", e)
 
     def insertUser(self, user):
         query = "INSERT INTO users (first_name, last_name, email, password, username, image, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?);"
@@ -201,14 +261,18 @@ class Database:
             print("Error inserting user:", e)
 
     def insertUserItem(self, user_id, item):
-        query = "INSERT INTO user_items (user_id, name, supplier, price, amount, isCoffee, isTea) VALUES (?, ?, ?, ?, ?, ?, ?);"
+        query = """
+        INSERT INTO user_items (user_id, item_id, amount)
+        VALUES (?, ?, ?);
+        """
         try:
-            self.cursor.execute(query, (user_id, item.name, item.supplier, item.price, item.amount, item.isCoffee, item.isTea))
-            user_item_id = self.cursor.lastrowid
-            self.insertItemImages(user_item_id, item.images, is_user_item=True)
+            cursor = self.connect.cursor()
+            cursor.execute(query, (user_id, item.id, item.amount))
             self.connect.commit()
+            print("User item inserted successfully.")
         except Exception as e:
-            print("Error inserting user item:", e)
+            print("Failed to insert user item:", e)
+
 
     def insertItem(self, item):
         query = "INSERT INTO items (name, supplier, price, amount, isCoffee, isTea) VALUES (?, ?, ?, ?, ?, ?);"
@@ -227,3 +291,5 @@ class Database:
                 self.cursor.execute(image_query, (item_id, image))
         except Exception as e:
             print("Error inserting item images:", e)
+
+    

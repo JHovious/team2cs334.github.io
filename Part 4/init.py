@@ -182,7 +182,7 @@ def addDrink():
 
     Database().insertItem(drink)
 
-    return render_template('addTea.html')
+    return render_template('addItem.html')
     
 @app.route('/handleDrinks',methods=['POST'])
 def handleDrinks():
@@ -199,16 +199,31 @@ def handleDrinks():
             drink = None
 
             for _drink in Database().getAllItems():
-                if _drink.id == drinkId:
+                if int(_drink.id) == int(drinkId):
                     drink = _drink
                     drink.amount = 1 # only add one drink 
 
             userId = pickle.loads(userData)
 
-            for user in Database().getAllUsers():
-                if user.userId == userId:
-                    #to do update amount logic
+            if userId:
+                user = None
+                hasDrink = False
+                for _user in Database().getAllUsers():
+                    if int(_user.userId) == int(userId):
+                        user = _user
+
+                for i in range(len(user.cart)):
+                    if int(user.cart[i].id) == int(drinkId):
+                        print(f'user has this item drink Id: {user.cart[i].id}')
+                        user.cart[i].amount = user.cart[i].amount + 1
+                        hasDrink = True
+                        Database().updateUserItems(user.userId, user.cart[i])
+
+                if not hasDrink:
+                    drink.amount = 1
                     user.cart.append(drink)
+                    print(f'passing userId: {user.userId} and dirnkId: {drink.id}')
+                    Database().insertUserItem(user.userId,drink)
 
         return render_template('allTeas.html', allTeas = Database().getAllItems())
 
@@ -272,7 +287,7 @@ def editItem():
             if supplier:
                 item.supplier = supplier
             if price:
-                item.pricev = price
+                item.price = price
             if amount:
                 item.amount = int(amount)
             if drinkType == 'Tea':
@@ -288,6 +303,57 @@ def editItem():
 
     return render_template('inventory.html',inventory = Database().getAllItems())
 
+
+@app.route('/cartActions',methods=['POST'])
+def cartActions():
+
+    action = request.form.get('action')
+    drinkId = request.form.get('drinkId')
+    userData = session.get('userId')
+
+    if userData:
+        user = None
+        userId = pickle.loads(userData)
+
+        for _user in Database().getAllUsers():
+            if int(userId) == int(_user.userId):
+                user = _user
+
+        if action == "clear":
+            user.cart = [] or None
+            Database().clearUsersCart(user.userId)
+            return render_template('cart.html',cart = None)
+
+        drink = None
+
+        for _drink in user.cart:
+            if int(_drink.id) == int(drinkId):
+                drink = _drink
+
+        if action == 'remove':
+            if drink.amount == 1:
+                Database().removeItemForUser(drinkId,user.userId)
+            else:
+                drink.amount = drink.amount - 1
+                Database().updateUserItems(user.userId,drink)
+
+        if action == 'add':
+            drink.amount = drink.amount + 1
+            Database().updateUserItems(user.userId,drink)
+
+        if action == 'removeDrink': # remove the whole object
+            Database().removeItemForUser(drinkId,user.userId)
+
+        for _user in Database().getAllUsers(): # this reloads the changes 
+            if int(userId) == int(_user.userId):
+                user = _user
+
+        return render_template('cart.html',cart = user.cart)
+    else:
+        return render_template('cart.html',cart = None)
+    
+    
+    return render_template('cart.html',cart = cart)
 
 @app.route("/")
 def home():
@@ -332,7 +398,13 @@ def addTea():
 
 @app.route("/cart")
 def cart():
-    return render_template('cart.html')
+    cart = None
+    userData = session.get('userId')
+    userId = pickle.loads(userData)
+    for user in Database().getAllUsers():
+        if int(userId) == int(user.userId):
+            cart = user.cart
+    return render_template('cart.html',cart = cart)
 
 @app.context_processor
 def inject_logged_in_user():
