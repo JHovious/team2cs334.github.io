@@ -5,3 +5,4 @@ class Card:
       self.name = holder_name
       self.type = _type
       self.expiry = expiry
+      self.id = 0

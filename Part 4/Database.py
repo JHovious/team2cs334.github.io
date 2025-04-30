@@ -247,7 +247,7 @@ class Database:
         query = 'DELETE FROM user_items WHERE user_id = ?;'
 
         try:
-            self.cursor.execute(query, (userId))
+            self.cursor.execute(query, (userId,))
             self.connect.commit()
         except Exception as e:
             print("Error clearing the user'a cart:", e)
@@ -292,4 +292,11 @@ class Database:
         except Exception as e:
             print("Error inserting item images:", e)
 
+    def inserUserCard(self,card,userId):
+        query = "INSERT INTO cards (card_number, cvv, holder_name, card_type, expiry, user_id) VALUES (?, ?, ?, ?, ?, ?);"
+        try:
+            self.cursor.execute(query, (card.number, card.cvv, card.name, card.type, card.expiry, userId))
+            self.connect.commit()
+        except Exception as e:
+            print("Error inserting payment for user:", e)
     

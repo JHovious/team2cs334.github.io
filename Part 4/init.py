@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, session
 from Database import Database
 from User import User
+from Card import Card
 from Item import Item
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -321,8 +322,14 @@ def cartActions():
 
         if action == "clear":
             user.cart = [] or None
-            Database().clearUsersCart(user.userId)
-            return render_template('cart.html',cart = None)
+            Database().clearUsersCart(int(user.userId))
+            count = 0
+            try:
+                count = len(user.cart) 
+            except Exception as e:
+                count = 0
+                
+            return render_template('cart.html',cart = user.cart,itemCount = count,subTotal = 0, tax = 0)
 
         drink = None
 
@@ -348,16 +355,27 @@ def cartActions():
             if int(userId) == int(_user.userId):
                 user = _user
 
-        return render_template('cart.html',cart = user.cart)
+        count = 0
+        try:
+            count = len(user.cart) 
+        except Exception as e:
+            count = 0
+
+        subTotal = float("{:.2f}".format(calculateTotal(user.cart) + caculateTax(user.cart)))        
+        return render_template('cart.html',cart = user.cart,itemCount = count,subTotal = subTotal, tax = caculateTax(user.cart))
     else:
-        return render_template('cart.html',cart = None)
+        return render_template('cart.html',cart = None,itemCount = 0,subTotal = 0, tax = 0)
     
     
-    return render_template('cart.html',cart = cart)
+    return render_template('cart.html',cart = None,itemCount = 0,subTotal = 0, tax = 0)
 
 @app.route("/")
 def home():
     return render_template('index.html')
+
+@app.route("/sales")
+def Sales():
+    return render_template('/Orders.html')
 
 @app.route("/login")
 def login():
@@ -396,6 +414,39 @@ def addItem():
 def addTea():
     return render_template('addItem.html')
 
+@app.route('/addPayment')
+def addPayment():
+    return render_template('addPayment.html')
+
+@app.route('/addPaymentMethod',methods=['POST'])
+def addPaymentMethod():
+
+    cardNumber = request.form.get('cardNumber')
+    cvv = request.form.get('cvv')
+    holderName = request.form.get('nameHolder')
+    cardType = request.form.get('paymentType')
+    expiry = request.form.get('expiry')
+
+    today = datetime.today()
+
+    try:
+        expiry_date = datetime.strptime(str(expiry), '%Y-%m-%d').date()
+        if int(cardNumber) < 10000000 or int(cvv) < 10 or expiry_date < today:
+            return render_template('addPayment.html')
+    except (ValueError, TypeError):
+        print(TypeError)
+
+
+    userData = session.get('userId')
+    userId = pickle.loads(userData)
+
+    payment = Card(cardNumber,cvv,holderName,cardType,str(expiry))
+
+    Database().inserUserCard(payment,userId)
+
+    return render_template('addPayment.html')
+
+
 @app.route("/cart")
 def cart():
     cart = None
@@ -404,7 +455,53 @@ def cart():
     for user in Database().getAllUsers():
         if int(userId) == int(user.userId):
             cart = user.cart
-    return render_template('cart.html',cart = cart)
+            count = 0
+            try:
+                count = len(user.cart) 
+            except Exception as e:
+                count = 0
+    
+    subTotal = float("{:.2f}".format(calculateTotal(cart) + caculateTax(cart)))
+    return render_template('cart.html',cart = cart,itemCount = count,subTotal = subTotal, tax = caculateTax(cart))
+
+@app.route('/checkout')
+def checkout():
+
+    cart = None
+    count = 0
+    items = [] # this is just to display 4 items or less on the checkout page
+    userData = session.get('userId')
+    userId = pickle.loads(userData)
+    for user in Database().getAllUsers():
+        if int(userId) == int(user.userId):
+            cart = user.cart
+            
+            try:
+                count = len(user.cart) 
+            except Exception as e:
+                count = 0
+
+    if count <= 4:
+        items = cart
+    else:
+        items = cart[:4]       
+        
+    subTotal = float("{:.2f}".format(calculateTotal(cart) + caculateTax(cart)))
+    return render_template('checkout.html',items = items,itemCount = count,subTotal = subTotal, tax = caculateTax(cart))
+
+def caculateTax(items):
+    tax = 0
+    for item in items:
+        tax += float("{:.2f}".format((item.price * item.amount) * 0.07))
+
+    return tax
+
+def calculateTotal(items):
+    total = 0
+    for item in items:
+        total += float("{:.2f}".format((item.price * item.amount)))
+
+    return total
 
 @app.context_processor
 def inject_logged_in_user():
