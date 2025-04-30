@@ -29,9 +29,7 @@
    
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   
 </head>
 
 <script>
@@ -82,7 +80,33 @@
         </div>
     </div>
 </header>
+<style>
+  body {
+    padding-top: 60px; /* height of header */
+    padding-bottom: 100px; /* height of footer */
+    min-height: 100vh;
+  }
 
+  header {
+    height: 60px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  footer.reg-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #d8b00f;
+    text-align: center;
+    padding: 20px 0;
+    z-index: 1000;
+  }
+
+</style>
 <body>
   <div class="container">
 
@@ -111,7 +135,7 @@
       <button  name="action" value="logout" class="btn draw-border">logOut</button>
     </div>
       <div class="row">
-      <a href="/allTeas" name="action" value="cart" class="btn draw-border">View Cart</a>
+      <a href="/cart" name="action" value="cart" class="btn draw-border">View Cart</a>
       <button  name="action" value="delete" class="btn draw-border">Delete Account</button>
       </div>
       <div id="adminOptions"></div>
@@ -126,8 +150,10 @@
     </div>
       {% endif %}
     </form>
+    <div class="row">
+      <a href="/addPayment" class="btn draw-border">Add Payment</a>
     </div>
-    
+    </div>
   </div>
 
 </body>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Payment Method</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../static/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/login.css">
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="../static/styles.css">
+  <link rel="stylesheet" href="../static/profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body {
+      padding-top: 60px;
+      padding-bottom: 100px;
+      min-height: 100vh;
+    }
+
+    header {
+      height: 60px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer.reg-footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #d8b00f;
+      text-align: center;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    .teaContainer {
+      max-width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      padding-bottom: 120px;
+    }
+
+    .btn-custom {
+      background-color: #8B4513;
+      color: black;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-custom:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-custom:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <nav id="sidebar" class="d-flex justify-content-center align-items-center">
+      <ul>
+        <li class="button_user"><a class="button active" href="/">Home</a></li>
+      </ul>
+      <div id="dismiss">
+        <i class="fa fa-arrow-left"></i>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <a class="logo" href="/"><img src="../static/images/logo.jpeg" alt="Logo" /></a>
+        </div>
+        <div class="col-md-9">
+          <ul class="right_header_info d-flex justify-content-end align-items-center">
+            <li class="dinone">
+              <img src="../static/images/hotTeaCircle.png" alt="Hot Tea" style="margin-right: 15px; height: 28px; position: relative; top: -3px;">
+              <a href="/allTeas">Our Teas</a>
+            </li>
+            <li class="button_user">
+              <a class="button active" id="sidebarCollapse"><i class="fas fa-bars"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Form Section -->
+  <div class="teaContainer">
+    <form action="/addPaymentMethod" method="POST" class="shadow p-4 rounded bg-light">
+      <div class="mb-3">
+        <label for="nameHolder" class="form-label"><b>Name Holder</b></label>
+        <input type="text" id="nameHolder" name="nameHolder" class="form-control" placeholder="{{ user.firstName }} {{ user.lastName }}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="expiry" class="form-label"><b>Expiry</b></label>
+        <input type="date" id="expiry" name="expiry" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="cvv" class="form-label"><b>CVV</b></label>
+        <input type="number" id="cvv" name="cvv" class="form-control" placeholder="Enter CVV" min="000" step="1" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label"><b>Card Number</b></label>
+        <input type="number" id="cardNumber" name="cardNumber" class="form-control" placeholder="Enter Card Number" min="00000000" max="99999999" step="1" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="paymentType" class="form-label"><b>Payment Type</b></label>
+        <select style="height: 40%;" class="form-control" id="paymentType" name="paymentType">
+          <option value="Visa">Visa</option>
+          <option value="Master Card">Master Card</option>
+          <option value="PayPal">PayPal</option>
+        </select>
+      </div>
+
+      <button class="btn-custom w-100" type="submit">Add Payment</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="reg-footer">
+    <h3>Binary Brew</h3>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../static/jquery.min.js"></script>
+  <script src="../static/popper.min.js"></script>
+  <script src="../static/bootstrap.bundle.min.js"></script>
+  <script src="../static/owl.carousel.min.js"></script>
+  <script src="../static/custom.js"></script>
+  <script src="../static/jquery.mCustomScrollbar.concat.min.js"></script>
+
+  
+</body>
+</html>

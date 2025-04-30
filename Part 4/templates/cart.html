@@ -109,21 +109,35 @@
     </section>
     <article class="carttotal">
         <div id="itemCount" class="subtotalbox">
+            {% if cart %}
+            Items: {{ itemCount }}
+            {% else %}
             Items: 0
+            {% endif %}
         </div>
         <br>
         <div id="displayTax" class="taxbox">
-            Tax: $
+            {% if cart %}
+            Tax: ${{ tax }}
+            {% else %}
+            Tax: $0
+            {% endif %}
+            
         </div>
 
         <br>
         <br>
         <div id="displaySubtotal" class="totalbox">
-            Total: $
+            {% if cart %}
+            Total: ${{ subTotal }}
+            {% else %}
+            Total: $0
+            {% endif %}
+            
         </div>
         <br>
         <br>
-        <div class="checkoutbutton"> <a href="checkout ">
+        <div class="checkoutbutton"> <a href="/checkout">
             Checkout
         </a></div> 
     </article>

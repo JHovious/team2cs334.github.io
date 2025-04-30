@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="full">
-                                    <a class="logo" href="../../index.html"><img src="../static/images/logo.jpeg" alt="#" /></a>
+                                    <a class="logo" href="/"><img src="../static/images/logo.jpeg" alt="#" /></a>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -29,7 +29,7 @@
                                         <ul>
                                             
             
-                                            <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="allTeas.html">Our Teas</a></li>                                      
+                                            <li class="dinone"><img style="margin-right: 15px; height: 28px; position: relative; top: -3px;" src="../static/images/hotTeaCircle.png" alt="#"><a href="/allTeas">Our Teas</a></li>                                      
                                           
                                         </ul>
             
@@ -49,6 +49,13 @@
             <div class="column items">
                 <h2>Items in cart</h2><hr>
                 <div class="drinks">
+                    {% if items %}
+                        {% for item in items%}
+                    <div class="imgs">
+                        <img src="data:image/jpeg;base64,{{ item.displayImage }}" >
+                    </div>
+                        {% endfor %}
+                    {% else %}
                     <div class="imgs">
                         <img src="../static/images/arnoldPalmer3.jpeg">
                     </div>
@@ -62,10 +69,11 @@
                     <div class="imgs">
                         <img src="../static/images/raspberryTea.png">
                     </div>
+                    {% endif %}
                 </div>
                 <div class="button">
                     <hr>
-                    <a href="cart.html">Return to cart</a>
+                    <a href="/cart">Return to cart</a>
                 </div>
             </div>
             <div class="column payment">
@@ -73,51 +81,79 @@
                 <div class="pay">
 
                     <form>
+                        {% if user.card %}
                         <div class="method">
-                            <label for="fname">First name:</label><br>
-                            <input type="text" id="fname" name="fname" required><br>
+                            <label for="nameHolder">Name Holder:</label><br>
+                            <input type="text" id="nameHolder" name="nameHolder" placeholder="{{ user.card[0].name }}" required><br>
                         </div>
                         <div class="method">
-                            <label for="lname">Last name:</label><br>
-                            <input type="text" id="lname" name="lname" required><br>
+                            <label for="email">Email:</label><br>
+                            <input type="email" id="email" name="email" placeholder="{{ user.email }}"  required><br>
+                        </div>
+                        {% else %}
+                        <div class="method">
+                            <label for="nameHolder">Name Holder:</label><br>
+                            <input type="text" id="nameHolder" name="nameHolder" placeholder="Name Holder" required><br>
                         </div>
                         <div class="method">
                             <label for="email">Email:</label><br>
                             <input type="email" id="email" name="email" required><br>
                         </div>
+                        {% endif %}
                     </form>
-                    <hr>
+                    
                     <form>
+                        {% if user.cards %}
                         <div class="method credit">
+                            
+                            <label for="ccn">Credit Card Number:</label>
+                            <input type="tel" id="ccn" name="ccn" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="{{ user.cards[0].number }}" style="width: 155px" required><br>
+                            <label for="cvc">CVC:</label>
+                            <input type="tel" id="cvc" name="cvc" inputmode="numeric" pattern="[0-9]" maxlength="3" placeholder="{{ user.cards[0].cvv }}" style="width: 31px" required>
+                        <div class="method credit">
+                            <label for="date">Experaton date</label>
+                            <input type="text" id="date" name="date" inputmode="numeric" maxlength="4" placeholder="{{ user.cards[0].expiry }}" style="width: 55px" required>
+                        </div>
+                    </div>
+                            {% else %}
+                            <div class="method credit">
                             <label for="ccn">Credit Card Number:</label>
                             <input type="tel" id="ccn" name="ccn" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" style="width: 155px" required><br>
                             <label for="cvc">CVC:</label>
                             <input type="tel" id="cvc" name="cvc" inputmode="numeric" pattern="[0-9]" maxlength="3" placeholder="- - -" style="width: 31px" required>
+                            
                         </div>
                         <div class="method credit">
                             <label for="date">Experaton date</label>
                             <input type="text" id="date" name="date" inputmode="numeric" maxlength="4" placeholder="MM/YY" style="width: 55px" required>
                         </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>
             <div class="column total">
                 <div class="totals">
-                    <h3  id="itemCount" class="cost">0</h3>
+                    <h3  id="itemCount" class="cost">{{ itemCount }}</h3>
                     <p  class="text">Tax:</p>
+                    {% if tax: %}
+                    <p id="displayTax">${{ tax }}</p>
+                    {% else %}
                     <p id="displayTax">$0.00</p>
-                    
+                    {% endif %}
                     <hr>
                     <p class="text">Total:</p>
-                    <p id="displaySubtotal" class="cost">29.69$</p><br>
+                    {% if subTotal %}
+                    <p id="displaySubtotal" class="cost">${{ subTotal }}</p><br>
+                    {% else %}
+                    <p id="displaySubtotal" class="cost">$00.00</p><br>
+                    {% endif %}
+                    
                     <hr>
                 </div>
                 <div class="button">
-                    <a href="checkedout.html">Check Out</a>
+                    <a href="/checkedout">Check Out</a>
                 </div>
             </div>
         </div>
     </body>
 </html>
-
-<Script src="../static/script.js"></Script>
