@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session
+from flask import Flask, request, render_template, session, jsonify
 from Database import Database
 from User import User
 from Item import Item
@@ -7,6 +7,7 @@ from datetime import datetime
 import pickle
 import os
 import base64
+import sqlite3
 
 # Binary Brew Started By Julian Marquez
 
@@ -14,6 +15,31 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/api', methods=['GET'])#API to return items and prices
+def getItemsAndPrices():
+    connection = sqlite3.connect("////home/334group/mysite/brew.db")
+    if connection:
+        print("Connected to SQLite")
+    else:
+        print("Could not connect to SQLite")
+    cursor = connection.cursor()
+
+    statement = "SELECT name, price FROM items"
+    cursor.execute(statement)
+    objects= {}
+    index = 0
+
+    for line in cursor:
+        print(line)
+        lineData = {"name":line[0], "price":line[1]}
+        objects.update({"Object{}".format(index):lineData})
+        index += 1
+
+    cursor.close()
+    connection.close()
+
+    return jsonify(objects)
 
 @app.route('/handleLogin', methods=['POST'])
 def submit():
