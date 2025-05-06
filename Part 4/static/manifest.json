@@ -1,0 +1,308 @@
+{
+    "name": "Binary Brew",
+    "short_name": "BinaryBrew",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "black",
+    "theme_color": "#e1efe4",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "images/-2.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/11.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/EarlGreyTea.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/SetUpPayment.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/arnoldPalmer.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/arnoldPalmer2.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/arnoldPalmer3.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/atom.less",
+            "type": "image/less", "sizes": "128x128"
+        },
+        {
+            "src": "images/atom0.less",
+            "type": "image/less", "sizes": "128x128"
+        },
+        {
+            "src": "images/atom1.less",
+            "type": "image/less", "sizes": "128x128"
+        },
+        {
+            "src": "images/bg.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/blackCurrantTea.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/blackberryTea.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/blackberryTea2.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/blackberryTea3.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/client_icon.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/cupSymbol.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/defaultItem.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/dollar.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/donate-img.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/englishBreakfastLatte.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/generic.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/generic_user.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/greenTea.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/greenTea2.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/greenTea3.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/hibiscusTea.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/honeyTea.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/hotTea.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/hotTeaCircle.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/icedTea.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/icedTea.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/icedTea2.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/icedTea3.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/icon.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/indexTea.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/indexTea2.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/istockphoto-1358132613-1024x1024.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/large.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/loading.gif",
+            "type": "image/gif", "sizes": "128x128"
+        },
+        {
+            "src": "images/location_icon.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/logo.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/logo2.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/londonFog.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/main_icon.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/matchaGreenTea.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/matchaLemonade.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/medium.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/menu_icon.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/paper_towels.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/phone_icon.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/pic1.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/pic2.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/pic4.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/raspberryTea.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/raspberryTea2.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/raspberryTea3.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/search_icon.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/simpleTea.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/small.jpeg",
+            "type": "image/jpeg", "sizes": "128x128"
+        },
+        {
+            "src": "images/teaBook.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/tick-mark1.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/title.png",
+            "type": "image/png", "sizes": "128x128"
+        },
+        {
+            "src": "images/warmTea.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/warmTea2.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/christian/americano.png",
+            "type": "image/png", "sizes": "350X350"
+        },
+        {
+            "src": "images/christian/basket2(1).svg",
+            "type": "image/svg", "sizes": "28x28"
+        },
+        {
+            "src": "images/christian/cmapfire.png",
+            "type": "image/png", "sizes": "350X350"
+        },
+        {
+            "src": "images/christian/cappuccino.png",
+            "type": "image/png", "sizes": "350X350"
+        },
+        {
+            "src": "images/christian/coffee.png",
+            "type": "image/png", "sizes": "350X350"
+        },
+        {
+            "src": "images/christian/icedtea.png",
+            "type": "image/png", "sizes": "350X350"
+        },
+        {
+            "src": "images/christian/shop.jpg",
+            "type": "image/jpg", "sizes": "128x128"
+        },
+        {
+            "src": "images/christian/teashp2.png",
+            "type": "image/png", "sizes": "350X350"
+        },
+        {
+            "src": "images/christian/upside-down.svg",
+            "type": "image/svg", "sizes": "128x128"
+        }
+    ]
+
+}
