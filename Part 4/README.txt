@@ -1,0 +1,1 @@
+Christian - I was the leader for this stage, created the API that returns items and prices, implemented PWA functionality, and did some debugging
