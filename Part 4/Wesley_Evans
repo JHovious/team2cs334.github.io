@@ -1,0 +1,4 @@
+- Implemented the checkout
+- Setup the email with the checkout
+- Created the sale table in the db and functions to handle it
+- Debbuging
