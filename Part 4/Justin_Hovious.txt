@@ -1,0 +1,4 @@
+Created web app in Python anywhere
+migrated files
+Updated checkout process to update available inventory after successful checkout
+Re-added teas to allTeas.html 
